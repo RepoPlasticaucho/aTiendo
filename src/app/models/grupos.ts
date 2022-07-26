@@ -1,6 +1,6 @@
 export interface Grupos {
     codigoError: string;
-    grupo: string;
+    descripcionError: string;
     lstGrupos: GruposEntity[];
 }
 
