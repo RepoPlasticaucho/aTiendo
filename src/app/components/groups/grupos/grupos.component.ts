@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faEdit, faPlus, faTrashAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
 import { GruposEntity } from 'src/app/models/grupos';
 import { GruposService } from 'src/app/services/grupos.service';
 import Swal from 'sweetalert2';
@@ -9,7 +11,7 @@ import Swal from 'sweetalert2';
   templateUrl: './grupos.component.html',
   styleUrls: ['./grupos.component.css']
 })
-export class GruposComponent implements OnInit {
+export class GruposComponent implements OnInit, OnDestroy {
   //Iconos para la pagina de grupos
   faUserFriends = faUserFriends;
   faEdit = faEdit;
@@ -17,16 +19,14 @@ export class GruposComponent implements OnInit {
   faPlus = faPlus;
   //Declaración de variables
   dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   lstGrupos: GruposEntity[] = [];
 
-  constructor(private readonly httpService: GruposService) { }
+  constructor(private readonly httpService: GruposService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
-    const gruposEntity: GruposEntity = { id: "1", grupo: "Plasticaucho Industrial S.A.", idFiscal: "1890010667001" };
-    const gruposEntity2: GruposEntity = { id: "2", grupo: "Ambato", idFiscal: "123457891" };
-    this.lstGrupos.push(gruposEntity);
-    this.lstGrupos.push(gruposEntity2);
     this.dtOptions = {
       language: {
         url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
@@ -48,27 +48,52 @@ export class GruposComponent implements OnInit {
           // timer: 3000
         });
       } else {
-        console.log(res);
+        this.lstGrupos = res.lstGrupos;
+        this.dtTrigger.next('');
       }
     })
   }
 
   editarGrupos(grupo: GruposEntity): void {
-    console.log(`Editar ${grupo.grupo}`);
+    this.httpService.asignarGrupo(grupo);
   }
 
   eliminarGrupos(grupo: GruposEntity): void {
     Swal.fire({
-      icon:'question',
+      icon: 'question',
       title: `¿Esta seguro de eliminar ${grupo.grupo}?`,
       showDenyButton: true,
       confirmButtonText: 'Si',
-      denyButtonText: `No`,
+      denyButtonText: 'No',
     }).then((result) => {
-      if(result.isConfirmed){
-        console.log("Eliminar Grupo");
+      if (result.isConfirmed) {
+        this.httpService.eliminarGrupo(grupo).subscribe(res => {
+          if (res.codigoError == 'OK') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado Exitosamente.',
+              text: `Se ha eliminado el grupo ${grupo.grupo}`,
+              showConfirmButton: true,
+              confirmButtonText: "Ok"
+            }).then(() => {
+              // this.groupForm.reset();
+              window.location.reload();
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
+              showConfirmButton: false,
+            });
+          }
+        })
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 
 }
