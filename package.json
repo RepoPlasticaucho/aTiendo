@@ -24,6 +24,7 @@
         "angular-datatables": "^14.0.0",
         "datatables.net": "^1.11.3",
         "datatables.net-dt": "^1.11.3",
+        "g": "^2.0.1",
         "jquery": "^3.6.0",
         "rxjs": "~7.5.0",
         "sweetalert2": "^11.4.24",
