@@ -1,0 +1,27 @@
+<div class="grid-container">
+  <h1 class="mat-h1"></h1>
+  <div style="text-align: right;">
+    <span class="material-icons-outlined" style="font-size: 30px ;color: rgb(49,99,173)">account_circle</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <mat-grid-list cols="3" rowHeight="280px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+              <span class="material-icons-outlined" style="font-size: 40px ; color: rgb(49,101,174)">{{card.figure}}</span>
+            <h5>
+              {{card.title}}
+            </h5>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>
+              Informacion acerca <br>
+              de los {{card.name}} <br>
+            <br>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
