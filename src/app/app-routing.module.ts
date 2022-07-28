@@ -13,8 +13,9 @@ const routes: Routes = [
   { path: "editarGrupos", component: GruposEditComponent },
   { path: "crearGrupos", component: GruposCreateComponent },
   { path: 'navegation-cl', component: NavegationClComponent },
-  { path: 'navegation-adm', component: NavegationAdmComponent }
-
+  { path: 'navegation-adm', component: NavegationAdmComponent },
+  { path: "sociedades", component: SociedadesComponent },
+  { path: "crearSociedades", component: SociedadesCreateComponent }
 ];
 
 @NgModule({

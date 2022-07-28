@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="idFiscal">Identificación Fiscal</label>
-                    <input type="text" class="form-control" id="idFiscal" placeholder="Ingrese la identificación fiscal" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="13" formControlName="idFiscal" (keypress)="keyPressNumbers($event)">
+                    <input type="text" class="form-control" id="idFiscal" placeholder="Ingrese Cédula/RUC Sin Guión(-)" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="13" formControlName="idFiscal" (keypress)="keyPressNumbers($event)">
                     <small *ngIf="groupForm.controls['idFiscal'].invalid && (groupForm.controls['idFiscal'].dirty || groupForm.controls['idFiscal'].touched)">
                         <small  *ngIf="groupForm.controls['idFiscal'].errors?.['required']" style="color: red;">
                             Debe ingresar la identificación fiscal.

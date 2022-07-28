@@ -40,7 +40,7 @@ export class DashboardAdmComponent {
         { title: 'Modelo Producto', cols: 1, rows: 1 , name:"lineas de productos", figure:"widgets"},
         { title: 'Productos', cols: 1, rows: 1 , name:"lineas de productos", figure:"widgets"},
         { title: 'Grupos', cols: 1, rows: 1 , name:"lineas de productos", figure:"person", dir:"grupos"},
-        { title: 'Sociedades', cols: 1, rows: 1 , name:"lineas de productos", figure:"supervisor_account"},
+        { title: 'Sociedades', cols: 1, rows: 1 , name:"lineas de productos", figure:"supervisor_account",dir:"sociedades"},
         { title: 'Almacenes', cols: 1, rows: 1 , name:"lineas de productos", figure:"location_city"},
         { title: 'Roles', cols: 1, rows: 1 , name:"lineas de productos", figure:"lock_person"}
       ];

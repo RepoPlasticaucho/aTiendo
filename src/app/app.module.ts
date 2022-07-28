@@ -24,6 +24,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { NavegationAdmComponent } from './navegation-adm/navegation-adm.component';
 import { DashboardAdmComponent } from './dashboard-adm/dashboard-adm.component';
+import { SociedadesComponent } from './components/corporations/sociedades/sociedades.component';
+import { SociedadesCreateComponent } from './components/corporations/sociedades-create/sociedades-create.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { DashboardAdmComponent } from './dashboard-adm/dashboard-adm.component';
     DashboardClComponent,
     NavegationClComponent,
     NavegationAdmComponent,
-    DashboardAdmComponent
+    DashboardAdmComponent,
+    SociedadesComponent,
+    SociedadesCreateComponent
   ],
   imports: [
     BrowserModule,
