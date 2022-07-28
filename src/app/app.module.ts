@@ -10,13 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { GruposEditComponent } from './components/groups/grupos-edit/grupos-edit.component';
 import { GruposCreateComponent } from './components/groups/grupos-create/grupos-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SociedadesComponent } from './components/corporations/sociedades/sociedades.component';
+import { SociedadesCreateComponent } from './components/corporations/sociedades-create/sociedades-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GruposComponent,
     GruposEditComponent,
-    GruposCreateComponent
+    GruposCreateComponent,
+    SociedadesComponent,
+    SociedadesCreateComponent
   ],
   imports: [
     BrowserModule,

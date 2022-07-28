@@ -1,18 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { faEdit, faPlus, faTrashAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
-import { GruposEntity } from 'src/app/models/grupos';
-import { GruposService } from 'src/app/services/grupos.service';
+import { SociedadesEntity } from 'src/app/models/sociedades';
+import { SociedadesService } from 'src/app/services/sociedades.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-grupos',
-  templateUrl: './grupos.component.html',
-  styleUrls: ['./grupos.component.css']
+  selector: 'app-sociedades',
+  templateUrl: './sociedades.component.html',
+  styleUrls: ['./sociedades.component.css']
 })
-export class GruposComponent implements OnInit, OnDestroy {
-  //Iconos para la pagina de grupos
+export class SociedadesComponent implements OnInit, OnDestroy {
+
+  ///Iconos para la pagina de grupos
   faUserFriends = faUserFriends;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
@@ -20,25 +20,24 @@ export class GruposComponent implements OnInit, OnDestroy {
   //Declaración de variables
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  lstGrupos: GruposEntity[] = [];
+  lstSociedades: SociedadesEntity[] = [];
 
-  constructor(private readonly httpService: GruposService,
-    private router: Router) { }
+
+  constructor(private readonly httpService: SociedadesService) { }
 
   ngOnInit(): void {
-
     this.dtOptions = {
       language: {
         url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
       },
-      paging: false,
+      paging: true,
       search: false,
-      searching: false,
-      ordering: false,
-      info: false
+      searching: true,
+      ordering: true,
+      info: true
     }
 
-    this.httpService.obtenerGrupos().subscribe(res => {
+    this.httpService.obtenerSociedades().subscribe(res => {
       if (res.codigoError != "OK") {
         Swal.fire({
           icon: 'error',
@@ -48,31 +47,28 @@ export class GruposComponent implements OnInit, OnDestroy {
           // timer: 3000
         });
       } else {
-        this.lstGrupos = res.lstGrupos;
+        this.lstSociedades = res.lstSociedades;
         this.dtTrigger.next('');
       }
     })
+
   }
 
-  editarGrupos(grupo: GruposEntity): void {
-    this.httpService.asignarGrupo(grupo);
-  }
-
-  eliminarGrupos(grupo: GruposEntity): void {
+  eliminarSociedades(sociedad: SociedadesEntity): void {
     Swal.fire({
       icon: 'question',
-      title: `¿Esta seguro de eliminar ${grupo.grupo}?`,
+      title: `¿Esta seguro de eliminar ${sociedad.nombre_comercial}?`,
       showDenyButton: true,
       confirmButtonText: 'Si',
       denyButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.httpService.eliminarGrupo(grupo).subscribe(res => {
+        this.httpService.eliminarSociedad(sociedad).subscribe(res => {
           if (res.codigoError == 'OK') {
             Swal.fire({
               icon: 'success',
               title: 'Eliminado Exitosamente.',
-              text: `Se ha eliminado el grupo ${grupo.grupo}`,
+              text: `Se ha eliminado el grupo ${sociedad.nombre_comercial}`,
               showConfirmButton: true,
               confirmButtonText: "Ok"
             }).then(() => {
