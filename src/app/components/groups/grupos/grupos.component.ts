@@ -56,6 +56,7 @@ export class GruposComponent implements OnInit, OnDestroy {
 
   editarGrupos(grupo: GruposEntity): void {
     this.httpService.asignarGrupo(grupo);
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['editarGrupos'] } }]);
   }
 
   eliminarGrupos(grupo: GruposEntity): void {
@@ -94,6 +95,10 @@ export class GruposComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
+  }
+
+  agregarProducto(){
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['crearGrupos'] } }]);
   }
 
 }

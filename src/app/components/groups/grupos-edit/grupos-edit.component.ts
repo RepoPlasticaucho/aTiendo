@@ -89,4 +89,9 @@ export class GruposEditComponent implements OnInit {
     }
   }
 
+  visualizarGrupos():void{
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['grupos'] } }]);
+  }
+
+
 }

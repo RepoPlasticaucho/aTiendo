@@ -13,39 +13,39 @@ export class DashboardAdmComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Categorias', cols: 1, rows: 1 , name:"lineas de productos", figure:"file_copy"},
-          { title: 'Lineas', cols: 1, rows: 1 , name:"lineas de productos", figure:"assignment"},
-          { title: 'Modelos', cols: 1, rows: 1 , name:"lineas de productos", figure:"shopping_bag"},
-          { title: 'Marcas', cols: 1, rows: 1 , name:"lineas de productos", figure:"bookmarks"},
-          { title: 'Colores', cols: 1, rows: 1, name:"lineas de productos" , figure:"shopping_cart" },
-          { title: 'Caracteristicas', cols: 1, rows: 1 , name:"lineas de productos", figure:"pie_chart"},
-          { title: 'Generos', cols: 1, rows: 1 , name:"lineas de productos", figure:"pie_chart"},
-          { title: 'Modelo Producto', cols: 1, rows: 1 , name:"lineas de productos", figure:"widgets"},
-          { title: 'Productos', cols: 1, rows: 1 , name:"lineas de productos", figure:"widgets"},
-          { title: 'Grupos', cols: 1, rows: 1 , name:"lineas de productos", figure:"person"},
-          { title: 'Sociedades', cols: 1, rows: 1 , name:"lineas de productos", figure:"supervisor_account"},
-          { title: 'Almacenes', cols: 1, rows: 1 , name:"lineas de productos", figure:"location_city"},
-          { title: 'Roles', cols: 1, rows: 1 , name:"lineas de productos", figure:"lock_person"}
+          { title: 'Categorias', cols: 1, rows: 1, name: "las categorias de productos", figure: "file_copy" },
+          { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment" },
+          { title: 'Modelos', cols: 1, rows: 1, name: "los modelos de productos", figure: "shopping_bag" },
+          { title: 'Marcas', cols: 1, rows: 1, name: "las marcas de productos", figure: "bookmarks" },
+          { title: 'Colores', cols: 1, rows: 1, name: "los colores de productos", figure: "shopping_cart" },
+          { title: 'Caracteristicas', cols: 1, rows: 1, name: "las caracteristicas ", figure: "pie_chart" },
+          { title: 'Géneros', cols: 1, rows: 1, name: "los géneros de productos", figure: "pie_chart" },
+          { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets" },
+          { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "widgets" },
+          { title: 'Grupos', cols: 1, rows: 1, name: "los grupos", figure: "person", dir: "grupos" },
+          { title: 'Sociedades', cols: 1, rows: 1, name: "las sociedades", figure: "supervisor_account", dir: "sociedades" },
+          { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city" },
+          { title: 'Roles', cols: 1, rows: 1, name: "los roles", figure: "lock_person" }
         ];
       }
 
       return [
-        { title: 'Categorias', cols: 1, rows: 1 , name:"lineas de productos", figure:"file_copy"},
-        { title: 'Lineas', cols: 1, rows: 1 , name:"lineas de productos", figure:"assignment"},
-        { title: 'Modelos', cols: 1, rows: 1 , name:"lineas de productos", figure:"shopping_bag"},
-        { title: 'Marcas', cols: 1, rows: 1 , name:"lineas de productos", figure:"bookmarks"},
-        { title: 'Colores', cols: 1, rows: 1, name:"lineas de productos" , figure:"shopping_cart" },
-        { title: 'Caracteristicas', cols: 1, rows: 1 , name:"lineas de productos", figure:"pie_chart"},
-        { title: 'Generos', cols: 1, rows: 1 , name:"lineas de productos", figure:"pie_chart"},
-        { title: 'Modelo Producto', cols: 1, rows: 1 , name:"lineas de productos", figure:"widgets"},
-        { title: 'Productos', cols: 1, rows: 1 , name:"lineas de productos", figure:"widgets"},
-        { title: 'Grupos', cols: 1, rows: 1 , name:"lineas de productos", figure:"person", dir:"grupos"},
-        { title: 'Sociedades', cols: 1, rows: 1 , name:"lineas de productos", figure:"supervisor_account",dir:"sociedades"},
-        { title: 'Almacenes', cols: 1, rows: 1 , name:"lineas de productos", figure:"location_city"},
-        { title: 'Roles', cols: 1, rows: 1 , name:"lineas de productos", figure:"lock_person"}
+        { title: 'Categorias', cols: 1, rows: 1, name: "las categorias de productos", figure: "file_copy" },
+        { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment" },
+        { title: 'Modelos', cols: 1, rows: 1, name: "los modelos de productos", figure: "shopping_bag" },
+        { title: 'Marcas', cols: 1, rows: 1, name: "las marcas de productos", figure: "bookmarks" },
+        { title: 'Colores', cols: 1, rows: 1, name: "los colores de productos", figure: "shopping_cart" },
+        { title: 'Caracteristicas', cols: 1, rows: 1, name: "las caracteristicas ", figure: "pie_chart" },
+        { title: 'Géneros', cols: 1, rows: 1, name: "los géneros de productos", figure: "pie_chart" },
+        { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets" },
+        { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "widgets" },
+        { title: 'Grupos', cols: 1, rows: 1, name: "los grupos", figure: "person", dir: "navegation-adm/(contentAdmin:grupos)" },
+        { title: 'Sociedades', cols: 1, rows: 1, name: "las sociedades", figure: "supervisor_account", dir: "navegation-adm/(contentAdmin:sociedades)" },
+        { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city" },
+        { title: 'Roles', cols: 1, rows: 1, name: "los roles", figure: "lock_person" }
       ];
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver) { }
 }

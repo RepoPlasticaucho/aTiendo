@@ -3,8 +3,9 @@
 
         <div align="center">
             <br>
-            <a href="https://atiendo.ec/black/img/logo.png" target="_blank" rel="noopener noreferrer"></a>
-            <img src="https://atiendo.ec/black/img/logo.png">
+            <a routerLink="/navegation-adm" rel="noopener noreferrer">
+                <img src="https://atiendo.ec/black/img/logo.png">
+            </a>
         </div>
         <p align="center" style="color:aliceblue">__________________________</p>
         <mat-nav-list>
@@ -48,11 +49,11 @@
                 <span class="material-icons-outlined" style="font-size: 24px">widgets</span>
                 <font style="font-size: 13px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Productos</font>
             </a>
-            <a mat-list-item href="#" style="color: white">
+            <a mat-list-item [routerLink]="[{ outlets: { contentAdmin: ['grupos'] } }]" style="color: white">
                 <span class="material-icons-outlined" style="font-size: 24px">person</span>
                 <font style="font-size: 13px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Grupos</font>
             </a>
-            <a mat-list-item href="#" style="color: white">
+            <a mat-list-item href="/sociedades" style="color: white">
                 <span class="material-icons-outlined" style="font-size: 24px">supervisor_account</span>
                 <font style="font-size: 13px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sociedades</font>
             </a>
@@ -72,7 +73,6 @@
 
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-dashboard-adm></app-dashboard-adm>
-
+        <router-outlet name="contentAdmin"></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
