@@ -63,8 +63,7 @@ export class GruposEditComponent implements OnInit {
             showConfirmButton: true,
             confirmButtonText: "Ok"
           }).finally(() => {
-            // this.groupForm.reset();
-            this.router.navigate(["/grupos"]);
+            this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['grupos'] } }]);
           });
         } else {
           Swal.fire({
@@ -89,7 +88,7 @@ export class GruposEditComponent implements OnInit {
     }
   }
 
-  visualizarGrupos():void{
+  visualizarGrupos(): void {
     this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['grupos'] } }]);
   }
 

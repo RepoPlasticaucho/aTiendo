@@ -9,11 +9,11 @@ import { SociedadesService } from 'src/app/services/sociedades.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-sociedades-create',
-  templateUrl: './sociedades-create.component.html',
-  styleUrls: ['./sociedades-create.component.css']
+  selector: 'app-sociedades-edit',
+  templateUrl: './sociedades-edit.component.html',
+  styleUrls: ['./sociedades-edit.component.css']
 })
-export class SociedadesCreateComponent implements OnInit {
+export class SociedadesEditComponent implements OnInit {
 
   //Iconos para la pagina de grupos
   faTimes = faTimes;
@@ -30,6 +30,8 @@ export class SociedadesCreateComponent implements OnInit {
   //Variables para listas desplegables
   lstGrupos: GruposEntity[] = [];
   selectGrupo: boolean = false;
+  //Declaracion de variables
+  private codigo: string = "";
 
   constructor(private readonly httpService: SociedadesService,
     private readonly httpServiceGrupos: GruposService,
@@ -47,9 +49,26 @@ export class SociedadesCreateComponent implements OnInit {
         });
       } else {
         this.lstGrupos = res.lstGrupos;
-        console.log(this.lstGrupos);
       }
     })
+    //Cargar los datos Sociedad Modificar
+    this.httpService.obtenersociedad$.subscribe(res => {
+      if (res.idSociedad == "") {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ha ocurrido un error.',
+          text: 'No se ha obtenido información.',
+          showConfirmButton: false,
+        });
+      } else {
+        this.codigo = res.idSociedad ?? "";
+        this.corporationForm.get("grupo")?.setValue(res.idGrupo);
+        this.corporationForm.get("idFiscal")?.setValue(res.id_fiscal);
+        this.corporationForm.get("nombreComercial")?.setValue(res.nombre_comercial);
+        this.corporationForm.get("correoElectronico")?.setValue(res.email);
+        this.corporationForm.get("telefono")?.setValue(res.telefono);
+      }
+    });
   }
 
   onSubmit(): void {
@@ -64,18 +83,19 @@ export class SociedadesCreateComponent implements OnInit {
       }
       else {
         const sociedadEntity: SociedadesEntity = {
+          idSociedad: this.codigo,
           idGrupo: this.corporationForm.value!.grupo ?? "",
           id_fiscal: this.corporationForm.value!.idFiscal ?? "",
           nombre_comercial: this.corporationForm.value!.nombreComercial ?? "",
           email: this.corporationForm.value!.correoElectronico ?? "",
           telefono: this.corporationForm.value!.telefono ?? "",
         };
-        this.httpService.agregarSociedad(sociedadEntity).subscribe(res => {
+        this.httpService.actualizarSociedad(sociedadEntity).subscribe(res => {
           if (res.codigoError == "OK") {
             Swal.fire({
               icon: 'success',
-              title: 'Guardado Exitosamente.',
-              text: `Se ha creado la sociedad ${this.corporationForm.value.nombreComercial}`,
+              title: 'Actualizado Correctamente.',
+              text: `Se ha actualizado la información`,
               showConfirmButton: true,
               confirmButtonText: "Ok"
             }).finally(() => {
@@ -104,7 +124,7 @@ export class SociedadesCreateComponent implements OnInit {
       return true;
     }
   }
-  
+
   changeGroup(grupo: any): void {
     if (grupo.target.value == 0) {
       this.selectGrupo = true;

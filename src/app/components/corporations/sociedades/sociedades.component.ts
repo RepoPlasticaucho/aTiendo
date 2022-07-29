@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faEdit, faPlus, faTrashAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { SociedadesEntity } from 'src/app/models/sociedades';
@@ -23,7 +24,8 @@ export class SociedadesComponent implements OnInit, OnDestroy {
   lstSociedades: SociedadesEntity[] = [];
 
 
-  constructor(private readonly httpService: SociedadesService) { }
+  constructor(private readonly httpService: SociedadesService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -90,6 +92,16 @@ export class SociedadesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
+  }
+
+  agregarSociedades() {
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['crearSociedades'] } }]);
+  }
+
+  editarSociedades(sociedad: SociedadesEntity) {
+    console.log(sociedad);
+    this.httpService.asignarSociedad(sociedad);
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['editarSociedades'] } }]);
   }
 
 }

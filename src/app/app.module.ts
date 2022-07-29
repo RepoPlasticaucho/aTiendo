@@ -26,6 +26,7 @@ import { NavegationAdmComponent } from './components/navegation-adm/navegation-a
 import { DashboardAdmComponent } from './components/dashboard-adm/dashboard-adm.component';
 import { SociedadesComponent } from './components/corporations/sociedades/sociedades.component';
 import { SociedadesCreateComponent } from './components/corporations/sociedades-create/sociedades-create.component';
+import { SociedadesEditComponent } from './components/corporations/sociedades-edit/sociedades-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SociedadesCreateComponent } from './components/corporations/sociedades-
     NavegationAdmComponent,
     DashboardAdmComponent,
     SociedadesComponent,
-    SociedadesCreateComponent
+    SociedadesCreateComponent,
+    SociedadesEditComponent
   ],
   imports: [
     BrowserModule,
