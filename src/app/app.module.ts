@@ -27,6 +27,10 @@ import { DashboardAdmComponent } from './components/dashboard-adm/dashboard-adm.
 import { SociedadesComponent } from './components/corporations/sociedades/sociedades.component';
 import { SociedadesCreateComponent } from './components/corporations/sociedades-create/sociedades-create.component';
 import { SociedadesEditComponent } from './components/corporations/sociedades-edit/sociedades-edit.component';
+import { AlmacenesCreateComponent } from './components/warehouses/almacenes-create/almacenes-create.component';
+import { AlmacenesComponent } from './components/warehouses/almacenes/almacenes.component';
+import { AlmacenesEditComponent } from './components/warehouses/almacenes-edit/almacenes-edit.component';
+import { AlmacenessociedadComponent } from './components/warehouses/almacenessociedad/almacenessociedad.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,12 @@ import { SociedadesEditComponent } from './components/corporations/sociedades-ed
     DashboardAdmComponent,
     SociedadesComponent,
     SociedadesCreateComponent,
-    SociedadesEditComponent
+    SociedadesEditComponent,
+    AlmacenesCreateComponent,
+    AlmacenesComponent,
+    AlmacenesEditComponent,
+    AlmacenessociedadComponent,
+    
   ],
   imports: [
     BrowserModule,

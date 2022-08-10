@@ -41,7 +41,7 @@ export class DashboardAdmComponent {
         { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "widgets" },
         { title: 'Grupos', cols: 1, rows: 1, name: "los grupos", figure: "person", dir: "navegation-adm/(contentAdmin:grupos)" },
         { title: 'Sociedades', cols: 1, rows: 1, name: "las sociedades", figure: "supervisor_account", dir: "navegation-adm/(contentAdmin:sociedades)" },
-        { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city" },
+        { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city", dir: "navegation-adm/(contentAdmin:almacenes)" },
         { title: 'Roles', cols: 1, rows: 1, name: "los roles", figure: "lock_person" }
       ];
     })

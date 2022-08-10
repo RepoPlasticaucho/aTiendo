@@ -13,27 +13,31 @@ export class DashboardClComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Ingresos', cols: 1, rows: 1 , name:"grupos", figure:"book"},
-          { title: 'Egresos', cols: 1, rows: 1 , name:"grupos"},
-          { title: 'Saldos', cols: 1, rows: 1 , name:"grupos"},
-          { title: 'Productos', cols: 1, rows: 1 , name:"productos"},
-          { title: 'Inventarios', cols: 1, rows: 1, name:"productos" },
-          { title: 'Pedido Sugerido', cols: 1, rows: 1 , name:"productos"},
-          { title: 'Movimientos', cols: 1, rows: 1 , name:"productos"},
-          { title: 'Almacenes', cols: 1, rows: 1 , name:"productos"}
-
+          { title: 'Ingresos', cols: 1, rows: 1, name: "las grupos", figure: "book" },
+          { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment" },
+          { title: 'Modelos', cols: 1, rows: 1, name: "los modelos de productos", figure: "shopping_bag" },
+          { title: 'Marcas', cols: 1, rows: 1, name: "las marcas de productos", figure: "bookmarks" },
+          { title: 'Colores', cols: 1, rows: 1, name: "los colores de productos", figure: "shopping_cart" },
+          { title: 'Caracteristicas', cols: 1, rows: 1, name: "las caracteristicas ", figure: "pie_chart" },
+          { title: 'Géneros', cols: 1, rows: 1, name: "los géneros de productos", figure: "pie_chart" },
+          { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets" },
+          { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "widgets" },
+          { title: 'Grupos', cols: 1, rows: 1, name: "los grupos", figure: "person", dir: "grupos" },
+          { title: 'Sociedades', cols: 1, rows: 1, name: "las sociedades", figure: "supervisor_account", dir: "sociedades" },
+          { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city" },
+          { title: 'Roles', cols: 1, rows: 1, name: "los roles", figure: "lock_person" }
         ];
       }
 
       return [
-          { title: 'Ingresos', cols: 1, rows: 1 , name:"grupos", figure:"book"},
-          { title: 'Egresos', cols: 1, rows: 1 , name:"grupos", figure:"book"},
-          { title: 'Saldos', cols: 1, rows: 1 , name:"grupos", figure:"book"},
-          { title: 'Productos', cols: 1, rows: 1 , name:"productos", figure:"apps"},
-          { title: 'Inventarios', cols: 1, rows: 1, name:"productos" , figure:"apps" },
-          { title: 'Pedido Sugerido', cols: 1, rows: 1 , name:"productos", figure:"widgets"},
-          { title: 'Movimientos', cols: 1, rows: 1 , name:"productos", figure:"monitor"},
-          { title: 'Almacenes', cols: 1, rows: 1 , name:"productos", figure:"location_city"}
+        { title: 'Ingresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
+        { title: 'Egresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
+        { title: 'Saldos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
+        { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "apps" },
+        { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" },
+        { title: 'Pedido Sugerido', cols: 1, rows: 1, name: "las productos", figure: "widgets"},
+        { title: 'Movimientos', cols: 1, rows: 1, name: "los productos", figure: "monitor" },
+        { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city", dir: "navegation-cl/(contentClient:almacenes)" }
       ];
     })
   );
