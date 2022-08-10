@@ -10,6 +10,7 @@ import { GruposEditComponent } from './components/groups/grupos-edit/grupos-edit
 import { GruposComponent } from './components/groups/grupos/grupos.component';
 import { NavegationAdmComponent } from './components/navegation-adm/navegation-adm.component';
 import { NavegationClComponent } from './components/navegation-cl/navegation-cl.component';
+import { AlmacenesCreateComponent } from './components/warehouses/almacenes-create/almacenes-create.component';
 import { AlmacenesComponent } from './components/warehouses/almacenes/almacenes.component';
 import { AlmacenessociedadComponent } from './components/warehouses/almacenessociedad/almacenessociedad.component';
 
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: "", component: DashboardAdmComponent, outlet: "contentAdmin" },
       { path: "grupos", component: GruposComponent, outlet: "contentAdmin" },
       { path: "almacenes", component: AlmacenesComponent, outlet: "contentAdmin" },
+      { path: "crearAlmacenes", component: AlmacenesCreateComponent, outlet: "contentAdmin" },
       { path: "editarGrupos", component: GruposEditComponent, outlet: "contentAdmin" },
       { path: "crearGrupos", component: GruposCreateComponent, outlet: "contentAdmin" },
       { path: "sociedades", component: SociedadesComponent, outlet: "contentAdmin" },
