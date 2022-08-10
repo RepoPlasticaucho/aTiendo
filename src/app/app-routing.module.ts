@@ -12,13 +12,15 @@ import { NavegationAdmComponent } from './components/navegation-adm/navegation-a
 import { NavegationClComponent } from './components/navegation-cl/navegation-cl.component';
 import { AlmacenesCreateComponent } from './components/warehouses/almacenes-create/almacenes-create.component';
 import { AlmacenesComponent } from './components/warehouses/almacenes/almacenes.component';
+import { AlmacenessociedadCreateComponent } from './components/warehouses/almacenessociedad-create/almacenessociedad-create.component';
 import { AlmacenessociedadComponent } from './components/warehouses/almacenessociedad/almacenessociedad.component';
 
 const routes: Routes = [
   { path: 'navegation-cl', component: NavegationClComponent,
     children: [
     { path: "", component: DashboardClComponent, outlet: "contentClient" },
-    { path: "almacenes", component: AlmacenessociedadComponent, outlet: "contentClient" }
+    { path: "almacenes", component: AlmacenessociedadComponent, outlet: "contentClient" },
+    { path: "crearAlmacenes", component: AlmacenessociedadCreateComponent, outlet: "contentClient" }
     ]
   },
   {

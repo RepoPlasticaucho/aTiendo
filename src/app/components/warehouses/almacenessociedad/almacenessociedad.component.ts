@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { faEdit, faPlus, faTrashAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { AlmacenesEntity } from 'src/app/models/almacenes';
+import { SociedadesEntity } from 'src/app/models/sociedades';
 import { AlmacenesService } from 'src/app/services/almacenes.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -36,8 +37,17 @@ export class AlmacenessociedadComponent implements OnInit {
       ordering: true,
       info: true
     }
+    const almacen: SociedadesEntity = {
+      idSociedad:'8',
+      idGrupo: '',
+      nombre_comercial: '',
+      id_fiscal: '',
+      email: '',
+      telefono: ''
+    }
+    console.log(almacen);
 
-    this.httpService.obtenerAlmacenes().subscribe(res => {
+    this.httpService.obtenerAlmacenesSociedad(almacen).subscribe(res => {
       if (res.codigoError != "OK") {
         Swal.fire({
           icon: 'error',
@@ -94,13 +104,13 @@ export class AlmacenessociedadComponent implements OnInit {
   }
 
   agregarAlmacenes() {
-    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['crearAlmacenes'] } }]);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['crearAlmacenes'] } }]);
   }
 
   editarAlmacenes(almacen: AlmacenesEntity) {
     console.log(almacen);
     this.httpService.asignarAlmacen(almacen);
-    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['editarAlmacenes'] } }]);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['editarAlmacenes'] } }]);
   }
 
 }

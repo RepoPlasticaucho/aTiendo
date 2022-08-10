@@ -36,8 +36,8 @@ export class AlmacenesService {
     return this.http.get<Almacenes>(`${environment.apiUrl}almacenes/ObtenerAlmacenes`);
   }
 
-  obtenerAlmacenesSociedad(sociedad: SociedadesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ObtenerAlmacenesSociedad`, sociedad.idSociedad );
+  obtenerAlmacenesSociedad(almacen: SociedadesEntity): Observable<Almacenes> {
+    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ObtenerAlmacenesSociedad`, almacen );
   }
   agregarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
     return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/InsertarAlmacen`, almacen);
