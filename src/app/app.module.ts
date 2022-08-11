@@ -32,6 +32,7 @@ import { AlmacenesComponent } from './components/warehouses/almacenes/almacenes.
 import { AlmacenesEditComponent } from './components/warehouses/almacenes-edit/almacenes-edit.component';
 import { AlmacenessociedadComponent } from './components/warehouses/almacenessociedad/almacenessociedad.component';
 import { AlmacenessociedadCreateComponent } from './components/warehouses/almacenessociedad-create/almacenessociedad-create.component';
+import { AlmacenessociedadEditComponent } from './components/warehouses/almacenessociedad-edit/almacenessociedad-edit.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AlmacenessociedadCreateComponent } from './components/warehouses/almace
     AlmacenesEditComponent,
     AlmacenessociedadComponent,
     AlmacenessociedadCreateComponent,
+    AlmacenessociedadEditComponent,
     
   ],
   imports: [

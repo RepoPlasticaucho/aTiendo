@@ -11,8 +11,10 @@ import { GruposComponent } from './components/groups/grupos/grupos.component';
 import { NavegationAdmComponent } from './components/navegation-adm/navegation-adm.component';
 import { NavegationClComponent } from './components/navegation-cl/navegation-cl.component';
 import { AlmacenesCreateComponent } from './components/warehouses/almacenes-create/almacenes-create.component';
+import { AlmacenesEditComponent } from './components/warehouses/almacenes-edit/almacenes-edit.component';
 import { AlmacenesComponent } from './components/warehouses/almacenes/almacenes.component';
 import { AlmacenessociedadCreateComponent } from './components/warehouses/almacenessociedad-create/almacenessociedad-create.component';
+import { AlmacenessociedadEditComponent } from './components/warehouses/almacenessociedad-edit/almacenessociedad-edit.component';
 import { AlmacenessociedadComponent } from './components/warehouses/almacenessociedad/almacenessociedad.component';
 
 const routes: Routes = [
@@ -20,7 +22,8 @@ const routes: Routes = [
     children: [
     { path: "", component: DashboardClComponent, outlet: "contentClient" },
     { path: "almacenes", component: AlmacenessociedadComponent, outlet: "contentClient" },
-    { path: "crearAlmacenes", component: AlmacenessociedadCreateComponent, outlet: "contentClient" }
+    { path: "crearAlmacenes", component: AlmacenessociedadCreateComponent, outlet: "contentClient" },
+    { path: "editarAlmacenes", component: AlmacenessociedadEditComponent, outlet: "contentClient" }
     ]
   },
   {
@@ -30,6 +33,7 @@ const routes: Routes = [
       { path: "grupos", component: GruposComponent, outlet: "contentAdmin" },
       { path: "almacenes", component: AlmacenesComponent, outlet: "contentAdmin" },
       { path: "crearAlmacenes", component: AlmacenesCreateComponent, outlet: "contentAdmin" },
+      { path: "editarAlmacenes", component: AlmacenesEditComponent, outlet: "contentAdmin" },
       { path: "editarGrupos", component: GruposEditComponent, outlet: "contentAdmin" },
       { path: "crearGrupos", component: GruposCreateComponent, outlet: "contentAdmin" },
       { path: "sociedades", component: SociedadesComponent, outlet: "contentAdmin" },

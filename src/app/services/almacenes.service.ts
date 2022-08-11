@@ -48,6 +48,6 @@ export class AlmacenesService {
   }
 
   actualizarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}grupos/ModificarAlmacen`, almacen);
+    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ModificarAlmacen`, almacen);
   }
 }

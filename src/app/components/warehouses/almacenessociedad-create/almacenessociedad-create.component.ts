@@ -69,7 +69,7 @@ export class AlmacenessociedadCreateComponent implements OnInit {
             showConfirmButton: true,
             confirmButtonText: "Ok"
           }).finally(() => {
-            this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['almacenes'] } }]);
+            this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['almacenes'] } }]);
           });
         } else {
           Swal.fire({

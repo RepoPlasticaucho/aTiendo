@@ -9,11 +9,11 @@ import { SociedadesService } from 'src/app/services/sociedades.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-almacenes-edit',
-  templateUrl: './almacenes-edit.component.html',
-  styleUrls: ['./almacenes-edit.component.css']
+  selector: 'app-almacenessociedad-edit',
+  templateUrl: './almacenessociedad-edit.component.html',
+  styleUrls: ['./almacenessociedad-edit.component.css']
 })
-export class AlmacenesEditComponent implements OnInit {
+export class AlmacenessociedadEditComponent implements OnInit {
 
   //Iconos para la pagina de grupos
   faTimes = faTimes;
@@ -76,16 +76,10 @@ export class AlmacenesEditComponent implements OnInit {
   onSubmit(): void {
     if (!this.warehousesForm.valid) {
       this.warehousesForm.markAllAsTouched();
-      if (this.warehousesForm.get("sociedad")?.value == "0") {
-        this.selectSociedades = true;
-      }
+      
     } else {
-      if (this.warehousesForm.get("sociedad")?.value == "0") {
-        this.selectSociedades = true;
-      }
-      else {
         const almacenEntity: AlmacenesEntity = {
-          sociedad_id: this.warehousesForm.value!.sociedad ?? "",
+          sociedad_id: '8',
           direccion: this.warehousesForm.value!.Direccion ?? "",
           codigo: this.warehousesForm.value!.codigo ?? "",
           pto_emision: this.warehousesForm.value!.pto_emision ?? "",
@@ -102,7 +96,7 @@ export class AlmacenesEditComponent implements OnInit {
               showConfirmButton: true,
               confirmButtonText: "Ok"
             }).finally(() => {
-              this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['almacenes'] } }]);
+              this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['almacenes'] } }]);
             });
           } else {
             Swal.fire({
@@ -115,30 +109,30 @@ export class AlmacenesEditComponent implements OnInit {
         })
       }
     }
-  }
 
-  keyPressNumbers(event: any) {
-    var charCode = (event.which) ? event.which : event.keyCode;
-    // Only Numbers 0-9
-    if ((charCode < 48 || charCode > 57)) {
-      event.preventDefault();
-      return false;
-    } else {
-      return true;
+    keyPressNumbers(event: any) {
+      var charCode = (event.which) ? event.which : event.keyCode;
+      // Only Numbers 0-9
+      if ((charCode < 48 || charCode > 57)) {
+        event.preventDefault();
+        return false;
+      } else {
+        return true;
+      }
+    }
+  
+    changeGroup(sociedad: any): void {
+      if (sociedad.target.value == 0) {
+        this.selectSociedades = true;
+      } else {
+        this.selectSociedades = false;
+        this.warehousesForm.get("sociedad")?.setValue(sociedad.target.value);
+      }
+    }
+  
+    visualizarAlmacenes() {
+      this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['almacenes'] } }]);
     }
   }
 
-  changeGroup(sociedad: any): void {
-    if (sociedad.target.value == 0) {
-      this.selectSociedades = true;
-    } else {
-      this.selectSociedades = false;
-      this.warehousesForm.get("sociedad")?.setValue(sociedad.target.value);
-    }
-  }
 
-  visualizarAlmacenes() {
-    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['almacenes'] } }]);
-  }
-
-}
