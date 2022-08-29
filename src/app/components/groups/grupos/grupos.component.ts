@@ -35,7 +35,8 @@ export class GruposComponent implements OnInit, OnDestroy {
       search: false,
       searching: false,
       ordering: false,
-      info: false
+      info: false,
+      responsive:true
     }
 
     this.httpService.obtenerGrupos().subscribe(res => {

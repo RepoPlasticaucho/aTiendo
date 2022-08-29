@@ -36,7 +36,8 @@ export class SociedadesComponent implements OnInit, OnDestroy {
       search: false,
       searching: true,
       ordering: true,
-      info: true
+      info: true,
+      responsive:true
     }
 
     this.httpService.obtenerSociedades().subscribe(res => {
