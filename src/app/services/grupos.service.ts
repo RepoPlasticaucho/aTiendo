@@ -42,4 +42,5 @@ export class GruposService {
   actualizarGrupo(grupo: GruposEntity): Observable<Grupos> {
     return this.http.post<Grupos>(`${environment.apiUrl}grupos/ModificarGrupo`, grupo);
   }
+  
 }

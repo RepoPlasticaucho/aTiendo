@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCopy, faEdit, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-categorias',
@@ -6,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categorias.component.css']
 })
 export class CategoriasComponent implements OnInit {
+
+  //Iconos para la pagina de grupos
+  faCopy = faCopy;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
+  faPlus = faPlus;
 
   constructor() { }
 
