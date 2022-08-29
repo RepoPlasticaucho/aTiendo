@@ -37,11 +37,11 @@ export class CategoriasService {
   }
 
   eliminarCategoria(categoria: CategoriasEntity): Observable<Categorias> {
-    return this.http.post<Categorias>(`${environment.apiUrl}categorias/ModificarCategorias`, categoria);
+    return this.http.post<Categorias>(`${environment.apiUrl}categorias/EliminarCategorias`, categoria);
   }
 
   actualizarCategoria(categoria: CategoriasEntity): Observable<Categorias> {
-    return this.http.post<Categorias>(`${environment.apiUrl}categorias/EliminarCategorias`, categoria);
+    return this.http.post<Categorias>(`${environment.apiUrl}categorias/ModificarCategorias`, categoria);
   }
 
 }

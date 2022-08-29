@@ -36,7 +36,7 @@ export class GruposComponent implements OnInit, OnDestroy {
       searching: false,
       ordering: false,
       info: false,
-      responsive:true
+      responsive: true
     }
 
     this.httpService.obtenerGrupos().subscribe(res => {
@@ -98,7 +98,7 @@ export class GruposComponent implements OnInit, OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
-  agregarProducto(){
+  agregarProducto() {
     this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['crearGrupos'] } }]);
   }
 
