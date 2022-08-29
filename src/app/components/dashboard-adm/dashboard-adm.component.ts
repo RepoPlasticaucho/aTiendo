@@ -30,13 +30,13 @@ export class DashboardAdmComponent {
       }
 
       return [
-        { title: 'Categorias', cols: 1, rows: 1, name: "las categorias de productos", figure: "file_copy" },
-        { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment" },
-        { title: 'Modelos', cols: 1, rows: 1, name: "los modelos de productos", figure: "shopping_bag" },
-        { title: 'Marcas', cols: 1, rows: 1, name: "las marcas de productos", figure: "bookmarks" },
-        { title: 'Colores', cols: 1, rows: 1, name: "los colores de productos", figure: "shopping_cart" },
-        { title: 'Caracteristicas', cols: 1, rows: 1, name: "las caracteristicas ", figure: "pie_chart" },
-        { title: 'Géneros', cols: 1, rows: 1, name: "los géneros de productos", figure: "pie_chart" },
+        { title: 'Categorias', cols: 1, rows: 1, name: "las categorias de productos", figure: "file_copy", dir: "navegation-adm/(contentAdmin:categorias)" },
+        { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment", dir: "navegation-adm/(contentAdmin:lineas)" },
+        { title: 'Modelos', cols: 1, rows: 1, name: "los modelos de productos", figure: "shopping_bag", dir: "navegation-adm/(contentAdmin:modelos)" },
+        { title: 'Marcas', cols: 1, rows: 1, name: "las marcas de productos", figure: "bookmarks", dir: "navegation-adm/(contentAdmin:marcas)" },
+        { title: 'Colores', cols: 1, rows: 1, name: "los colores de productos", figure: "shopping_cart", dir: "navegation-adm/(contentAdmin:colores)" },
+        { title: 'Caracteristicas', cols: 1, rows: 1, name: "las caracteristicas ", figure: "pie_chart", dir: "navegation-adm/(contentAdmin:atributos)" },
+        { title: 'Géneros', cols: 1, rows: 1, name: "los géneros de productos", figure: "pie_chart", dir: "navegation-adm/(contentAdmin:generos)" },
         { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets" },
         { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "widgets" },
         { title: 'Grupos', cols: 1, rows: 1, name: "los grupos", figure: "person", dir: "navegation-adm/(contentAdmin:grupos)" },

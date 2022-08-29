@@ -35,7 +35,8 @@ export class AlmacenessociedadComponent implements OnInit {
       search: false,
       searching: true,
       ordering: true,
-      info: true
+      info: true,
+      responsive:true
     }
     const almacen: SociedadesEntity = {
       idSociedad:'8',

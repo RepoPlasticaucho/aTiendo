@@ -35,7 +35,8 @@ export class AlmacenesComponent implements OnInit, OnDestroy {
       search: false,
       searching: true,
       ordering: true,
-      info: true
+      info: true,
+      responsive:true
     }
 
     this.httpService.obtenerAlmacenes().subscribe(res => {
