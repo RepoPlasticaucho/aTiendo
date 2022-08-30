@@ -99,7 +99,7 @@ export class CategoriasComponent implements OnInit {
     this.dtTrigger.unsubscribe();
   }
 
-  agregarProducto() {
+  agregarCategoria() {
     this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['crearCategorias'] } }]);
   }
 
