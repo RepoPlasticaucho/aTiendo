@@ -56,7 +56,7 @@ export class AlmacenessociedadCreateComponent implements OnInit {
         codigo: this.warehousesForm.value!.codigo ?? "",
         pto_emision: this.warehousesForm.value!.pto_emision ?? "",
         telefono: this.warehousesForm.value!.telefono ?? "",
-        id: '',
+        idAlmacen: '',
         nombresociedad: ''
       };
       console.log(almacenEntity);

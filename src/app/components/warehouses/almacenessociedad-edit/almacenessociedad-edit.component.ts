@@ -55,7 +55,7 @@ export class AlmacenessociedadEditComponent implements OnInit {
     })
     //Cargar los datos Sociedad Modificar
     this.httpService.obteneralmacen$.subscribe(res => {
-      if (res.id == "") {
+      if (res.idAlmacen == "") {
         Swal.fire({
           icon: 'error',
           title: 'Ha ocurrido un error.',
@@ -63,7 +63,7 @@ export class AlmacenessociedadEditComponent implements OnInit {
           showConfirmButton: false,
         });
       } else {
-        this.codigo = res.id ?? "";
+        this.codigo = res.idAlmacen ?? "";
         this.warehousesForm.get("sociedad")?.setValue(res.sociedad_id);
         this.warehousesForm.get("Direccion")?.setValue(res.direccion);
         this.warehousesForm.get("codigo")?.setValue(res.codigo);
@@ -84,7 +84,7 @@ export class AlmacenessociedadEditComponent implements OnInit {
           codigo: this.warehousesForm.value!.codigo ?? "",
           pto_emision: this.warehousesForm.value!.pto_emision ?? "",
           telefono: this.warehousesForm.value!.telefono ?? "",
-          id: this.codigo,
+          idAlmacen: this.codigo,
           nombresociedad: ''
         };
         this.httpService.actualizarAlmacen(almacenEntity).subscribe(res => {

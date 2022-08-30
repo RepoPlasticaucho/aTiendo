@@ -5,7 +5,7 @@ export interface Almacenes {
 }
 
 export interface AlmacenesEntity {
-    id : string;
+    idAlmacen : string;
     sociedad_id : string;
     nombresociedad: string;
     direccion : string;

@@ -6,7 +6,7 @@ import { Almacenes, AlmacenesEntity } from '../models/almacenes';
 import { SociedadesEntity } from '../models/sociedades';
 
 const initGruop: AlmacenesEntity = {
-  id : "",
+  idAlmacen : "",
   sociedad_id : "",
   nombresociedad: "",
   direccion : "",
