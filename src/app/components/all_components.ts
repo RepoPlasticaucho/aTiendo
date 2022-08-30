@@ -35,3 +35,4 @@ export { SociedadesCreateComponent } from "./corporations/sociedades-create/soci
 export { LineasCreateComponent } from "./lines/lineas-create/lineas-create.component";
 export { LineasEditComponent } from "./lines/lineas-edit/lineas-edit.component";
 export { LineasComponent } from "./lines/lineas/lineas.component";
+export { InventariosComponent } from "./inventories/inventarios/inventarios.component";
