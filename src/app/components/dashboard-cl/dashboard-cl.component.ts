@@ -33,7 +33,7 @@ export class DashboardClComponent {
         { title: 'Ingresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
         { title: 'Egresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
         { title: 'Saldos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
-        { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "apps" },
+        { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios)"},
         { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" },
         { title: 'Pedido Sugerido', cols: 1, rows: 1, name: "las productos", figure: "widgets"},
         { title: 'Movimientos', cols: 1, rows: 1, name: "los productos", figure: "monitor" },

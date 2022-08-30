@@ -3,51 +3,52 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Almacenes, AlmacenesEntity } from '../models/almacenes';
-import { SociedadesEntity } from '../models/sociedades';
+import { Inventarios, InventariosEntity } from '../models/inventarios';
 
-const initGruop: AlmacenesEntity = {
-  idAlmacen : "",
-  sociedad_id : "",
-  nombresociedad: "",
-  direccion : "",
-  telefono : "",
-  codigo : "",
-  pto_emision : "",
+const initGruop: InventariosEntity = {
+  categoria_id : "",
+  categoria : "",
+  linea_id : "",
+  linea : "",
+  modelo_id : "",
+  marca_id : "",
+  marca : "",
+  modelo_producto_id : "",
+  idProducto : "",
+  Producto : "",
+  id : "",
+  dInventario : "",
+  producto_id : "",
+  almacen_id : "",
+  almacen : "",
+  stock : "",
+  stock_optimo : "",
+  fav : "",
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlmacenesService {
+export class InventariosService {
 
-  private almacen$ = new BehaviorSubject<AlmacenesEntity>(initGruop);
+  private inventario$ = new BehaviorSubject<InventariosEntity>(initGruop);
 
   constructor(private readonly http: HttpClient) { }
 
-  get obteneralmacen$(): Observable<AlmacenesEntity> {
-    return this.almacen$.asObservable();
+  get obtenerInventario$(): Observable<InventariosEntity> {
+    return this.inventario$.asObservable();
   }
 
-  asignarAlmacen(almacen: AlmacenesEntity) {
-    this.almacen$.next(almacen);
+  asignarInventario(inventario: InventariosEntity) {
+    this.inventario$.next(inventario);
   }
 
-  obtenerAlmacenes(): Observable<Almacenes> {
-    return this.http.get<Almacenes>(`${environment.apiUrl}almacenes/ObtenerAlmacenes`);
+  obtenerInventario(): Observable<Inventarios> {
+    return this.http.get<Inventarios>(`${environment.apiUrl}inventarios/ObtenerInventarios`);
   }
 
-  obtenerAlmacenesSociedad(almacen: SociedadesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ObtenerAlmacenesSociedad`, almacen );
+  obtenerPortafolios(almacen: AlmacenesEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafolios`, almacen );
   }
-  agregarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/InsertarAlmacen`, almacen);
-  }
-
-  eliminarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/EliminarAlmacen`, almacen);
-  }
-
-  actualizarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ModificarAlmacen`, almacen);
-  }
+  
 }
