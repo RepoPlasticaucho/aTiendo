@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faClipboardList, faTimes, faSave } from '@fortawesome/free-solid-svg-icons';
 import { CategoriasEntity } from 'src/app/models/categorias';
+import { LineasEntity } from 'src/app/models/lineas';
 import { CategoriasService } from 'src/app/services/categorias.service';
 import { LineasService } from 'src/app/services/lineas.service';
 import Swal from 'sweetalert2';
@@ -68,46 +69,45 @@ export class LineasEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // if (!this.corporationForm.valid) {
-    //   this.corporationForm.markAllAsTouched();
-    //   if (this.corporationForm.get("grupo")?.value == "0") {
-    //     this.selectGrupo = true;
-    //   }
-    // } else {
-    //   if (this.corporationForm.get("grupo")?.value == "0") {
-    //     this.selectGrupo = true;
-    //   }
-    //   else {
-    //     const sociedadEntity: SociedadesEntity = {
-    //       idSociedad: this.codigo,
-    //       idGrupo: this.corporationForm.value!.grupo ?? "",
-    //       id_fiscal: this.corporationForm.value!.idFiscal ?? "",
-    //       nombre_comercial: this.corporationForm.value!.nombreComercial ?? "",
-    //       email: this.corporationForm.value!.correoElectronico ?? "",
-    //       telefono: this.corporationForm.value!.telefono ?? "",
-    //     };
-    //     this.httpService.actualizarSociedad(sociedadEntity).subscribe(res => {
-    //       if (res.codigoError == "OK") {
-    //         Swal.fire({
-    //           icon: 'success',
-    //           title: 'Actualizado Correctamente.',
-    //           text: `Se ha actualizado la información`,
-    //           showConfirmButton: true,
-    //           confirmButtonText: "Ok"
-    //         }).finally(() => {
-    //           this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['sociedades'] } }]);
-    //         });
-    //       } else {
-    //         Swal.fire({
-    //           icon: 'error',
-    //           title: 'Ha ocurrido un error.',
-    //           text: res.descripcionError,
-    //           showConfirmButton: false,
-    //         });
-    //       }
-    //     })
-    //   }
-    // }
+    if (!this.lineForm.valid) {
+      this.lineForm.markAllAsTouched();
+      if (this.lineForm.get("categoria")?.value == "0") {
+        this.selectCategorias = true;
+      }
+    } else {
+      if (this.lineForm.get("categoria")?.value == "0") {
+        this.selectCategorias = true;
+      }
+      else {
+        const lineaEntity: LineasEntity = {
+          id: this.codigo,
+          categoria_id: this.lineForm.value!.categoria ?? "",
+          linea: this.lineForm.value!.linea ?? "",
+          etiquetas: this.lineForm.value!.etiquetas ?? "",
+          cod_sap: this.lineForm.value!.codigoSAP ?? "",
+        };
+        this.httpService.actualizarLinea(lineaEntity).subscribe(res => {
+          if (res.codigoError == "OK") {
+            Swal.fire({
+              icon: 'success',
+              title: 'Actualizado Correctamente.',
+              text: `Se ha actualizado la información`,
+              showConfirmButton: true,
+              confirmButtonText: "Ok"
+            }).finally(() => {
+              this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['lineas'] } }]);
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
+              showConfirmButton: false,
+            });
+          }
+        })
+      }
+    }
   }
 
   changeCategoria(categoria: any): void {
@@ -119,8 +119,8 @@ export class LineasEditComponent implements OnInit {
     }
   }
 
-  visualizarSociedades() {
-    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['categorias'] } }]);
+  visualizarLineas() {
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['lineas'] } }]);
   }
 
 }
