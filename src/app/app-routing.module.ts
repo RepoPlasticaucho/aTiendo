@@ -10,7 +10,11 @@ const routes: Routes = [
       { path: "", component: DashboardClComponent, outlet: "contentClient" },
       { path: "almacenes", component: AlmacenessociedadComponent, outlet: "contentClient" },
       { path: "crearAlmacenes", component: AlmacenessociedadCreateComponent, outlet: "contentClient" },
+      { path: "editarAlmacenes", component: AlmacenessociedadEditComponent, outlet: "contentClient" },
+      { path: "editarAlmacenes", component: AlmacenessociedadEditComponent, outlet: "contentClient" },
       { path: "editarAlmacenes", component: AlmacenessociedadEditComponent, outlet: "contentClient" }
+
+
     ]
   },
   {

@@ -54,6 +54,12 @@ import { AtributosEditComponent } from './components/attributes/atributos-edit/a
 import { GenerosComponent } from './components/genres/generos/generos.component';
 import { GenerosCreateComponent } from './components/genres/generos-create/generos-create.component';
 import { GenerosEditComponent } from './components/genres/generos-edit/generos-edit.component';
+import { ProductosComponent } from './components/products/productos/productos.component';
+import { ProductosCreateComponent } from './components/products/productos-create/productos-create.component';
+import { ProductosEditComponent } from './components/products/productos-edit/productos-edit.component';
+import { InventariosComponent } from './components/inventories/inventarios/inventarios.component';
+import { InventariosCreateComponent } from './components/inventories/inventarios-create/inventarios-create.component';
+import { InventariosEditComponent } from './components/inventories/inventarios-edit/inventarios-edit.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +101,12 @@ import { GenerosEditComponent } from './components/genres/generos-edit/generos-e
     GenerosComponent,
     GenerosCreateComponent,
     GenerosEditComponent,
+    ProductosComponent,
+    ProductosCreateComponent,
+    ProductosEditComponent,
+    InventariosComponent,
+    InventariosCreateComponent,
+    InventariosEditComponent,
     
   ],
   imports: [
