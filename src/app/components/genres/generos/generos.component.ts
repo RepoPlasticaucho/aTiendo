@@ -75,7 +75,7 @@ export class GenerosComponent implements OnInit {
             Swal.fire({
               icon: 'success',
               title: 'Eliminado Exitosamente.',
-              text: `Se ha eliminado el color ${genero.genero}`,
+              text: `Se ha eliminado el género ${genero.genero}`,
               showConfirmButton: true,
               confirmButtonText: "Ok"
             }).then(() => {
