@@ -14,11 +14,13 @@
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                 <thead style="color: #636363;">
                     <tr>
-                        <th style="width: 20%; ">Categoria</th>
-                        <th style="width: 20%; ">Tipo</th>
-                        <th style="width: 20%; ">Marca</th>
-                        <th style="width: 20%; ">Producto</th>
-
+                        <th style="width: 10%; ">CATEGORIA</th>
+                        <th style="width: 10%; ">TIPO</th>
+                        <th style="width: 10%; ">MARCA</th>
+                        <th style="width: 35%; ">PRODUCTO</th>
+                        <th style="width: 5%; ">FAV</th>
+                        <th style="width: 8%; ">OPTIMO</th>
+                        <th style="width: 8%; ">STOCK</th>
                         <th style="width: 20%; "></th>
                     </tr>
                 </thead>
@@ -28,6 +30,9 @@
                         <td>{{inventario.linea}}</td>
                         <td>{{inventario.marca}}</td>
                         <td>{{inventario.Producto}}</td>
+                        <td></td>
+                        <td>{{inventario.stock_optimo}}</td>
+                        <td>{{inventario.stock}}</td>
 
                         <td>
                             <fa-icon [icon]="faEdit" class="btn btn-info" [size]="'sm'" style="margin-right: 5px;" data-placement="bottom" title="Editar Almacen"></fa-icon>
