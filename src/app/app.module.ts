@@ -60,6 +60,8 @@ import { ProductosEditComponent } from './components/products/productos-edit/pro
 import { InventariosComponent } from './components/inventories/inventarios/inventarios.component';
 import { InventariosCreateComponent } from './components/inventories/inventarios-create/inventarios-create.component';
 import { InventariosEditComponent } from './components/inventories/inventarios-edit/inventarios-edit.component';
+import { InventariosPedidoComponent } from './components/inventories/inventarios-pedido/inventarios-pedido.component';
+import { InventariosPedidoCreateComponent } from './components/inventories/inventarios-pedido-create/inventarios-pedido-create.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +109,8 @@ import { InventariosEditComponent } from './components/inventories/inventarios-e
     InventariosComponent,
     InventariosCreateComponent,
     InventariosEditComponent,
+    InventariosPedidoComponent,
+    InventariosPedidoCreateComponent,
     
   ],
   imports: [
