@@ -36,3 +36,4 @@ export { LineasCreateComponent } from "./lines/lineas-create/lineas-create.compo
 export { LineasEditComponent } from "./lines/lineas-edit/lineas-edit.component";
 export { LineasComponent } from "./lines/lineas/lineas.component";
 export { InventariosComponent } from "./inventories/inventarios/inventarios.component";
+export { InventariosPedidoComponent } from "./inventories/inventarios-pedido/inventarios-pedido.component";

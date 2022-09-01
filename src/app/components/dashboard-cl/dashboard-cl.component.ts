@@ -34,7 +34,7 @@ export class DashboardClComponent {
         { title: 'Egresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
         { title: 'Saldos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
         { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios)"},
-        { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" },
+        { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-pedido)"},
         { title: 'Pedido Sugerido', cols: 1, rows: 1, name: "las productos", figure: "widgets"},
         { title: 'Movimientos', cols: 1, rows: 1, name: "los productos", figure: "monitor" },
         { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city", dir: "navegation-cl/(contentClient:almacenes)" }
