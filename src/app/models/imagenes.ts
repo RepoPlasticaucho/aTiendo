@@ -1,4 +1,4 @@
-export interface AlmacenesEntity {
+export interface ImagenesEntity {
     imageBase64: string;
     nombreArchivo: string;
     nombreArchivoEliminar: string;
