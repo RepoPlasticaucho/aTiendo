@@ -11,6 +11,33 @@
             </div>
         </div>
         <div class="card-body ">
+            <div>
+                <mat-grid-list cols="6" rowHeight="15px">
+                    <mat-grid-tile>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <mat-grid-list cols="6" rowHeight="120px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INICIO
+                    <mat-grid-tile *ngFor="let card of lstCategorias">
+                        
+                            <a href="" class="bottom" 
+                                style="border-radius: 5px; 
+                                       background: rgb(49,99,173,0.8); 
+                                       font-size: 15px; width:120px; 
+                                       height:60px;
+                                       text-align:center; 
+                                       margin-top: 15px;
+                                       ;">
+                                <span style="color: white;">
+                                        <br>{{card.categoria}}
+                                </span>
+                            </a>
+                        
+                        
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+            <br><br>
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                 <thead style="color: #636363;">
                     <tr>

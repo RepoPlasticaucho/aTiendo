@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Almacenes, AlmacenesEntity } from '../models/almacenes';
+import { CategoriasEntity } from '../models/categorias';
 import { Inventarios, InventariosEntity } from '../models/inventarios';
 
 const initGruop: InventariosEntity = {
@@ -50,5 +51,12 @@ export class InventariosService {
   obtenerPortafolios(almacen: AlmacenesEntity): Observable<Inventarios> {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafolios`, almacen );
   }
+
+  obtenerLineasCategoria(categoria: CategoriasEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}lineas/ObtenerPortafolios`, categoria );
+  }
   
+  obtenerCategoria(): Observable<Inventarios> {
+    return this.http.get<Inventarios>(`${environment.apiUrl}categorias/ObtenerCategorias` );
+  }
 }

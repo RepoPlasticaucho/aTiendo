@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEdit, faPlus, faTrashAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { Subject } from 'rxjs';
+import { Subject, subscribeOn } from 'rxjs';
 import { InventariosEntity } from 'src/app/models/inventarios';
 import { AlmacenesEntity } from 'src/app/models/almacenes';
 import { InventariosService } from 'src/app/services/inventarios.service';
 import Swal from 'sweetalert2';
+import { CategoriasEntity } from 'src/app/models/categorias';
 
 @Component({
   selector: 'app-inventarios-pedido',
@@ -23,7 +24,9 @@ export class InventariosPedidoComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   lstInventarios: InventariosEntity[] = [];
+  lstCategorias: CategoriasEntity[] = [];
 
+  var = "6";
   constructor(private readonly httpService: InventariosService,
     private router: Router) { }
 
@@ -40,7 +43,7 @@ export class InventariosPedidoComponent implements OnInit {
       responsive:true
     }
     const almacen: AlmacenesEntity = {
-      idAlmacen: '6',
+      idAlmacen: this.var,
       sociedad_id: '',
       nombresociedad: '',
       direccion: '',
@@ -50,7 +53,7 @@ export class InventariosPedidoComponent implements OnInit {
     }
     console.log(almacen);
 
-    this.httpService.obtenerPortafolios(almacen).subscribe(res => {
+    this.httpService.obtenerCategoria().subscribe(res => {
       if (res.codigoError != "OK") {
         Swal.fire({
           icon: 'error',
@@ -60,8 +63,23 @@ export class InventariosPedidoComponent implements OnInit {
           // timer: 3000
         });
       } else {
-        this.lstInventarios = res.lstInventarios;
-        this.dtTrigger.next('');
+        this.lstCategorias = res.lstCategorias;
+        
+        this.httpService.obtenerPortafolios(almacen).subscribe(res => {
+          if (res.codigoError != "OK") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
+              showConfirmButton: false,
+              // timer: 3000
+            });
+          } else {
+            this.lstInventarios = res.lstInventarios;
+            this.dtTrigger.next('');
+          }
+          
+        })
       }
       
     })
@@ -117,3 +135,7 @@ export class InventariosPedidoComponent implements OnInit {
   }*/
 
 }
+function obtenerCategorias() {
+  throw new Error('Function not implemented.');
+}
+
