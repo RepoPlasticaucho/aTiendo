@@ -22,7 +22,7 @@
                     <tr *ngFor="let atributo of lstAtributos">
                         <td>{{atributo.atributo}}</td>
                         <td>{{atributo.etiquetas}}</td>
-                        <td>
+                        <td style="text-align: center;">
                             <fa-icon [icon]="faEdit" class="btn btn-info" [size]="'lg'" style="margin-right: 5px;" data-placement="bottom" title="Editar caracteristica" (click)=" editarAtributos(atributo) "></fa-icon>
                             <fa-icon [icon]="faTrashAlt " class="btn btn-danger " [size]=" 'lg' " data-placement="bottom " title="Eliminar caracteristica" (click)="eliminarAtributos(atributo)"></fa-icon>
                         </td>
