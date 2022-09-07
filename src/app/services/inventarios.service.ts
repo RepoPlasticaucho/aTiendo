@@ -59,4 +59,11 @@ export class InventariosService {
   obtenerCategoria(): Observable<Inventarios> {
     return this.http.get<Inventarios>(`${environment.apiUrl}categorias/ObtenerCategorias` );
   }
+  obtenerPortafoliosCategoria(inventario: InventariosEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosCategoria`,inventario );
+  }
+  
+  asignarCategoria(inventario: InventariosEntity) {
+    this.inventario$.next(inventario);
+  }
 }

@@ -25,7 +25,7 @@ export class InventariosPedidoComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   lstInventarios: InventariosEntity[] = [];
   lstCategorias: CategoriasEntity[] = [];
-
+  cat : string | undefined;
   var = "6";
   constructor(private readonly httpService: InventariosService,
     private router: Router) { }
@@ -86,6 +86,33 @@ export class InventariosPedidoComponent implements OnInit {
 
   }
 
+  buscarPortafolioLinea(card : CategoriasEntity){
+    console.log(card);
+    this.cat = card["id"];
+    const inventario : InventariosEntity = {
+      categoria_id: this.cat,
+      categoria: '',
+      linea_id: '',
+      linea: '',
+      modelo_id: '',
+      marca_id: '',
+      marca: '',
+      modelo_producto_id: '',
+      idProducto: '',
+      Producto: '',
+      id: '',
+      dInventario: '',
+      producto_id: '',
+      almacen_id: this.var,
+      almacen: '',
+      stock: '',
+      stock_optimo: '',
+      fav: ''
+    }
+   // console.log(inventario);
+    this.httpService.asignarCategoria(inventario);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-pedido-categoria'] } }]);
+  }
   /*eliminarAlmacenes(almacen: AlmacenesEntity): void {
     Swal.fire({
       icon: 'question',

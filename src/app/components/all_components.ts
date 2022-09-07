@@ -40,3 +40,4 @@ export { InventariosPedidoComponent } from "./inventories/inventarios-pedido/inv
 export { InventariosPedidoColoresComponent } from "./inventories/inventarios-pedido-colores/inventarios-pedido-colores.component";
 export { InventariosPedidoLineasComponent } from "./inventories/inventarios-pedido-lineas/inventarios-pedido-lineas.component";
 export { InventariosPedidoModelosComponent } from "./inventories/inventarios-pedido-modelos/inventarios-pedido-modelos.component";
+export { InventariosPedidoCategoriaComponent } from "./inventories/inventarios-pedido-categoria/inventarios-pedido-categoria.component";
