@@ -65,6 +65,7 @@ import { InventariosPedidoCreateComponent } from './components/inventories/inven
 import { InventariosPedidoLineasComponent } from './components/inventories/inventarios-pedido-lineas/inventarios-pedido-lineas.component';
 import { InventariosPedidoModelosComponent } from './components/inventories/inventarios-pedido-modelos/inventarios-pedido-modelos.component';
 import { InventariosPedidoColoresComponent } from './components/inventories/inventarios-pedido-colores/inventarios-pedido-colores.component';
+import { InventariosPedidoCategoriaComponent } from './components/inventories/inventarios-pedido-categoria/inventarios-pedido-categoria.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { InventariosPedidoColoresComponent } from './components/inventories/inve
     InventariosPedidoLineasComponent,
     InventariosPedidoModelosComponent,
     InventariosPedidoColoresComponent,
+    InventariosPedidoCategoriaComponent,
     
   ],
   imports: [

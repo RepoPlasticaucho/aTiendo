@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-inventarios-pedido-lineas',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inventarios-pedido-lineas.component.css']
 })
 export class InventariosPedidoLineasComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit(): void {
+    
+    ;
+    
   }
+  
 
 }
