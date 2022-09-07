@@ -1,4 +1,5 @@
 export interface Inventarios {
+    lstCategorias: import("../models/categorias").CategoriasEntity[];
     codigoError: string;
     descripcionError: string;
     lstInventarios: InventariosEntity[];
