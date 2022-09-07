@@ -37,3 +37,6 @@ export { LineasEditComponent } from "./lines/lineas-edit/lineas-edit.component";
 export { LineasComponent } from "./lines/lineas/lineas.component";
 export { InventariosComponent } from "./inventories/inventarios/inventarios.component";
 export { InventariosPedidoComponent } from "./inventories/inventarios-pedido/inventarios-pedido.component";
+export { InventariosPedidoColoresComponent } from "./inventories/inventarios-pedido-colores/inventarios-pedido-colores.component";
+export { InventariosPedidoLineasComponent } from "./inventories/inventarios-pedido-lineas/inventarios-pedido-lineas.component";
+export { InventariosPedidoModelosComponent } from "./inventories/inventarios-pedido-modelos/inventarios-pedido-modelos.component";
