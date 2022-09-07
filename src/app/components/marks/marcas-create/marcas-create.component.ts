@@ -19,7 +19,6 @@ export class MarcasCreateComponent implements OnInit {
   faBookmark = faBookmark;
   faTimes = faTimes;
   faSave = faSave;
-  constructor(private httpService: MarcasService, private httpServiceImage: ImagenesService, private router: Router) { }
   //Creación de la variable para formulario
   markForm = new FormGroup({
     marca: new FormControl('', Validators.required),
@@ -34,6 +33,8 @@ export class MarcasCreateComponent implements OnInit {
   codigoError: string = "";
   descripcionError: string = "";
 
+  constructor(private httpService: MarcasService, private httpServiceImage: ImagenesService, private router: Router) { }
+  
   ngOnInit(): void {
   }
 
