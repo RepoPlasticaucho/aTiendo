@@ -81,10 +81,10 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
           this.httpService.obtenerLineasCategoria(categoria).subscribe(res => {
             if (res.codigoError != "OK") {
               Swal.fire({
-                icon: 'error',
-                title: 'Ha ocurrido un error.',
-                text: res.descripcionError,
-                showConfirmButton: false,
+               // icon: 'error',
+               // title: 'Ha ocurrido un error.',
+               // text: res.descripcionError,
+               // showConfirmButton: false,
                 // timer: 3000
               });
             } else {

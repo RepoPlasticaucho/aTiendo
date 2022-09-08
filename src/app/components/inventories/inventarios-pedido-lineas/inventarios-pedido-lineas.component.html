@@ -16,13 +16,14 @@
                     <mat-grid-tile>
                     </mat-grid-tile>
                 </mat-grid-list>
-                <mat-grid-list cols="6" rowHeight="120px">
+                <mat-grid-list cols="6" rowHeight="110px">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    INICIO | 
-                    <a href="#">{{lstModelos[0].modelo}}</a>
+                    INICIO |   &nbsp;                    
+                    <a>{{lstModelos[0]. linea_nombre}}</a>
+                    &nbsp;&nbsp;|
                     <mat-grid-tile *ngFor="let card of lstModelos">
                         
-                            <a class="bottom"  
+                            <a class="bottom" (click)="buscarPortafolioLineaModelo(card)" 
                                 style="border-radius: 5px; 
                                        background: rgb(49,99,173,0.8); 
                                        font-size: 15px; width:120px; 

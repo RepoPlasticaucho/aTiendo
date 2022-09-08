@@ -69,11 +69,18 @@ export class InventariosService {
   obtenerPortafoliosLineas(inventario: InventariosEntity): Observable<Inventarios> {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosLineas`,inventario );
   }
+  obtenerPortafoliosModelos(inventario: InventariosEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosModelos`,inventario );
+  }
+  
   asignarCategoria(inventario: InventariosEntity) {
     this.inventario$.next(inventario);
   }
 
   asignarLinea(inventario: InventariosEntity) {
+    this.inventario$.next(inventario);
+  }
+  asignarModelo(inventario: InventariosEntity) {
     this.inventario$.next(inventario);
   }
 }

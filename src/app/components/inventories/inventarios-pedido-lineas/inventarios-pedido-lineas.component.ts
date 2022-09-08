@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faEdit, faPlus, faTrashAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs/internal/Subject';
 import { InventariosEntity } from 'src/app/models/inventarios';
@@ -26,9 +27,10 @@ export class InventariosPedidoLineasComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   lstInventarios: InventariosEntity[] = [];
   lstModelos: ModelosEntity[] = [];
+  codigomodel: string | undefined;
 
   constructor(private readonly httpService: InventariosService,
-    ) { }
+     private router: Router) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -48,68 +50,102 @@ export class InventariosPedidoLineasComponent implements OnInit {
       this.codigoalmacen = res.almacen_id ?? "";
       this.codigolinea = res.linea_id ?? "";
 
-      const linea : LineasEntity ={
-        id :this.codigolinea,
-        categoria_id: '',
-        linea: '',
-        etiquetas: '',
-        cod_sap: ''
-      }
-
-      const inventario : InventariosEntity = {
-        categoria_id: this.codigocategoria,
-        categoria: '',
-        linea_id: this.codigolinea,
-        linea: '',
-        modelo_id: '',
-        marca_id: '',
-        marca: '',
-        modelo_producto_id: '',
-        idProducto: '',
-        Producto: '',
-        id: '',
-        dInventario: '',
-        producto_id: '',
-        almacen_id: this.codigoalmacen,
-        almacen: '',
-        stock: '',
-        stock_optimo: '',
-        fav: ''
-      }
-
-      this.httpService.obtenerModelosLineas(linea).subscribe(res => {
-        if (res.codigoError != "OK") {
-          Swal.fire({
-            icon: 'error',
-            title: 'Ha ocurrido un error.',
-            text: res.descripcionError,
-            showConfirmButton: false,
-            // timer: 3000
-          });
-        } else {
-          this.lstModelos = res.lstModelos;
-          
-          this.httpService.obtenerPortafoliosLineas(inventario).subscribe(res => {
-            if (res.codigoError != "OK") {
-              Swal.fire({
-                icon: 'error',
-                title: 'Ha ocurrido un error.',
-                text: res.descripcionError,
-                showConfirmButton: false,
-                // timer: 3000
-              });
-            } else {
-              this.lstInventarios = res.lstInventarios;
-              this.dtTrigger.next('');
-            }
-            
-          })
-
+      if (this.codigocategoria || this.codigoalmacen || this.codigolinea == null) {
+        const linea : LineasEntity ={
+          id :this.codigolinea,
+          categoria_id: '',
+          linea: '',
+          etiquetas: '',
+          cod_sap: ''
         }
-      })
+  
+        const inventario : InventariosEntity = {
+          categoria_id: this.codigocategoria,
+          categoria: '',
+          linea_id: this.codigolinea,
+          linea: '',
+          modelo_id: '',
+          marca_id: '',
+          marca: '',
+          modelo_producto_id: '',
+          idProducto: '',
+          Producto: '',
+          id: '',
+          dInventario: '',
+          producto_id: '',
+          almacen_id: this.codigoalmacen,
+          almacen: '',
+          stock: '',
+          stock_optimo: '',
+          fav: ''
+        }
+  
+        this.httpService.obtenerModelosLineas(linea).subscribe(res => {
+          if (res.codigoError != "OK") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
+              showConfirmButton: false,
+              // timer: 3000
+            });
+          } else {
+            this.lstModelos = res.lstModelos;
+            
+            this.httpService.obtenerPortafoliosLineas(inventario).subscribe(res => {
+              if (res.codigoError != "OK") {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Ha ocurrido un error.',
+                  text: res.descripcionError,
+                  showConfirmButton: false,
+                  // timer: 3000
+                });
+              } else {
+                this.lstInventarios = res.lstInventarios;
+                this.dtTrigger.next('');
+              }
+              
+            })
+  
+          }
+        })
+      }
+      
+      else{
+        this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-pedido'] } }]);
+
+      }
+      
 
     })
   }
-  
+  buscarPortafolioLineaModelo(card : ModelosEntity){
+    this.codigomodel = card["id"];
+    
+    const inventario : InventariosEntity = {
+      categoria_id: this.codigocategoria,
+      categoria: '',
+      linea_id: this.codigolinea,
+      linea: '',
+      modelo_id: this.codigomodel,
+      marca_id: '',
+      marca: '',
+      modelo_producto_id: '',
+      idProducto: '',
+      Producto: '',
+      id: '',
+      dInventario: '',
+      producto_id: '',
+      almacen_id: this.codigoalmacen,
+      almacen: '',
+      stock: '',
+      stock_optimo: '',
+      fav: ''
+    }
+    console.log(inventario);
+    this.httpService.asignarModelo(inventario);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-pedido-modelos'] } }]);
+  }  
 
 }

@@ -12,7 +12,7 @@ export interface InventariosEntity {
         categoria : string;
         linea_id? : string;
         linea : string;
-        modelo_id : string;
+        modelo_id? : string;
         marca_id : string;
         marca : string;
         modelo_producto_id : string;
