@@ -1,3 +1,6 @@
+export { ModeloproductosCreateComponent } from "./models-products/modeloproductos-create/modeloproductos-create.component";
+export { ModeloproductosEditComponent } from "./models-products/modeloproductos-edit/modeloproductos-edit.component";
+export { ModeloproductosComponent } from "./models-products/modeloproductos/modeloproductos.component";
 export { AtributosCreateComponent } from "./attributes/atributos-create/atributos-create.component";
 export { AtributosEditComponent } from "./attributes/atributos-edit/atributos-edit.component";
 export { AtributosComponent } from "./attributes/atributos/atributos.component";
