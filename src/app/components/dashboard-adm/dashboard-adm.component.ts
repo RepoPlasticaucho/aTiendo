@@ -37,7 +37,7 @@ export class DashboardAdmComponent {
         { title: 'Colores', cols: 1, rows: 1, name: "los colores de productos", figure: "shopping_cart", dir: "navegation-adm/(contentAdmin:colores)" },
         { title: 'Caracteristicas', cols: 1, rows: 1, name: "las caracteristicas ", figure: "pie_chart", dir: "navegation-adm/(contentAdmin:atributos)" },
         { title: 'Géneros', cols: 1, rows: 1, name: "los géneros de productos", figure: "pie_chart", dir: "navegation-adm/(contentAdmin:generos)" },
-        { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets" },
+        { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets", dir: "navegation-adm/(contentAdmin:modeloProductos)" },
         { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "widgets" },
         { title: 'Grupos', cols: 1, rows: 1, name: "los grupos", figure: "person", dir: "navegation-adm/(contentAdmin:grupos)" },
         { title: 'Sociedades', cols: 1, rows: 1, name: "las sociedades", figure: "supervisor_account", dir: "navegation-adm/(contentAdmin:sociedades)" },
