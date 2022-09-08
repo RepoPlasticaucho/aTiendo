@@ -1,4 +1,6 @@
 export interface Inventarios {
+    lstModelos: import("../models/modelos").ModelosEntity[];
+    lstLineas: import("../models/lineas").LineasEntity[];
     lstCategorias: import("../models/categorias").CategoriasEntity[];
     codigoError: string;
     descripcionError: string;
@@ -8,7 +10,7 @@ export interface Inventarios {
 export interface InventariosEntity {
         categoria_id : string;
         categoria : string;
-        linea_id : string;
+        linea_id? : string;
         linea : string;
         modelo_id : string;
         marca_id : string;

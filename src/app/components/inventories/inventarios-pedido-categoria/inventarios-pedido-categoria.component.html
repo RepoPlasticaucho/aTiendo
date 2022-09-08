@@ -17,8 +17,10 @@
                     </mat-grid-tile>
                 </mat-grid-list>
                 <mat-grid-list cols="6" rowHeight="120px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INICIO
-                 <!--   <mat-grid-tile *ngFor="let card of lstCategorias">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    INICIO | 
+                    <a href="#">{{lstLineas[0].categoria_nombre}}</a>
+                    <mat-grid-tile *ngFor="let card of lstLineas">
                         
                             <a class="bottom" (click)="buscarPortafolioLinea(card)" 
                                 style="border-radius: 5px; 
@@ -27,23 +29,21 @@
                                        height:60px;
                                        text-align:center; 
                                        margin-top: 15px;
-                                       ;">
+                                       ">
                                 <span style="color: white;">
-                                        <br>{{card.categoria}}
+                                        <br>{{card.linea}}
                                 </span>
                             </a>
                         
                         
-                    </mat-grid-tile> -->
+                    </mat-grid-tile> 
                 </mat-grid-list>
             </div>
             <br><br> 
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                 <thead style="color: #636363;">
                     <tr>
-                        
                         <th style="width: 55%; ">PRODUCTO</th>
-                        
                         <th style="width: 15%; ">CANTIDAD OPTIMO</th>
                         <th style="width: 15%; ">STOCK</th>
                         <th style="width: 20%; "></th>

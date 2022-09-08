@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Almacenes, AlmacenesEntity } from '../models/almacenes';
 import { CategoriasEntity } from '../models/categorias';
 import { Inventarios, InventariosEntity } from '../models/inventarios';
+import { LineasEntity } from '../models/lineas';
 
 const initGruop: InventariosEntity = {
   categoria_id : "",
@@ -53,9 +54,11 @@ export class InventariosService {
   }
 
   obtenerLineasCategoria(categoria: CategoriasEntity): Observable<Inventarios> {
-    return this.http.post<Inventarios>(`${environment.apiUrl}lineas/ObtenerPortafolios`, categoria );
+    return this.http.post<Inventarios>(`${environment.apiUrl}lineas/ObtenerLineasCategoria`, categoria );
   }
-  
+  obtenerModelosLineas(linea: LineasEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}modelos/ObtenerModelosLineas`, linea );
+  }
   obtenerCategoria(): Observable<Inventarios> {
     return this.http.get<Inventarios>(`${environment.apiUrl}categorias/ObtenerCategorias` );
   }
@@ -63,7 +66,14 @@ export class InventariosService {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosCategoria`,inventario );
   }
   
+  obtenerPortafoliosLineas(inventario: InventariosEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosLineas`,inventario );
+  }
   asignarCategoria(inventario: InventariosEntity) {
+    this.inventario$.next(inventario);
+  }
+
+  asignarLinea(inventario: InventariosEntity) {
     this.inventario$.next(inventario);
   }
 }
