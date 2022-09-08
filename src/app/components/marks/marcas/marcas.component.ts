@@ -60,7 +60,7 @@ export class MarcasComponent implements OnInit {
   }
 
   editarMarcas(marca: MarcasEntity): void {
-    // this.httpService.asignarcolor(color);
+    this.httpService.asignarMarca(marca);
     this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['editarMarcas'] } }]);
   }
 
