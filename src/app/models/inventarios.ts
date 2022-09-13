@@ -1,4 +1,5 @@
 export interface Inventarios {
+    lstModelo_Productos: import("../models/modeloproductos").ModeloProductosEntity[];
     lstModelos: import("../models/modelos").ModelosEntity[];
     lstLineas: import("../models/lineas").LineasEntity[];
     lstCategorias: import("../models/categorias").CategoriasEntity[];
@@ -26,5 +27,6 @@ export interface InventariosEntity {
         stock : string;
         stock_optimo : string;
         fav : string;
+        color :string;
     
 }

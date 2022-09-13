@@ -75,7 +75,8 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
             almacen: '',
             stock: '',
             stock_optimo: '',
-            fav: ''
+            fav: '',
+            color: ''
           }
   
           this.httpService.obtenerLineasCategoria(categoria).subscribe(res => {
@@ -137,7 +138,8 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
       almacen: '',
       stock: '',
       stock_optimo: '',
-      fav: ''
+      fav: '',
+      color: ''
     }
     console.log(inventario);
     this.httpService.asignarLinea(inventario);

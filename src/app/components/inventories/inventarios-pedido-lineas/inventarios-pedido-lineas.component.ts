@@ -22,13 +22,15 @@ export class InventariosPedidoLineasComponent implements OnInit {
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   faPlus = faPlus;
+
   //Declaración de variables
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   lstInventarios: InventariosEntity[] = [];
   lstModelos: ModelosEntity[] = [];
   codigomodel: string | undefined;
-
+  linea_name: string |  undefined;
+  
   constructor(private readonly httpService: InventariosService,
      private router: Router) { }
 
@@ -77,22 +79,24 @@ export class InventariosPedidoLineasComponent implements OnInit {
           almacen: '',
           stock: '',
           stock_optimo: '',
-          fav: ''
+          fav: '',
+          color: ''
         }
   
         this.httpService.obtenerModelosLineas(linea).subscribe(res => {
           if (res.codigoError != "OK") {
             Swal.fire({
-              icon: 'error',
-              title: 'Ha ocurrido un error.',
-              text: res.descripcionError,
-              showConfirmButton: false,
+             // icon: 'error',
+             // title: 'Ha ocurrido un error.',
+             // text: res.descripcionError,
+             // showConfirmButton: false,
               // timer: 3000
             });
           } else {
             this.lstModelos = res.lstModelos;
-            
+            this.linea_name = this.lstModelos[0].linea_nombre;
             this.httpService.obtenerPortafoliosLineas(inventario).subscribe(res => {
+              
               if (res.codigoError != "OK") {
                 Swal.fire({
                   icon: 'error',
@@ -141,7 +145,8 @@ export class InventariosPedidoLineasComponent implements OnInit {
       almacen: '',
       stock: '',
       stock_optimo: '',
-      fav: ''
+      fav: '',
+      color: ''
     }
     console.log(inventario);
     this.httpService.asignarModelo(inventario);
