@@ -69,6 +69,9 @@ import { InventariosPedidoCategoriaComponent } from './components/inventories/in
 import { ModeloproductosComponent } from './components/models-products/modeloproductos/modeloproductos.component';
 import { ModeloproductosCreateComponent } from './components/models-products/modeloproductos-create/modeloproductos-create.component';
 import { ModeloproductosEditComponent } from './components/models-products/modeloproductos-edit/modeloproductos-edit.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -143,9 +146,14 @@ import { ModeloproductosEditComponent } from './components/models-products/model
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass: PathLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
