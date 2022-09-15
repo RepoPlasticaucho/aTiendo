@@ -11,15 +11,32 @@
         </div>
         <div class="card-body ">
             <div>
-                <mat-grid-list cols="6" rowHeight="15px">
+                <mat-grid-list cols="7" rowHeight="60px" rowWidth="150px">
                     <mat-grid-tile>
-                    </mat-grid-tile>
+                        <a class="btn btn-info" href="./navegation-cl/(contentClient:inventarios-pedido)"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                       height:35px;
+                                       text-align:center; 
+                                       margin-top: 10px;"
+                        >INICIO
+                        </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <a class="btn btn-success"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"
+                        > {{categorianame}}
+                        </a>
+                        </mat-grid-tile>
+                        
                 </mat-grid-list>
                 <mat-grid-list cols="6" rowHeight="80px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    INICIO | 
-                    <a href="#">{{categorianame}}</a>
-                    
+                   
                     <mat-grid-tile *ngFor="let card of lstLineas">
                             <a class="btn btn-primary" (click)="buscarPortafolioLinea(card)" 
                                 style="border-radius: 5px; 

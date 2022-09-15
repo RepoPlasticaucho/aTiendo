@@ -11,16 +11,53 @@
         </div>
         <div class="card-body ">
             <div>
-                <mat-grid-list cols="6" rowHeight="15px">
+                <mat-grid-list cols="7" rowHeight="60px" rowWidth="150px">
                     <mat-grid-tile>
-                    </mat-grid-tile>
+                        <a class="btn btn-info" href="./navegation-cl/(contentClient:inventarios-pedido)"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                       height:35px;
+                                       text-align:center; 
+                                       margin-top: 10px;"
+                        >INICIO
+                        </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile >
+                            <a class="btn btn-info" (click)="returncategoria()"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"
+                        > {{categoria_name}}
+                        </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <a class="btn btn-info" (click)="returnLinea()"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"
+                        > {{linea_name}}
+                        </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <a class="btn btn-success"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"
+                        > {{modelo_name}}
+                        </a>
+                        </mat-grid-tile>
                 </mat-grid-list>
-                <mat-grid-list cols="6" rowHeight="100px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    INICIO |   &nbsp;   
-                    <a>{{categoria_name}}</a> |   &nbsp;                    
-                    <a>{{linea_name}}</a> |   &nbsp;                    
-                    <a href="">{{modelo_name}}</a>    &nbsp; <br>                
+
+                <mat-grid-list cols="6" rowHeight="100px">        
                     <mat-grid-tile *ngFor="let card of lstModeloProducto">
                         
                             <a class="btn btn-primary" (click)="buscarPortafolioModeloColor(card)" 

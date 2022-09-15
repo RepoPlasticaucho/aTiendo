@@ -83,13 +83,13 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
   
           this.httpService.obtenerPortafoliosCategoria(inventario).subscribe(res => {
             if (res.codigoError != "OK") {
-              Swal.fire({
+              /*Swal.fire({
                 icon: 'error',
                 title: 'Ha ocurrido un error.',
                 text: res.descripcionError,
                 showConfirmButton: false,
                 // timer: 3000
-              });
+              });*/
             } else {
               this.lstInventarios = res.lstInventarios;
               this.dtTrigger.next('');
@@ -97,13 +97,13 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
 
               this.httpService.obtenerLineasCategoria(categoria).subscribe(res => {
                 if (res.codigoError != "OK") {
-                  Swal.fire({
+                  /*Swal.fire({
                    // icon: 'error',
                    // title: 'Ha ocurrido un error.',
                    // text: res.descripcionError,
                    // showConfirmButton: false,
                     // timer: 3000
-                  });
+                  });*/
                 } else {
                   
                   this.lstLineas = res.lstLineas;
@@ -151,4 +151,6 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
     this.httpService.asignarLinea(inventario);
     this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-pedido-lineas'] } }]);
   }
+
+  
 }

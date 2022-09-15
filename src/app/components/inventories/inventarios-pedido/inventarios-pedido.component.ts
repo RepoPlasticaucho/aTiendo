@@ -55,25 +55,26 @@ export class InventariosPedidoComponent implements OnInit {
 
     this.httpService.obtenerCategoria().subscribe(res => {
       if (res.codigoError != "OK") {
-        Swal.fire({
+       /* Swal.fire({
           //icon: 'error',
           //title: 'Ha ocurrido un error.',
           //text: res.descripcionError,
           //showConfirmButton: false,
           // timer: 3000
-        });
+        });*/
       } else {
         this.lstCategorias = res.lstCategorias;
         
         this.httpService.obtenerPortafolios(almacen).subscribe(res => {
           if (res.codigoError != "OK") {
+            /*
             Swal.fire({
-              icon: 'error',
-              title: 'Ha ocurrido un error.',
-              text: res.descripcionError,
-              showConfirmButton: false,
+            //  icon: 'error',
+             // title: 'Ha ocurrido un error.',
+             // text: res.descripcionError,
+             // showConfirmButton: false,
               // timer: 3000
-            });
+            });*/
           } else {
             this.lstInventarios = res.lstInventarios;
             this.dtTrigger.next('');

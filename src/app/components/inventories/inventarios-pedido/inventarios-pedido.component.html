@@ -20,12 +20,17 @@
         </div>
         <div class="card-body ">
             <div>
-                <mat-grid-list cols="6" rowHeight="15px">
+                <mat-grid-list cols="7" rowHeight="60px">
                     <mat-grid-tile>
+                        <a class="btn btn-info"
+                        style="text-align:center;
+                        font-size: 15px; width:120px; 
+                                       height:35px;
+                                       text-align:center; 
+                                       margin-top: 10px;">INICIO</a>
                     </mat-grid-tile>
                 </mat-grid-list>
                 <mat-grid-list cols="6" rowHeight="120px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INICIO
                     <mat-grid-tile *ngFor="let card of lstCategorias">
                         
                             <a class="btn btn-primary" (click)="buscarPortafolioLinea(card)" 

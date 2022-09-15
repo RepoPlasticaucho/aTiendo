@@ -6,23 +6,70 @@
                 <fa-icon [icon]="faUserFriends" [size]="'3x'" style="color: #636363;"></fa-icon>
                 <h1 class="mx-5 " style="color: #636363;">Inventarios</h1>
                 <div style="position: absolute;right:0;" class="mx-3">
-                    <fa-icon [icon]="faPlus" class="btn btn-success" [size]="'lg'" data-toggle="tooltip" data-placement="bottom" title="Agregar una nueva sociedad" ></fa-icon>
                 </div>
             </div>
         </div>
         <div class="card-body ">
             <div>
-                
-                <mat-grid-list cols="6" rowHeight="110px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    INICIO |   &nbsp;   
-                    <a>{{categoria_name}}</a> |   &nbsp;                    
-                    <a>{{linea_name}}</a> |   &nbsp;    
-                    <a>{{modelo_name}}</a> |   &nbsp;                                    
-                    <a href="">{{color_name}}</a>    &nbsp;              
-                </mat-grid-list>
-            </div>
+                <mat-grid-list cols="7" rowHeight="60px" rowWidth="150px">
+                    <mat-grid-tile>
+                        <a class="btn btn-info" href="./navegation-cl/(contentClient:inventarios-pedido)"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                       height:35px;
+                                       text-align:center; 
+                                       margin-top: 10px;"
+                        >INICIO
+                        </a>
+                        </mat-grid-tile>
 
+                        <mat-grid-tile >
+                            <a class="btn btn-info" (click)="returncategoria()"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"
+                        > {{categoria_name}}
+                        </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <a class="btn btn-info" (click)="returnLinea()"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"
+                        > {{linea_name}}
+                        </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <a class="btn btn-info" (click)="returnModelo()"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"
+                        > {{modelo_name}}
+                        </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <a class="btn btn-success"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"
+                        > {{color_name}}
+                        </a>
+                        </mat-grid-tile>
+                </mat-grid-list>
+
+            </div>
+            <br>
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                 <thead style="color: #636363;">
                     <tr>
