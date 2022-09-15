@@ -5,6 +5,7 @@ export interface Categorias {
 }
 
 export interface CategoriasEntity {
+    _id?:string;
     id?: string;
     categoria?: string;
     cod_sap: string;
