@@ -52,13 +52,14 @@ export class CategoriasService {
   }
 
   agregarCategoriaBDD(categoria: CategoriasEntity) {
+    categoria.id=categoria.categoria;
     this.db.get(categoria.id)
       .then((doc: any) => {
         delete categoria.id;
         doc = Object.assign(doc, categoria);
         this.db.put(doc);
       }).catch(() => {
-        this.db.puf(categoria);
+        this.db.put(categoria);
       });
   }
 
