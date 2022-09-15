@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Categorias, CategoriasEntity } from '../models/categorias';
+import * as PouchDB from 'pouchdb-browser';
 
 const initCategory: CategoriasEntity = {
   id: "",
@@ -18,8 +19,12 @@ const initCategory: CategoriasEntity = {
 export class CategoriasService {
 
   private category$ = new BehaviorSubject<CategoriasEntity>(initCategory);
+  private db: any;
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {
+    //Generamos nuestra bdd para categorias
+    this.db = new PouchDB('BDCategorias');
+  }
 
   get obtenercategoria$(): Observable<CategoriasEntity> {
     return this.category$.asObservable();
@@ -43,6 +48,17 @@ export class CategoriasService {
 
   actualizarCategoria(categoria: CategoriasEntity): Observable<Categorias> {
     return this.http.post<Categorias>(`${environment.apiUrl}categorias/ModificarCategorias`, categoria);
+  }
+
+  agregarCategoriaBDD(categoria: CategoriasEntity) {
+    this.db.get(categoria.id)
+      .then((doc: any) => {
+        delete categoria.id;
+        doc = Object.assign(doc, categoria);
+        this.db.put(doc);
+      }).catch(() => {
+        this.db.puf(categoria);
+      });
   }
 
 }

@@ -59,10 +59,13 @@ export class CategoriasCreateComponent implements OnInit {
             showConfirmButton: false,
           });
         }
+      }, () => {
+        console.log("No se pudo Guardar Información");
+        this.httpService.agregarCategoriaBDD(categoriaEntity);
       })
     }
   }
-  
+
   visualizarCategorias(): void {
     this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['categorias'] } }]);
   }
