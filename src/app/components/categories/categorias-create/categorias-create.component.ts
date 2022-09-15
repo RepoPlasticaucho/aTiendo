@@ -37,7 +37,8 @@ export class CategoriasCreateComponent implements OnInit {
         id: "",
         categoria: this.categoryForm.value!.categoria ?? "",
         cod_sap: this.categoryForm.value!.codigoSAP ?? "",
-        etiquetas: this.categoryForm.value!.etiquetas ?? ""
+        etiquetas: this.categoryForm.value!.etiquetas ?? "",
+        almacen_id: ''
       }
       this.httpService.agregarCategoria(categoriaEntity).subscribe(res => {
         if (res.codigoError == "OK") {

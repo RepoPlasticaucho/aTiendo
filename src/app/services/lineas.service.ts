@@ -10,7 +10,8 @@ const initLine: LineasEntity = {
   categoria_nombre: "",
   cod_sap: "",
   etiquetas: "",
-  linea: ""
+  linea: "",
+  almacen_id: ''
 }
 
 @Injectable({

@@ -8,7 +8,8 @@ const initCategory: CategoriasEntity = {
   id: "",
   categoria: "",
   cod_sap: "",
-  etiquetas: ""
+  etiquetas: "",
+  almacen_id: ''
 }
 
 @Injectable({

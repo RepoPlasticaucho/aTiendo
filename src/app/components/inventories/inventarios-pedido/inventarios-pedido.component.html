@@ -6,7 +6,15 @@
                 <fa-icon [icon]="faUserFriends" [size]="'3x'" style="color: #636363;"></fa-icon>
                 <h1 class="mx-5 " style="color: #636363;">Inventarios</h1>
                 <div style="position: absolute;right:0;" class="mx-3">
-                    <fa-icon [icon]="faPlus" class="btn btn-success" [size]="'lg'" data-toggle="tooltip" data-placement="bottom" title="Agregar una nueva sociedad" ></fa-icon>
+                    <a class="btn btn-success" href="./navegation-cl/(contentClient:pedido-sugeridos)"
+                        style=" border-radius: 5px; 
+                            font-size: 12px; width:150px; 
+                            height:30px;
+                            text-align:center; 
+                            margin-top: 15px;
+                            ;"
+                    > PEDIDO SUGERIDO
+                    </a>
                 </div>
             </div>
         </div>
@@ -20,16 +28,16 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INICIO
                     <mat-grid-tile *ngFor="let card of lstCategorias">
                         
-                            <a class="bottom" (click)="buscarPortafolioLinea(card)" 
+                            <a class="btn btn-primary" (click)="buscarPortafolioLinea(card)" 
                                 style="border-radius: 5px; 
                                        background: rgb(49,99,173,0.8); 
                                        font-size: 15px; width:120px; 
-                                       height:60px;
+                                       height:40px;
                                        text-align:center; 
                                        margin-top: 15px;
                                        ;">
                                 <span style="color: white;">
-                                        <br>{{card.categoria}}
+                                        {{card.categoria}}
                                 </span>
                             </a>
                         

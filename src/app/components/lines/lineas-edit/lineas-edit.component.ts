@@ -85,6 +85,7 @@ export class LineasEditComponent implements OnInit {
           linea: this.lineForm.value!.linea ?? "",
           etiquetas: this.lineForm.value!.etiquetas ?? "",
           cod_sap: this.lineForm.value!.codigoSAP ?? "",
+          almacen_id: ''
         };
         this.httpService.actualizarLinea(lineaEntity).subscribe(res => {
           if (res.codigoError == "OK") {

@@ -6,7 +6,6 @@
                 <fa-icon [icon]="faUserFriends" [size]="'3x'" style="color: #636363;"></fa-icon>
                 <h1 class="mx-5 " style="color: #636363;">Inventarios</h1>
                 <div style="position: absolute;right:0;" class="mx-3">
-                    <fa-icon [icon]="faPlus" class="btn btn-success" [size]="'lg'" data-toggle="tooltip" data-placement="bottom" title="Agregar una nueva sociedad" ></fa-icon>
                 </div>
             </div>
         </div>
@@ -16,22 +15,22 @@
                     <mat-grid-tile>
                     </mat-grid-tile>
                 </mat-grid-list>
-                <mat-grid-list cols="6" rowHeight="120px">
+                <mat-grid-list cols="6" rowHeight="80px">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     INICIO | 
                     <a href="#">{{categorianame}}</a>
+                    
                     <mat-grid-tile *ngFor="let card of lstLineas">
-                        
-                            <a class="bottom" (click)="buscarPortafolioLinea(card)" 
+                            <a class="btn btn-primary" (click)="buscarPortafolioLinea(card)" 
                                 style="border-radius: 5px; 
                                        background: rgb(49,99,173,0.8); 
-                                       font-size: 15px; width:120px; 
-                                       height:60px;
+                                       font-size: 15px; width:140px; 
+                                       height:40px;
                                        text-align:center; 
                                        margin-top: 15px;
                                        ">
                                 <span style="color: white;">
-                                        <br>{{card.linea}}
+                                        {{card.linea}}
                                 </span>
                             </a>
                         

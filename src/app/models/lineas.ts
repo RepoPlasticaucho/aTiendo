@@ -11,4 +11,5 @@ export interface LineasEntity {
     linea: string;
     etiquetas: string;
     cod_sap: string;
+    almacen_id: string;
 }

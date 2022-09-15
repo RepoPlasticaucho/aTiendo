@@ -65,7 +65,8 @@ export class ModelosCreateComponent implements OnInit {
           linea_id: this.modelForm.value!.linea ?? "",
           modelo: this.modelForm.value!.modelo ?? "",
           etiquetas: this.modelForm.value!.etiquetas ?? "",
-          cod_sap: this.modelForm.value!.codigoSAP ?? ""
+          cod_sap: this.modelForm.value!.codigoSAP ?? "",
+          almacen_id: ''
         };
         this.httpService.agregarModelo(modelEntity).subscribe(res => {
           if (res.codigoError == "OK") {

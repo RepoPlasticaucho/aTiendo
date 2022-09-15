@@ -9,4 +9,5 @@ export interface CategoriasEntity {
     categoria: string;
     cod_sap: string;
     etiquetas: string;
+    almacen_id : string;
 }

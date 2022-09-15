@@ -27,7 +27,8 @@ const initGruop: InventariosEntity = {
   stock: "",
   stock_optimo: "",
   fav: "",
-  color: ''
+  color: '',
+  modelo: ''
 }
 
 @Injectable({
@@ -77,9 +78,11 @@ export class InventariosService {
   obtenerCategoria(): Observable<Inventarios> {
     return this.http.get<Inventarios>(`${environment.apiUrl}categorias/ObtenerCategorias` );
   }
-
+  obtenerCategoriaid(categoria: CategoriasEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}categorias/ObtenerCategoriasid`,categoria );
+  }
   // Obtencion de datos para las tablas
-  
+
   obtenerInventario(): Observable<Inventarios> {
     return this.http.get<Inventarios>(`${environment.apiUrl}inventarios/ObtenerInventarios`);
   }
@@ -99,7 +102,7 @@ export class InventariosService {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosModelos`,inventario );
   }
   obtenerPortafoliosColores(inventario: InventariosEntity): Observable<Inventarios> {
-    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosColores`,inventario );
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosModelosColores`,inventario );
   }
   
 }

@@ -85,6 +85,7 @@ export class ModelosEditComponent implements OnInit {
           modelo: this.modelForm.value!.modelo ?? "",
           etiquetas: this.modelForm.value!.etiquetas ?? "",
           cod_sap: this.modelForm.value!.codigoSAP ?? "",
+          almacen_id: ''
         };
         this.httpService.actualizarModelo(modelEntity).subscribe(res => {
           if (res.codigoError == "OK") {

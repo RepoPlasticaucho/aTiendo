@@ -67,7 +67,8 @@ export class LineasCreateComponent implements OnInit {
           categoria_id: this.lineForm.value!.categoria ?? "",
           linea: this.lineForm.value!.linea ?? "",
           etiquetas: this.lineForm.value!.etiquetas ?? "",
-          cod_sap: this.lineForm.value!.codigoSAP ?? ""
+          cod_sap: this.lineForm.value!.codigoSAP ?? "",
+          almacen_id: ''
         };
         this.httpService.agregarLinea(lineaEntity).subscribe(res => {
           if (res.codigoError == "OK") {

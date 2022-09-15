@@ -69,6 +69,7 @@ import { InventariosPedidoCategoriaComponent } from './components/inventories/in
 import { ModeloproductosComponent } from './components/models-products/modeloproductos/modeloproductos.component';
 import { ModeloproductosCreateComponent } from './components/models-products/modeloproductos-create/modeloproductos-create.component';
 import { ModeloproductosEditComponent } from './components/models-products/modeloproductos-edit/modeloproductos-edit.component';
+import { PedidoSugeridoComponent } from './components/orders/pedido-sugerido/pedido-sugerido.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +126,7 @@ import { ModeloproductosEditComponent } from './components/models-products/model
     ModeloproductosComponent,
     ModeloproductosCreateComponent,
     ModeloproductosEditComponent,
+    PedidoSugeridoComponent,
     
   ],
   imports: [

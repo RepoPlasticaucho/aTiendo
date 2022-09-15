@@ -54,7 +54,8 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
             id: this.codigocategoria,
             categoria: '',
             cod_sap: '',
-            etiquetas: ''
+            etiquetas: '',
+            almacen_id: this.codigoalmacen
           }
   
           const inventario : InventariosEntity = {
@@ -76,40 +77,44 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
             stock: '',
             stock_optimo: '',
             fav: '',
-            color: ''
+            color: '',
+            modelo: ''
           }
   
-          this.httpService.obtenerLineasCategoria(categoria).subscribe(res => {
+          this.httpService.obtenerPortafoliosCategoria(inventario).subscribe(res => {
             if (res.codigoError != "OK") {
               Swal.fire({
-               // icon: 'error',
-               // title: 'Ha ocurrido un error.',
-               // text: res.descripcionError,
-               // showConfirmButton: false,
+                icon: 'error',
+                title: 'Ha ocurrido un error.',
+                text: res.descripcionError,
+                showConfirmButton: false,
                 // timer: 3000
               });
             } else {
-              this.lstLineas = res.lstLineas;
-              this.categorianame = this.lstLineas[0].categoria_nombre;
-              
-              this.httpService.obtenerPortafoliosCategoria(inventario).subscribe(res => {
+              this.lstInventarios = res.lstInventarios;
+              this.dtTrigger.next('');
+              this.categorianame = this.lstInventarios[0].categoria;
+
+              this.httpService.obtenerLineasCategoria(categoria).subscribe(res => {
                 if (res.codigoError != "OK") {
                   Swal.fire({
-                    icon: 'error',
-                    title: 'Ha ocurrido un error.',
-                    text: res.descripcionError,
-                    showConfirmButton: false,
+                   // icon: 'error',
+                   // title: 'Ha ocurrido un error.',
+                   // text: res.descripcionError,
+                   // showConfirmButton: false,
                     // timer: 3000
                   });
                 } else {
-                  this.lstInventarios = res.lstInventarios;
-                  this.dtTrigger.next('');
+                  
+                  this.lstLineas = res.lstLineas;
+
                 }
                 
               })
             }
             
-          })
+          });
+          
         } else {
           this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-pedido'] } }]);
         }
@@ -118,13 +123,13 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
     
   }
   buscarPortafolioLinea(card : LineasEntity){
-    this.codigolinea = card["id"];
+    this.codigolinea = card["linea"];
     
     const inventario : InventariosEntity = {
       categoria_id: this.codigocategoria,
       categoria: '',
-      linea_id: this.codigolinea,
-      linea: '',
+      linea_id: '',
+      linea: this.codigolinea,
       modelo_id: '',
       marca_id: '',
       marca: '',
@@ -139,7 +144,8 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
       stock: '',
       stock_optimo: '',
       fav: '',
-      color: ''
+      color: '',
+      modelo: ''
     }
     console.log(inventario);
     this.httpService.asignarLinea(inventario);

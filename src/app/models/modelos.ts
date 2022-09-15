@@ -7,6 +7,7 @@ export interface Modelos {
 export interface ModelosEntity {
     id?: string;
     linea_id: string;
+    almacen_id?: string;
     linea_nombre?: string;
     modelo: string;
     etiquetas: string;

@@ -1,4 +1,5 @@
 export interface Inventarios {
+    id: string | undefined;
     lstModelo_Productos: import("../models/modeloproductos").ModeloProductosEntity[];
     lstModelos: import("../models/modelos").ModelosEntity[];
     lstLineas: import("../models/lineas").LineasEntity[];
@@ -14,6 +15,7 @@ export interface InventariosEntity {
         linea_id? : string;
         linea : string;
         modelo_id? : string;
+        modelo :string;
         marca_id : string;
         marca : string;
         modelo_producto_id : string;

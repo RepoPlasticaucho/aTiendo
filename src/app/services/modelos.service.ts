@@ -10,7 +10,8 @@ const initModel: ModelosEntity = {
   linea_nombre: "",
   modelo: "",
   cod_sap: "",
-  etiquetas: ""
+  etiquetas: "",
+  almacen_id: ''
 }
 
 @Injectable({

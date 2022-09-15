@@ -55,7 +55,8 @@ export class CategoriasEditComponent implements OnInit {
         id: this.codigo,
         categoria: this.categoryForm.value!.categoria ?? "",
         cod_sap: this.categoryForm.value!.codigoSAP ?? "",
-        etiquetas: this.categoryForm.value!.etiquetas ?? ""
+        etiquetas: this.categoryForm.value!.etiquetas ?? "",
+        almacen_id: ''
       }
       this.httpService.actualizarCategoria(categoriaEntity).subscribe(res => {
         if (res.codigoError == "OK") {

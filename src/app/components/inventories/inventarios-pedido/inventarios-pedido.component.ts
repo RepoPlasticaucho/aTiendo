@@ -108,7 +108,8 @@ export class InventariosPedidoComponent implements OnInit {
       stock: '',
       stock_optimo: '',
       fav: '',
-      color: ''
+      color: '',
+      modelo: ''
     }
    // console.log(inventario);
     this.httpService.asignarCategoria(inventario);
