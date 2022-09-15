@@ -39,7 +39,7 @@ export class CategoriasEditComponent implements OnInit {
           showConfirmButton: false,
         });
       } else {
-        this.codigo = res.id;
+        this.codigo = res.id!;
         this.categoryForm.get("categoria")?.setValue(res.categoria);
         this.categoryForm.get("codigoSAP")?.setValue(res.cod_sap);
         this.categoryForm.get("etiquetas")?.setValue(res.etiquetas);

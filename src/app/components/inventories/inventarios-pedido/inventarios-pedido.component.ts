@@ -90,7 +90,7 @@ export class InventariosPedidoComponent implements OnInit {
     console.log(card);
     this.cat = card["id"];
     const inventario : InventariosEntity = {
-      categoria_id: this.cat,
+      categoria_id: this.cat!,
       categoria: '',
       linea_id: '',
       linea: '',
