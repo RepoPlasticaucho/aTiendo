@@ -13,6 +13,15 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "allowedCommonJsDependencies": [
+                            "immediate",
+                            "argsarray",
+                            "events",
+                            "inherits",
+                            "spark-md5",
+                            "vuvuzela",
+                            "sweetalert2"
+                        ],
                         "outputPath": "dist/a-tiendo",
                         "index": "src/index.html",
                         "main": "src/main.ts",

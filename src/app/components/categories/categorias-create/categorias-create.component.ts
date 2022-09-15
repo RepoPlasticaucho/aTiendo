@@ -23,6 +23,7 @@ export class CategoriasCreateComponent implements OnInit {
     codigoSAP: new FormControl('', Validators.required),
     etiquetas: new FormControl('',),
   });
+  private db: any;
 
   constructor(private readonly httpService: CategoriasService, private router: Router) { }
 
