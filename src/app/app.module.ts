@@ -69,7 +69,13 @@ import { InventariosPedidoCategoriaComponent } from './components/inventories/in
 import { ModeloproductosComponent } from './components/models-products/modeloproductos/modeloproductos.component';
 import { ModeloproductosCreateComponent } from './components/models-products/modeloproductos-create/modeloproductos-create.component';
 import { ModeloproductosEditComponent } from './components/models-products/modeloproductos-edit/modeloproductos-edit.component';
+<<<<<<< HEAD
 import { PedidoSugeridoComponent } from './components/orders/pedido-sugerido/pedido-sugerido.component';
+=======
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+>>>>>>> 4fab4b23475d10d1c36277c9de4de6f9e9c63936
 
 @NgModule({
   declarations: [
@@ -145,9 +151,14 @@ import { PedidoSugeridoComponent } from './components/orders/pedido-sugerido/ped
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass: PathLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
