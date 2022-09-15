@@ -51,14 +51,16 @@ export class CategoriasService {
     return this.http.post<Categorias>(`${environment.apiUrl}categorias/ModificarCategorias`, categoria);
   }
 
-  agregarCategoriaBDD(categoria: CategoriasEntity) {
-    this.db.get(categoria.id)
+  agregarCategoriaBDD=(categoria: CategoriasEntity) =>{
+    categoria._id=new Date().toISOString();
+    this.db.get(categoria._id)
       .then((doc: any) => {
-        delete categoria.id;
+        delete categoria._id;
         doc = Object.assign(doc, categoria);
+        console.log(doc);
         this.db.put(doc);
       }).catch(() => {
-        this.db.puf(categoria);
+        this.db.put(categoria);
       });
   }
 
