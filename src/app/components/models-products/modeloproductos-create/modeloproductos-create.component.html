@@ -1,1 +1,66 @@
-<p>modeloproductos-create works!</p>
+<!-- <div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row mx-3">
+                <fa-icon [icon]="faList" [size]="'3x'" style="color: #636363;"></fa-icon>
+                <h1 class="mx-5 " style="color: #636363;">Agregar Modelo Producto</h1>
+                <div style="position: absolute;right:0;" class="mx-3">
+                    <fa-icon [icon]="faTimes" class="btn btn-danger" [size]="'lg'" data-toggle="tooltip" data-placement="bottom" title="Regresar a modelos" (click)="visualizarModeloProductos()">
+                    </fa-icon>
+                </div>
+            </div>
+        </div>
+        <div class="card-body ">
+            <form [formGroup]="modelProductForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="linea">Linea</label>
+                    <select class="form-control" (change)="changeLine($event)" formControlName="linea">
+                        <option [value]=" 0 " selected>Seleccione una línea</option>
+                        <option *ngFor="let marca of lstMarcas " [value]="linea.id ">
+                            {{marca.marca}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectMarca">
+                        <small *ngIf="selectLineas " style="color: red; ">
+                            Debe seleccionar una Línea.
+                        </small>
+                    </small>
+                </div>
+                <div class="form-group ">
+                    <label for="modelo " style="margin: 0;">Modelo</label>
+                    <input type="text " class="form-control " id="modelo " placeholder="Ingrese el nombre del modelo." formControlName="modelo">
+                    <small *ngIf="modelProductForm.controls['modeloProducto'].invalid && (modelProductForm.controls['modeloProducto'].dirty || modelProductForm.controls['modeloProducto'].touched)">
+                        <small *ngIf="modelProductForm.controls['modeloProducto'].errors?.['required']" style="color: red;">
+                            Debe ingresar el nombre del Modelo.
+                        </small>
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="etiquetas">Etiquetas</label>
+                    <p style="font-size:0.75em; margin:0">Separadas por comas(,)</p>
+                    <input type="text" class="form-control" id="etiquetas" placeholder="Ingrese las etiquetas " formControlName="etiquetas">
+                    <small *ngIf="modelProductForm.controls['etiquetas'].invalid && (modelProductForm.controls['etiquetas'].dirty || modelProductForm.controls['etiquetas'].touched)">
+                        <small *ngIf="modelProductForm.controls['etiquetas'].errors?.['required']"
+                            style="color: red;">
+                            Debe ingresar el nombre de las etiquetas.
+                        </small>
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="codigoSAP">Código SAP</label>
+                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el código" formControlName="codigoSAP">
+                    <small *ngIf="modelProductForm.controls['codigoSAP'].invalid && (modelProductForm.controls['codigoSAP'].dirty || modelProductForm.controls['codigoSAP'].touched)">
+                        <small *ngIf="modelProductForm.controls['codigoSAP'].errors?.['required']"
+                            style="color: red;">
+                            Debe ingresar el código SAP.
+                        </small>
+                    </small>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>
+                    Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+</div> -->
