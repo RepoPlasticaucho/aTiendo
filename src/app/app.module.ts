@@ -73,6 +73,7 @@ import { PedidoSugeridoComponent } from './components/orders/pedido-sugerido/ped
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -151,7 +152,8 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     MatListModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
-    })
+    }),
+    AutocompleteLibModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: PathLocationStrategy}
