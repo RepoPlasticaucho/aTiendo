@@ -5,18 +5,18 @@ export interface ModeloProductos {
 }
 
 export interface ModeloProductosEntity {
-    id: string;
+    id?: string;
     marca_id: string;
-    marca: string;
+    marca?: string;
     modelo_id: string;
-    modelo: string;
+    modelo?: string;
     color_id: string;
-    color: string;
+    color?: string;
     atributo_id: string;
-    atributo: string;
+    atributo?: string;
     genero_id: string;
-    genero: string;
+    genero?: string;
     modelo_producto: string;
     cod_sap: string;
-    cod_familia: string;
+    cod_familia?: string;
 }

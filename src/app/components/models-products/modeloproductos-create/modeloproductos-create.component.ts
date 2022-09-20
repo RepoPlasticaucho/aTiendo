@@ -5,13 +5,12 @@ import { faSave, faList, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { AtributosEntity } from 'src/app/models/atributos';
 import { ColorsEntity } from 'src/app/models/colors';
 import { GenerosEntity } from 'src/app/models/generos';
-import { LineasEntity } from 'src/app/models/lineas';
 import { MarcasEntity } from 'src/app/models/marcas';
+import { ModeloProductosEntity } from 'src/app/models/modeloproductos';
 import { ModelosEntity } from 'src/app/models/modelos';
 import { AtributosService } from 'src/app/services/atributos.service';
 import { ColoresService } from 'src/app/services/colores.service';
 import { GenerosService } from 'src/app/services/generos.service';
-import { LineasService } from 'src/app/services/lineas.service';
 import { MarcasService } from 'src/app/services/marcas.service';
 import { ModeloproductosService } from 'src/app/services/modeloproductos.service';
 import { ModelosService } from 'src/app/services/modelos.service';
@@ -35,8 +34,7 @@ export class ModeloproductosCreateComponent implements OnInit {
     atributo_id: new FormControl('0', Validators.required),
     genero_id: new FormControl('0', Validators.required),
     modeloProducto: new FormControl('', [Validators.required]),
-    etiquetas: new FormControl('', Validators.required),
-    codigoSAP: new FormControl('', [Validators.required]),
+    codigoSAP: new FormControl('', [Validators.required])
   });
   //Variables para listas desplegables
   lstMarcas: MarcasEntity[] = [];
@@ -78,7 +76,6 @@ export class ModeloproductosCreateComponent implements OnInit {
           showConfirmButton: false,
         });
       } else {
-        console.log(res.lstMarcas);
         this.lstMarcas = res.lstMarcas;
       }
     });
@@ -92,7 +89,6 @@ export class ModeloproductosCreateComponent implements OnInit {
           showConfirmButton: false,
         });
       } else {
-        console.log(res.lstModelos);
         this.lstModelos = res.lstModelos;
       }
     });
@@ -106,7 +102,6 @@ export class ModeloproductosCreateComponent implements OnInit {
           showConfirmButton: false,
         });
       } else {
-        console.log(res.lstColors);
         this.lstColores = res.lstColors;
       }
     });
@@ -120,7 +115,6 @@ export class ModeloproductosCreateComponent implements OnInit {
           showConfirmButton: false,
         });
       } else {
-        console.log(res.lstAtributos);
         this.lstAtributos = res.lstAtributos;
       }
     });
@@ -134,7 +128,6 @@ export class ModeloproductosCreateComponent implements OnInit {
           showConfirmButton: false,
         });
       } else {
-        console.log(res.lstGeneros);
         this.lstGeneros = res.lstGeneros;
       }
     });
@@ -144,51 +137,65 @@ export class ModeloproductosCreateComponent implements OnInit {
     console.log(!this.modelProductForm.valid);
     if (!this.modelProductForm.valid) {
       this.modelProductForm.markAllAsTouched();
-      if (this.modelProductForm.get('linea')?.value == '0') {
-        // this.selectLineas = true;
+      if (this.modelProductForm.get('marca_id')?.value == '0') {
+        this.selectMarcas = true;
+      }
+      if (this.modelProductForm.get('modelo_id')?.value == '0') {
+        this.selectModelos = true;
+      }
+      if (this.modelProductForm.get('color_id')?.value == '0') {
+        this.selectColores = true;
+      }
+      if (this.modelProductForm.get('atributo_id')?.value == '0') {
+        this.selectAtributos = true;
+      }
+      if (this.modelProductForm.get('genero_id')?.value == '0') {
+        this.selectGeneros = true;
       }
     } else {
-      if (this.modelProductForm.get('linea')?.value == '0') {
-        // this.selectLineas = true;
+      if (this.modelProductForm.get('marca_id')?.value == '0') {
+        this.selectMarcas = true;
+      } else if (this.modelProductForm.get('modelo_id')?.value == '0') {
+        this.selectModelos = true;
+      } else if (this.modelProductForm.get('color_id')?.value == '0') {
+        this.selectColores = true;
+      } else if (this.modelProductForm.get('atributo_id')?.value == '0') {
+        this.selectAtributos = true;
+      } else if (this.modelProductForm.get('genero_id')?.value == '0') {
+        this.selectGeneros = true;
       } else {
-        // const modelEntity: ModelosEntity = {
-        //   linea_id: this.modelProductForm.value!.linea ?? "",
-        //   modelo: this.modelProductForm.value!.modeloProducto ?? "",
-        //   etiquetas: this.modelProductForm.value!.etiquetas ?? "",
-        //   cod_sap: this.modelProductForm.value!.codigoSAP ?? "",
-        //   almacen_id: ''
-        // };
-        // this.httpService.agregarModelo(modelEntity).subscribe(res => {
-        //   if (res.codigoError == "OK") {
-        //     Swal.fire({
-        //       icon: 'success',
-        //       title: 'Guardado Exitosamente.',
-        //       text: `Se ha creado el modelo ${this.modelProductForm.value.modeloProducto}`,
-        //       showConfirmButton: true,
-        //       confirmButtonText: "Ok"
-        //     }).finally(() => {
-        //       this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['modelos'] } }]);
-        //     });
-        //   } else {
-        //     Swal.fire({
-        //       icon: 'error',
-        //       title: 'Ha ocurrido un error.',
-        //       text: res.descripcionError,
-        //       showConfirmButton: false,
-        //     });
-        //   }
-        // })
+        const modelProductEntity: ModeloProductosEntity = {
+          marca_id: this.modelProductForm.value!.marca_id ?? "",
+          modelo_id: this.modelProductForm.value!.modelo_id ?? "",
+          color_id: this.modelProductForm.value!.color_id ?? "",
+          atributo_id: this.modelProductForm.value!.atributo_id ?? "",
+          genero_id: this.modelProductForm.value!.genero_id ?? "",
+          modelo_producto: this.modelProductForm.value!.modeloProducto ?? "",
+          cod_sap: this.modelProductForm.value!.codigoSAP ?? ""
+        };
+        console.log(modelProductEntity);
+        this.httpService.agregarModeloProducto(modelProductEntity).subscribe(res => {
+          if (res.codigoError == "OK") {
+            Swal.fire({
+              icon: 'success',
+              title: 'Guardado Exitosamente.',
+              text: `Se ha creado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
+              showConfirmButton: true,
+              confirmButtonText: "Ok"
+            }).finally(() => {
+              this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['modeloProductos'] } }]);
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
+              showConfirmButton: false,
+            });
+          }
+        })
       }
     }
-  }
-
-  changeLine(linea: any): void {
-    // if (linea.target.value == 0) {
-    //   this.selectLineas = true;
-    // } else {
-    //   this.selectLineas = false;
-    //   this.modelProductForm.get("linea")?.setValue(linea.target.value);
-    // }
   }
 
   visualizarModeloProductos() {
@@ -198,25 +205,95 @@ export class ModeloproductosCreateComponent implements OnInit {
     ]);
   }
 
-  //Eventos para los combos con autocomplete
+  //Disparador cuando selecciona algún item de los combos
   //Marca
-  selectEventMark(item: any) {
-    console.log(item);
+  selectEventMark(item: MarcasEntity) {
+    this.selectMarcas = false;
+    this.modelProductForm.controls['marca_id'].setValue(item.id);
   }
+
   //Modelo
-  selectEventModel(item: any) {
-    console.log(item);
+  selectEventModel(item: ModelosEntity) {
+    this.selectModelos = false;
+    this.modelProductForm.controls['modelo_id'].setValue(item.id!);
   }
+
   //Color
-  selectEventColor(item: any) {
-    console.log(item);
+  selectEventColor(item: ColorsEntity) {
+    this.selectColores = false;
+    this.modelProductForm.controls['color_id'].setValue(item.id);
   }
+
   //Atributo
-  selectEventAttribute(item: any) {
-    console.log(item);
+  selectEventAttribute(item: AtributosEntity) {
+    this.selectAtributos = false;
+    this.modelProductForm.controls['atributo_id'].setValue(item.id);
   }
+
   //Genero
   selectEventGenre(item: any) {
-    console.log(item);
+    this.selectGeneros = false;
+    this.modelProductForm.controls['genero_id'].setValue(item.id);
+  }
+
+  //Disparador cuando se escribe algún item de los combos
+  onChangeSearchMark(val: string) {
+    if (val == '') {
+      this.selectMarcas = true;
+      this.modelProductForm.controls['marca_id'].setValue('0');
+    }
+  }
+
+  onChangeSearchModel(val: string) {
+    if (val == '') {
+      this.selectModelos = true;
+      this.modelProductForm.controls['modelo_id'].setValue('0');
+    }
+  }
+
+  onChangeSearchColor(val: string) {
+    if (val == '') {
+      this.selectColores = true;
+      this.modelProductForm.controls['color_id'].setValue('0');
+    }
+  }
+
+  onChangeSearchAttribute(val: string) {
+    if (val == '') {
+      this.selectAtributos = true;
+      this.modelProductForm.controls['atributo_id'].setValue('0');
+    }
+  }
+
+  onChangeSearchGenre(val: string) {
+    if (val == '') {
+      this.selectGeneros = true;
+      this.modelProductForm.controls['genero_id'].setValue('0');
+    }
+  }
+  //Evento para cuando se limpia los cuadros de texto
+  onInputClearedMark(){
+    this.selectMarcas=true;
+    this.modelProductForm.controls['marca_id'].setValue('0');
+  }
+
+  onInputClearedModel() {
+    this.selectModelos=true;
+    this.modelProductForm.controls['modelo_id'].setValue('0');
+  }
+
+  onInputClearedColor() {
+    this.selectColores=true;
+    this.modelProductForm.controls['color_id'].setValue('0');
+  }
+
+  onInputClearedAttribute() {
+    this.selectAtributos=true;
+    this.modelProductForm.controls['atributo_id'].setValue('0');
+  }
+
+  onInputClearedGenre() {
+    this.selectGeneros=true;
+    this.modelProductForm.controls['genero_id'].setValue('0');
   }
 }
