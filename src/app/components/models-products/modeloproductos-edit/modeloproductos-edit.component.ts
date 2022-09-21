@@ -78,6 +78,13 @@ export class ModeloproductosEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    $(document).ready(() => {
+      $('#markInput :input').val(this.initialMark);
+      $('#modelInput :input').val(this.initialModel);
+      $('#colorInput :input').val(this.initialColor);
+      $('#attributeInput :input').val(this.initialAttribute);
+      $('#genreInput :input').val(this.initialGenre);
+    });
     //Obtenemos Marcas
     this.httpServiceMarcas.obtenerMarcas().subscribe((res) => {
       if (res.codigoError != 'OK') {
@@ -151,8 +158,14 @@ export class ModeloproductosEditComponent implements OnInit {
           title: 'Ha ocurrido un error.',
           text: 'No se ha obtenido información.',
           showConfirmButton: false,
+        }).finally(() => {
+          this.router.navigate([
+            '/navegation-adm',
+            { outlets: { contentAdmin: ['modeloProductos'] } },
+          ]);
         });
       } else {
+        //Asignamos los valores a los campos
         this.codigo = res.id!;
         this.modelProductForm.get('modeloProducto')?.setValue(res.modelo_producto);
         this.modelProductForm.get('codigoSAP')?.setValue(res.cod_sap);
@@ -207,32 +220,31 @@ export class ModeloproductosEditComponent implements OnInit {
           modelo_producto: this.modelProductForm.value!.modeloProducto ?? '',
           cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
         };
-        console.log(modelProductEntity);
-        // this.httpService
-        //   .actualizarModeloProducto(modelProductEntity)
-        //   .subscribe((res) => {
-        //     if (res.codigoError == 'OK') {
-        //       Swal.fire({
-        //         icon: 'success',
-        //         title: 'Modificado Exitosamente.',
-        //         text: `Se ha modificado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
-        //         showConfirmButton: true,
-        //         confirmButtonText: 'Ok',
-        //       }).finally(() => {
-        //         this.router.navigate([
-        //           '/navegation-adm',
-        //           { outlets: { contentAdmin: ['modeloProductos'] } },
-        //         ]);
-        //       });
-        //     } else {
-        //       Swal.fire({
-        //         icon: 'error',
-        //         title: 'Ha ocurrido un error.',
-        //         text: res.descripcionError,
-        //         showConfirmButton: false,
-        //       });
-        //     }
-        //   });
+        this.httpService
+          .actualizarModeloProducto(modelProductEntity)
+          .subscribe((res) => {
+            if (res.codigoError == 'OK') {
+              Swal.fire({
+                icon: 'success',
+                title: 'Modificado Exitosamente.',
+                text: `Se ha modificado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
+                showConfirmButton: true,
+                confirmButtonText: 'Ok',
+              }).finally(() => {
+                this.router.navigate([
+                  '/navegation-adm',
+                  { outlets: { contentAdmin: ['modeloProductos'] } },
+                ]);
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Ha ocurrido un error.',
+                text: res.descripcionError,
+                showConfirmButton: false,
+              });
+            }
+          });
       }
     }
   }
