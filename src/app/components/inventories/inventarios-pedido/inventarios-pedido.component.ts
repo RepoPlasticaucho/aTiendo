@@ -7,6 +7,7 @@ import { AlmacenesEntity } from 'src/app/models/almacenes';
 import { InventariosService } from 'src/app/services/inventarios.service';
 import Swal from 'sweetalert2';
 import { CategoriasEntity } from 'src/app/models/categorias';
+import { LineasEntity } from 'src/app/models/lineas';
 
 @Component({
   selector: 'app-inventarios-pedido',
@@ -78,6 +79,7 @@ export class InventariosPedidoComponent implements OnInit {
           } else {
             this.lstInventarios = res.lstInventarios;
             this.dtTrigger.next('');
+            
           }
           
         })
@@ -116,6 +118,38 @@ export class InventariosPedidoComponent implements OnInit {
     this.httpService.asignarCategoria(inventario);
     this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-pedido-categoria'] } }]);
   }
+  buscarPortafolioLineaSugerido(card : CategoriasEntity){
+    console.log(card);
+    this.cat = card["id"];
+    const inventario : InventariosEntity = {
+      categoria_id: this.cat!,
+      categoria: '',
+      linea_id: '',
+      linea: '',
+      modelo_id: '',
+      marca_id: '',
+      marca: '',
+      modelo_producto_id: '',
+      idProducto: '',
+      Producto: '',
+      id: '',
+      dInventario: '',
+      producto_id: '',
+      almacen_id: this.var,
+      almacen: '',
+      stock: '',
+      stock_optimo: '',
+      fav: '',
+      color: '',
+      modelo: ''
+    }
+   // console.log(inventario);
+    this.httpService.asignarCategoria(inventario);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['pedido-sugeridos'] } }]);
+  }
+
+ 
+    
   /*eliminarAlmacenes(almacen: AlmacenesEntity): void {
     Swal.fire({
       icon: 'question',

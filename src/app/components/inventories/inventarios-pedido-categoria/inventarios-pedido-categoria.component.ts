@@ -152,5 +152,34 @@ export class InventariosPedidoCategoriaComponent implements OnInit {
     this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-pedido-lineas'] } }]);
   }
 
-  
+  buscarPortafolioLineaSugerida(card : LineasEntity){
+    this.codigolinea = card["linea"];
+    
+    const inventario : InventariosEntity = {
+      categoria_id: this.codigocategoria,
+      categoria: '',
+      linea_id: '',
+      linea: this.codigolinea,
+      modelo_id: '',
+      marca_id: '',
+      marca: '',
+      modelo_producto_id: '',
+      idProducto: '',
+      Producto: '',
+      id: '',
+      dInventario: '',
+      producto_id: '',
+      almacen_id: this.codigoalmacen,
+      almacen: '',
+      stock: '',
+      stock_optimo: '',
+      fav: '',
+      color: '',
+      modelo: ''
+    }
+    console.log(inventario);
+    this.httpService.asignarLinea(inventario);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-pedido-lineas'] } }]);
+  }
+ 
 }
