@@ -94,9 +94,14 @@ export class InventariosService {
   obtenerPortafoliosCategoria(inventario: InventariosEntity): Observable<Inventarios> {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosCategoria`,inventario );
   }
-  
+  obtenerPortafoliosCategoriaSugerido(inventario: InventariosEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosCategoriaSugerido`,inventario );
+  }
   obtenerPortafoliosLineas(inventario: InventariosEntity): Observable<Inventarios> {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosLineas`,inventario );
+  }
+  obtenerPortafoliosLineasSugerido(inventario: InventariosEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosLineasSugerido`,inventario );
   }
   obtenerPortafoliosModelos(inventario: InventariosEntity): Observable<Inventarios> {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosModelos`,inventario );
