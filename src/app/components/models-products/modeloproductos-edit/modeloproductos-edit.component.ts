@@ -28,11 +28,16 @@ export class ModeloproductosEditComponent implements OnInit {
   faSave = faSave;
   //Creación de la variable para formulario
   modelProductForm = new FormGroup({
-    marca_id: new FormControl('0', Validators.required),
-    modelo_id: new FormControl('0', Validators.required),
-    color_id: new FormControl('0', Validators.required),
-    atributo_id: new FormControl('0', Validators.required),
-    genero_id: new FormControl('0', Validators.required),
+    marca_id: new FormControl('0'),
+    marca: new FormControl('0', Validators.required),
+    modelo_id: new FormControl('0'),
+    modelo: new FormControl('0', Validators.required),
+    color_id: new FormControl('0'),
+    color: new FormControl('0', Validators.required),
+    atributo_id: new FormControl('0'),
+    atributo: new FormControl('0', Validators.required),
+    genero_id: new FormControl('0'),
+    genero: new FormControl('0', Validators.required),
     modeloProducto: new FormControl('', [Validators.required]),
     codigoSAP: new FormControl('', [Validators.required]),
   });
@@ -62,7 +67,6 @@ export class ModeloproductosEditComponent implements OnInit {
   initialGenre: string = '';
   //Variable contenedor id Modelo Producto
   codigo: string = '';
-
   constructor(
     private readonly httpServiceMarcas: MarcasService,
     private readonly httpServiceModelos: ModelosService,
@@ -71,7 +75,7 @@ export class ModeloproductosEditComponent implements OnInit {
     private readonly httpServiceGeneros: GenerosService,
     private readonly httpService: ModeloproductosService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     //Obtenemos Marcas
@@ -149,22 +153,21 @@ export class ModeloproductosEditComponent implements OnInit {
           showConfirmButton: false,
         });
       } else {
-        this.modelProductForm.get('marca_id')?.setValue("1");
-        this.modelProductForm
-          .get('modeloProducto')
-          ?.setValue(res.modelo_producto);
-          this.modelProductForm.get('codigoSAP')?.setValue(res.cod_sap);
+        this.codigo = res.id!;
+        this.modelProductForm.get('modeloProducto')?.setValue(res.modelo_producto);
+        this.modelProductForm.get('codigoSAP')?.setValue(res.cod_sap);
         this.initialMark = res.marca!;
         this.initialModel = res.modelo!;
         this.initialColor = res.color!;
         this.initialAttribute = res.atributo!;
         this.initialGenre = res.genero!;
       }
-      console.log(this.modelProductForm);
     });
   }
 
   onSubmit(): void {
+    console.log(this.modelProductForm.valid);
+    console.log(this.modelProductForm.value);
     if (!this.modelProductForm.valid) {
       this.modelProductForm.markAllAsTouched();
       if (this.modelProductForm.get('marca_id')?.value == '0') {
@@ -183,7 +186,6 @@ export class ModeloproductosEditComponent implements OnInit {
         this.selectGeneros = true;
       }
     } else {
-      console.log(this.modelProductForm.get('marca_id')?.value)
       if (this.modelProductForm.get('marca_id')?.value == '0') {
         this.selectMarcas = true;
       } else if (this.modelProductForm.get('modelo_id')?.value == '0') {
@@ -196,39 +198,41 @@ export class ModeloproductosEditComponent implements OnInit {
         this.selectGeneros = true;
       } else {
         const modelProductEntity: ModeloProductosEntity = {
-          marca_id: this.modelProductForm.value!.marca_id ?? '',
-          modelo_id: this.modelProductForm.value!.modelo_id ?? '',
-          color_id: this.modelProductForm.value!.color_id ?? '',
-          atributo_id: this.modelProductForm.value!.atributo_id ?? '',
-          genero_id: this.modelProductForm.value!.genero_id ?? '',
+          id: this.codigo,
+          marca_id: this.modelProductForm.value!.marca_id ?? this.lstMarcas.filter(x => x.marca == this.modelProductForm.value.marca)[0].id,
+          modelo_id: this.modelProductForm.value!.modelo_id ?? this.lstModelos.filter(x => x.modelo == this.modelProductForm.value.modelo)[0].id!,
+          color_id: this.modelProductForm.value!.color_id ?? this.lstColores.filter(x => x.color == this.modelProductForm.value.color)[0].id,
+          atributo_id: this.modelProductForm.value!.atributo_id ?? this.lstAtributos.filter(x => x.atributo == this.modelProductForm.value.atributo)[0].id,
+          genero_id: this.modelProductForm.value!.genero_id ?? this.lstGeneros.filter(x => x.genero == this.modelProductForm.value.genero)[0].id,
           modelo_producto: this.modelProductForm.value!.modeloProducto ?? '',
           cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
         };
-        this.httpService
-          .actualizarModeloProducto(modelProductEntity)
-          .subscribe((res) => {
-            if (res.codigoError == 'OK') {
-              Swal.fire({
-                icon: 'success',
-                title: 'Modificado Exitosamente.',
-                text: `Se ha modificado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
-                showConfirmButton: true,
-                confirmButtonText: 'Ok',
-              }).finally(() => {
-                this.router.navigate([
-                  '/navegation-adm',
-                  { outlets: { contentAdmin: ['modeloProductos'] } },
-                ]);
-              });
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Ha ocurrido un error.',
-                text: res.descripcionError,
-                showConfirmButton: false,
-              });
-            }
-          });
+        console.log(modelProductEntity);
+        // this.httpService
+        //   .actualizarModeloProducto(modelProductEntity)
+        //   .subscribe((res) => {
+        //     if (res.codigoError == 'OK') {
+        //       Swal.fire({
+        //         icon: 'success',
+        //         title: 'Modificado Exitosamente.',
+        //         text: `Se ha modificado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
+        //         showConfirmButton: true,
+        //         confirmButtonText: 'Ok',
+        //       }).finally(() => {
+        //         this.router.navigate([
+        //           '/navegation-adm',
+        //           { outlets: { contentAdmin: ['modeloProductos'] } },
+        //         ]);
+        //       });
+        //     } else {
+        //       Swal.fire({
+        //         icon: 'error',
+        //         title: 'Ha ocurrido un error.',
+        //         text: res.descripcionError,
+        //         showConfirmButton: false,
+        //       });
+        //     }
+        //   });
       }
     }
   }
@@ -244,30 +248,35 @@ export class ModeloproductosEditComponent implements OnInit {
   //Marca
   selectEventMark(item: MarcasEntity) {
     this.selectMarcas = false;
+    this.modelProductForm.controls['marca'].setValue(item.marca);
     this.modelProductForm.controls['marca_id'].setValue(item.id);
   }
 
   //Modelo
   selectEventModel(item: ModelosEntity) {
     this.selectModelos = false;
+    this.modelProductForm.controls['modelo'].setValue(item.modelo);
     this.modelProductForm.controls['modelo_id'].setValue(item.id!);
   }
 
   //Color
   selectEventColor(item: ColorsEntity) {
     this.selectColores = false;
+    this.modelProductForm.controls['color'].setValue(item.color);
     this.modelProductForm.controls['color_id'].setValue(item.id);
   }
 
   //Atributo
   selectEventAttribute(item: AtributosEntity) {
     this.selectAtributos = false;
+    this.modelProductForm.controls['atributo'].setValue(item.atributo);
     this.modelProductForm.controls['atributo_id'].setValue(item.id);
   }
 
   //Genero
-  selectEventGenre(item: any) {
+  selectEventGenre(item: GenerosEntity) {
     this.selectGeneros = false;
+    this.modelProductForm.controls['genero'].setValue(item.genero);
     this.modelProductForm.controls['genero_id'].setValue(item.id);
   }
 
@@ -276,6 +285,7 @@ export class ModeloproductosEditComponent implements OnInit {
     if (val == '') {
       this.selectMarcas = true;
       this.modelProductForm.controls['marca_id'].setValue('0');
+      this.modelProductForm.controls['marca'].setValue('');
     }
   }
 
@@ -283,6 +293,7 @@ export class ModeloproductosEditComponent implements OnInit {
     if (val == '') {
       this.selectModelos = true;
       this.modelProductForm.controls['modelo_id'].setValue('0');
+      this.modelProductForm.controls['modelo'].setValue('');
     }
   }
 
@@ -290,6 +301,8 @@ export class ModeloproductosEditComponent implements OnInit {
     if (val == '') {
       this.selectColores = true;
       this.modelProductForm.controls['color_id'].setValue('0');
+      this.modelProductForm.controls['color'].setValue('');
+
     }
   }
 
@@ -297,6 +310,8 @@ export class ModeloproductosEditComponent implements OnInit {
     if (val == '') {
       this.selectAtributos = true;
       this.modelProductForm.controls['atributo_id'].setValue('0');
+      this.modelProductForm.controls['atributo'].setValue('');
+
     }
   }
 
@@ -304,32 +319,38 @@ export class ModeloproductosEditComponent implements OnInit {
     if (val == '') {
       this.selectGeneros = true;
       this.modelProductForm.controls['genero_id'].setValue('0');
+      this.modelProductForm.controls['genero'].setValue('');
     }
   }
   //Evento para cuando se limpia los cuadros de texto
-  onInputClearedMark(){
-    this.selectMarcas=true;
+  onInputClearedMark() {
+    this.selectMarcas = true;
     this.modelProductForm.controls['marca_id'].setValue('0');
+    this.modelProductForm.controls['marca'].setValue('');
   }
 
   onInputClearedModel() {
-    this.selectModelos=true;
+    this.selectModelos = true;
     this.modelProductForm.controls['modelo_id'].setValue('0');
+    this.modelProductForm.controls['modelo'].setValue('');
   }
 
   onInputClearedColor() {
-    this.selectColores=true;
+    this.selectColores = true;
     this.modelProductForm.controls['color_id'].setValue('0');
+    this.modelProductForm.controls['color'].setValue('');
   }
 
   onInputClearedAttribute() {
-    this.selectAtributos=true;
+    this.selectAtributos = true;
     this.modelProductForm.controls['atributo_id'].setValue('0');
+    this.modelProductForm.controls['atributo'].setValue('');
   }
 
   onInputClearedGenre() {
-    this.selectGeneros=true;
+    this.selectGeneros = true;
     this.modelProductForm.controls['genero_id'].setValue('0');
+    this.modelProductForm.controls['genero'].setValue('');
   }
-  
+
 }

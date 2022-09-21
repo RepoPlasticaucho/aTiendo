@@ -35,6 +35,7 @@ export class ModeloproductosService {
   }
 
   asignarModeloProducto(modeloProducto: ModeloProductosEntity) {
+    this.modelProduct$ = new BehaviorSubject<ModeloProductosEntity>(initModelProduct);
     this.modelProduct$.next(modeloProducto);
   }
 

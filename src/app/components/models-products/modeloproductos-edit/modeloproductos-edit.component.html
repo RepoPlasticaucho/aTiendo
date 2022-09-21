@@ -3,10 +3,9 @@
         <div class="card-header">
             <div class="row mx-3">
                 <fa-icon [icon]="faList" [size]="'3x'" style="color: #636363;"></fa-icon>
-                <h1 class="mx-5 " style="color: #636363;">Agregar Modelo Producto</h1>
+                <h1 class="mx-5 " style="color: #636363;">Modificar Modelo Producto</h1>
                 <div style="position: absolute;right:0;" class="mx-3">
-                    <fa-icon [icon]="faTimes" class="btn btn-danger" [size]="'lg'" data-toggle="tooltip"
-                        data-placement="bottom" title="Regresar a modelos" (click)="visualizarModeloProductos()">
+                    <fa-icon [icon]="faTimes" class="btn btn-danger" [size]="'lg'" data-toggle="tooltip" data-placement="bottom" title="Regresar a modelos" (click)="visualizarModeloProductos()">
                     </fa-icon>
                 </div>
             </div>
@@ -14,12 +13,9 @@
         <div class="card-body ">
             <form [formGroup]="modelProductForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="marca_id">Marca:</label>
-                    <ng-autocomplete [data]="lstMarcas" (selected)='selectEventMark($event)'
-                        [searchKeyword]="keywordMark" placeholder="Seleccione la Marca"
-                        [itemTemplate]="itemTemplateMark" [notFoundTemplate]="notFoundTemplateMark" class="form-control"
-                        style="width: 100%;padding: 0%;" (inputChanged)='onChangeSearchMark($event)' [initialValue]="initialMark"
-                        (inputCleared)="onInputClearedMark()">
+                    <label for="marca">Marca:</label>
+                    <ng-autocomplete [data]="lstMarcas" (selected)='selectEventMark($event)' [searchKeyword]="keywordMark" placeholder="Seleccione la Marca" [itemTemplate]="itemTemplateMark" [notFoundTemplate]="notFoundTemplateMark" class="form-control" style="width: 100%;padding: 0%;"
+                        (inputChanged)='onChangeSearchMark($event)' [initialValue]="initialMark" (inputCleared)="onInputClearedMark()" formControlName="marca" id="marca2">
                     </ng-autocomplete>
                     <ng-template #itemTemplateMark let-item>
                         <a [innerHTML]="item.marca"></a>
@@ -32,14 +28,11 @@
                             Debe seleccionar una Marca.
                         </small>
                     </small>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label for="modelo_id">Modelo:</label>
-                    <ng-autocomplete [data]="lstModelos" (selected)='selectEventModel($event)'
-                        [searchKeyword]="keywordModel" placeholder="Seleccione el Modelo"
-                        [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel"
-                        class="form-control" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchModel($event)'
-                        [initialValue]="initialModel" (inputCleared)="onInputClearedModel()">
+                    <ng-autocomplete [data]="lstModelos" (selected)='selectEventModel($event)' [searchKeyword]="keywordModel" placeholder="Seleccione el Modelo" [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel" class="form-control" style="width: 100%;padding: 0%;"
+                        (inputChanged)='onChangeSearchModel($event)' [initialValue]="initialModel" (inputCleared)="onInputClearedModel()" formControlName="modelo">
                     </ng-autocomplete>
                     <ng-template #itemTemplateModel let-item>
                         <a [innerHTML]="item.modelo"></a>
@@ -55,11 +48,8 @@
                 </div>
                 <div class="form-group">
                     <label for="color_id">Color/Diseño/Sabor:</label>
-                    <ng-autocomplete [data]="lstColores" (selected)='selectEventColor($event)'
-                        [searchKeyword]="keywordColor" placeholder="Seleccione el Color/Diseño/Sabor"
-                        [itemTemplate]="itemTemplateColor" [notFoundTemplate]="notFoundTemplateColor"
-                        class="form-control" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchColor($event)'
-                        [initialValue]="initialColor" (inputCleared)="onInputClearedColor()">
+                    <ng-autocomplete [data]="lstColores" (selected)='selectEventColor($event)' [searchKeyword]="keywordColor" placeholder="Seleccione el Color/Diseño/Sabor" [itemTemplate]="itemTemplateColor" [notFoundTemplate]="notFoundTemplateColor" class="form-control"
+                        style="width: 100%;padding: 0%;" (inputChanged)='onChangeSearchColor($event)' [initialValue]="initialColor" (inputCleared)="onInputClearedColor()" formControlName="color">
                     </ng-autocomplete>
                     <ng-template #itemTemplateColor let-item>
                         <a [innerHTML]="item.color"></a>
@@ -75,11 +65,8 @@
                 </div>
                 <div class="form-group">
                     <label for="atributo_id">Caracteristica:</label>
-                    <ng-autocomplete [data]="lstAtributos" (selected)='selectEventAttribute($event)'
-                        [searchKeyword]="keywordAttribute" placeholder="Seleccione la caracteristica"
-                        [itemTemplate]="itemTemplateAttribute" [notFoundTemplate]="notFoundTemplateAttribute"
-                        class="form-control" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchAttribute($event)' 
-                        [initialValue]="initialAttribute" (inputCleared)="onInputClearedAttribute()">
+                    <ng-autocomplete [data]="lstAtributos" (selected)='selectEventAttribute($event)' [searchKeyword]="keywordAttribute" placeholder="Seleccione la caracteristica" [itemTemplate]="itemTemplateAttribute" [notFoundTemplate]="notFoundTemplateAttribute" class="form-control"
+                        style="width: 100%;padding: 0%;" (inputChanged)='onChangeSearchAttribute($event)' [initialValue]="initialAttribute" (inputCleared)="onInputClearedAttribute()" formControlName="atributo">
                     </ng-autocomplete>
                     <ng-template #itemTemplateAttribute let-item>
                         <a [innerHTML]="item.atributo"></a>
@@ -95,11 +82,8 @@
                 </div>
                 <div class="form-group">
                     <label for="genero_id">Género:</label>
-                    <ng-autocomplete [data]="lstGeneros" (selected)='selectEventGenre($event)'
-                        [searchKeyword]="keywordGenre" placeholder="Seleccione el Género"
-                        [itemTemplate]="itemTemplateGenre" [notFoundTemplate]="notFoundTemplateGenre"
-                        class="form-control" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchGenre($event)'
-                        [initialValue]="initialGenre" (inputCleared)="onInputClearedGenre()">
+                    <ng-autocomplete [data]="lstGeneros" (selected)='selectEventGenre($event)' [searchKeyword]="keywordGenre" placeholder="Seleccione el Género" [itemTemplate]="itemTemplateGenre" [notFoundTemplate]="notFoundTemplateGenre" class="form-control" style="width: 100%;padding: 0%;"
+                        (inputChanged)='onChangeSearchGenre($event)' [initialValue]="initialGenre" (inputCleared)="onInputClearedGenre()" formControlName="genero">
                     </ng-autocomplete>
                     <ng-template #itemTemplateGenre let-item>
                         <a [innerHTML]="item.genero"></a>

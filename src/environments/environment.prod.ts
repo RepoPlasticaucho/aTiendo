@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   // apiUrl: 'http://outgoapp.plasticaucho.com/WSAtiendo/api/'
-  apiUrl: 'http://10.15.2.54:45455/api/'
+  apiUrl: 'http://192.168.0.105:45455/api/'
 };
