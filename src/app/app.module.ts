@@ -73,14 +73,10 @@ import { PedidoSugeridoComponent } from './components/orders/pedido-sugerido/ped
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-<<<<<<< HEAD
 import { PedidoSugeridoCreateComponent } from './components/orders/pedido-sugerido-create/pedido-sugerido-create.component';
 import { PedidoSugeridoEditComponent } from './components/orders/pedido-sugerido-edit/pedido-sugerido-edit.component';
 import { PedidoSugeridoLineaComponent } from './components/orders/pedido-sugerido-linea/pedido-sugerido-linea.component';
-=======
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
->>>>>>> d876faea690d7e3c29ba8eb4769e428679af6717
-
 @NgModule({
   declarations: [
     AppComponent,

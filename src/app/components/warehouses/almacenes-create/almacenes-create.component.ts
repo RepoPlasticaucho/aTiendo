@@ -6,6 +6,7 @@ import { AlmacenesEntity } from 'src/app/models/almacenes';
 import { SociedadesEntity } from 'src/app/models/sociedades';
 import { AlmacenesService } from 'src/app/services/almacenes.service';
 import { SociedadesService } from 'src/app/services/sociedades.service';
+
 import Swal from 'sweetalert2';
 
 @Component({
