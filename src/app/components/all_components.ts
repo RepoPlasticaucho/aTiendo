@@ -1,3 +1,6 @@
+export { ProductosCreateComponent } from "./products/productos-create/productos-create.component";
+export { ProductosEditComponent } from "./products/productos-edit/productos-edit.component";
+export { ProductosComponent } from "./products/productos/productos.component";
 export { ModeloproductosCreateComponent } from "./models-products/modeloproductos-create/modeloproductos-create.component";
 export { ModeloproductosEditComponent } from "./models-products/modeloproductos-edit/modeloproductos-edit.component";
 export { ModeloproductosComponent } from "./models-products/modeloproductos/modeloproductos.component";

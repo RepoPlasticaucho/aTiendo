@@ -165,7 +165,7 @@ export class InventariosPedidoModelosComponent implements OnInit {
       stock: '',
       stock_optimo: '',
       fav: '',
-      color: this.codigocolor,
+      color: this.codigocolor!,
       modelo: this.codigomodelo
     }
     //console.log(inventario);
