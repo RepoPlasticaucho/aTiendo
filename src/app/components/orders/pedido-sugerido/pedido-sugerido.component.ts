@@ -33,9 +33,7 @@ export class PedidoSugeridoComponent implements OnInit,OnDestroy {
   codigolinea: string | undefined;
   
   constructor(private readonly httpService: InventariosService, private router: Router) { }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -203,7 +201,7 @@ export class PedidoSugeridoComponent implements OnInit,OnDestroy {
     
   }
 
-  OnDestroy(): void {
+  ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
   pedidosugerido(lstInventariosR: InventariosEntity[] ){

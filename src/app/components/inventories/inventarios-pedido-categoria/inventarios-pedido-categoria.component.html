@@ -11,42 +11,47 @@
         </div>
         <div class="card-body ">
             <div>
-                <mat-grid-list cols="7" rowHeight="60px" rowWidth="150px">
+                <mat-grid-list cols="6" rowHeight="50px">
                     <mat-grid-tile>
-                        <a class="btn btn-info" href="./navegation-cl/(contentClient:inventarios-pedido)"
+                        <a class="btn button" href="./navegation-cl/(contentClient:inventarios-pedido)"
                             style="text-align:center;
                                     font-size: 15px; width:140px; 
                                        height:35px;
                                        text-align:center; 
-                                       margin-top: 10px;"
-                        >INICIO
+                                       margin-top: 10px;
+                                       background: rgb(54,169,225,0.8);"
+                        ><span style="color: white;">
+                            Inicio
+                        </span>
+                        
                         </a>
                         </mat-grid-tile>
 
                         <mat-grid-tile>
-                            <a class="btn btn-success"
-                            style="text-align:center;
+                            <a class="btn button" 
+                            style=  "background: rgb(54,169,225,0.8); 
                                     font-size: 15px; width:140px; 
                                     height:35px;
                                     text-align:center; 
                                     margin-top: 10px;"
-                        > {{categorianame}}
+                        >
+                        {{categorianame}}
                         </a>
                         </mat-grid-tile>
                         
                 </mat-grid-list>
-                <mat-grid-list cols="6" rowHeight="80px">
+                <mat-grid-list cols="6" rowHeight="50px">
                    
                     <mat-grid-tile *ngFor="let card of lstLineas">
-                            <a class="btn btn-primary" (click)="buscarPortafolioLinea(card)" 
+                            <a class="btn button" (click)="buscarPortafolioLinea(card)" 
                                 style="border-radius: 5px; 
                                        background: rgb(49,99,173,0.8); 
                                        font-size: 15px; width:140px; 
-                                       height:40px;
+                                       height:35px;
                                        text-align:center; 
                                        margin-top: 15px;
                                        ">
-                                <span style="color: white;">
+                                <span style="color:white;">
                                         {{card.linea}}
                                 </span>
                             </a>

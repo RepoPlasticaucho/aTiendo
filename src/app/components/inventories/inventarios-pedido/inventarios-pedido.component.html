@@ -20,23 +20,29 @@
         </div>
         <div class="card-body ">
             <div>
-                <mat-grid-list cols="7" rowHeight="60px">
+                <mat-grid-list cols="6" rowHeight="50px">
                     <mat-grid-tile>
-                        <a class="btn btn-info"
-                        style="text-align:center;
-                        font-size: 15px; width:120px; 
+                        <a class="btn button" href="./navegation-cl/(contentClient:inventarios-pedido)"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
                                        height:35px;
                                        text-align:center; 
-                                       margin-top: 10px;">INICIO</a>
-                    </mat-grid-tile>
+                                       margin-top: 10px;
+                                       background: rgb(54,169,225,0.8);"
+                        ><span style="color: white;">
+                            Inicio
+                        </span>
+                        
+                        </a>
+                        </mat-grid-tile>
                 </mat-grid-list>
-                <mat-grid-list cols="6" rowHeight="120px">
+                <mat-grid-list cols="6" rowHeight="60px">
                     <mat-grid-tile *ngFor="let card of lstCategorias">
                         
-                            <a class="btn btn-primary" (click)="buscarPortafolioLinea(card)" 
+                            <a class="btn button" (click)="buscarPortafolioLinea(card)" 
                                 style="border-radius: 5px; 
                                        background: rgb(49,99,173,0.8); 
-                                       font-size: 15px; width:120px; 
+                                       font-size: 15px; width:140px; 
                                        height:40px;
                                        text-align:center; 
                                        margin-top: 15px;

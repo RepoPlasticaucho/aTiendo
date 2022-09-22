@@ -13,54 +13,67 @@
             <div>
                 <mat-grid-list cols="7" rowHeight="60px" rowWidth="150px">
                     <mat-grid-tile>
-                        <a class="btn btn-info" href="./navegation-cl/(contentClient:inventarios-pedido)"
+                        <a class="btn button" href="./navegation-cl/(contentClient:inventarios-pedido)"
                             style="text-align:center;
                                     font-size: 15px; width:140px; 
                                        height:35px;
+                                       background: rgb(54,169,225,0.8); 
                                        text-align:center; 
-                                       margin-top: 10px;"
-                        >INICIO
-                        </a>
+                                       margin-top: 10px;">
+                                 <span style="color:white;">
+                                    Inicio
+                                 </span>     
+                            </a>
                         </mat-grid-tile>
 
                         <mat-grid-tile >
-                            <a class="btn btn-info" (click)="returncategoria()"
+                            <a class="btn button" (click)="returncategoria()"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    background: rgb(54,169,225,0.8); 
+                                    height:35px;
+                                    text-align:center; 
+                                    margin-top: 10px;"> 
+                                <span style="color: white;">
+                                    {{categoria_name}}
+                                </span>    
+                            </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <a class="btn button" (click)="returnLinea()"
+                            style="text-align:center;
+                                    font-size: 15px; width:140px; 
+                                    height:35px;
+                                    background: rgb(54,169,225,0.8); 
+                                    text-align:center; 
+                                    margin-top: 10px;"> 
+                                <span style="color: white;">
+                                    {{linea_name}}
+                                </span>    
+                            </a>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <a class="btn button" (click)="returnModelo()"
                             style="text-align:center;
                                     font-size: 15px; width:140px; 
                                     height:35px;
                                     text-align:center; 
-                                    margin-top: 10px;"
-                        > {{categoria_name}}
-                        </a>
+                                    background: rgb(54,169,225,0.8);
+                                    margin-top: 10px;"> 
+                                <span style="color: white;">
+                                    {{modelo_name}}
+                                </span>    
+                            </a>
                         </mat-grid-tile>
 
                         <mat-grid-tile>
-                            <a class="btn btn-info" (click)="returnLinea()"
+                            <a class="btn button"
                             style="text-align:center;
                                     font-size: 15px; width:140px; 
                                     height:35px;
-                                    text-align:center; 
-                                    margin-top: 10px;"
-                        > {{linea_name}}
-                        </a>
-                        </mat-grid-tile>
-
-                        <mat-grid-tile>
-                            <a class="btn btn-info" (click)="returnModelo()"
-                            style="text-align:center;
-                                    font-size: 15px; width:140px; 
-                                    height:35px;
-                                    text-align:center; 
-                                    margin-top: 10px;"
-                        > {{modelo_name}}
-                        </a>
-                        </mat-grid-tile>
-
-                        <mat-grid-tile>
-                            <a class="btn btn-success"
-                            style="text-align:center;
-                                    font-size: 15px; width:140px; 
-                                    height:35px;
+                                    background: rgb(54,169,225,0.8);
                                     text-align:center; 
                                     margin-top: 10px;"
                         > {{color_name}}

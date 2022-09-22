@@ -17,46 +17,53 @@
                             style="text-align:center;
                                     font-size: 15px; width:140px; 
                                        height:35px;
+                                       background: rgb(54,169,225,0.8); 
                                        text-align:center; 
                                        margin-top: 10px;"
-                        >INICIO
+                        > <span style="color: white;">
+                            INICIO
+                        </span> 
                         </a>
                         </mat-grid-tile>
 
                         <mat-grid-tile >
-                            <a class="btn btn-info" (click)="returnLinea()"
+                            <a class="btn button" (click)="returnLinea()"
                             style="text-align:center;
                                     font-size: 15px; width:140px; 
                                     height:35px;
+                                    background: rgb(54,169,225,0.8); 
                                     text-align:center; 
                                     margin-top: 10px;"
-                        > {{categoria_name}}
+                        > <span style="color: white;">
+                            {{categoria_name}}
+                        </span>
                         </a>
                         </mat-grid-tile>
                         
                         <mat-grid-tile>
-                            <a class="btn btn-success"
+                            <a class="btn button"
                             style="text-align:center;
                                     font-size: 15px; width:140px; 
                                     height:35px;
                                     text-align:center; 
-                                    margin-top: 10px;"
+                                    margin-top: 10px;
+                                    background: rgb(54,169,225,0.8); "
                         > {{linea_name}}
                         </a>
                         </mat-grid-tile>
                 </mat-grid-list>
 
-                <mat-grid-list cols="6" rowHeight="100px">
+                <mat-grid-list cols="6" rowHeight="70px">
                    
                     <mat-grid-tile *ngFor="let card of lstModelos">
                         
-                            <a class="btn btn-primary" (click)="buscarPortafolioLineaModelo(card)" 
+                            <a class="btn button" (click)="buscarPortafolioLineaModelo(card)" 
                                 style="border-radius: 5px; 
                                        background: rgb(49,99,173,0.8); 
                                        font-size: 15px; width:140px; 
                                        height:60px;
                                        text-align:center; 
-                                       margin-top: 15px;
+                                       margin-top: 10px;
                                        ">
                                 <span style="color: white;">
                                         {{card.modelo}}
