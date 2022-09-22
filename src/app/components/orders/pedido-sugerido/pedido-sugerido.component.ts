@@ -26,7 +26,6 @@ export class PedidoSugeridoComponent implements OnInit,OnDestroy {
   dtElement!: DataTableDirective;
   lstInventarios: InventariosEntity[] = [];
   lstLineas: LineasEntity[] = [];
-  lstInventariosR: InventariosEntity[] = [];
 
   private codigocategoria: string = "";
   private codigoalmacen :string ="";
