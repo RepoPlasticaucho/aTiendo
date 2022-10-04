@@ -1,6 +1,9 @@
+import { LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AlmacenesComponent, AlmacenesCreateComponent, AlmacenesEditComponent, AlmacenessociedadComponent, AlmacenessociedadCreateComponent, AlmacenessociedadEditComponent, AtributosComponent, AtributosCreateComponent, AtributosEditComponent, CategoriasComponent, CategoriasCreateComponent, CategoriasEditComponent, ColorsComponent, ColorsCreateComponent, ColorsEditComponent, DashboardAdmComponent, DashboardClComponent, GenerosComponent, GenerosCreateComponent, GenerosEditComponent, GruposComponent, GruposCreateComponent, GruposEditComponent, InventariosComponent, InventariosPedidoCategoriaComponent, InventariosPedidoColoresComponent, InventariosPedidoComponent, InventariosPedidoLineasComponent, InventariosPedidoModelosComponent, LineasComponent, LineasCreateComponent, LineasEditComponent, MarcasComponent, MarcasCreateComponent, MarcasEditComponent, ModeloproductosComponent, ModeloproductosCreateComponent, ModeloproductosEditComponent, ModelosComponent, ModelosCreateComponent, ModelosEditComponent, NavegationAdmComponent, NavegationClComponent, PedidoSugeridoComponent, ProductosComponent, ProductosCreateComponent, ProductosEditComponent, SociedadesComponent, SociedadesCreateComponent, SociedadesEditComponent } from './components/all_components';
+import { LoginNavComponent } from './components/login-nav/login-nav.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
@@ -61,6 +64,17 @@ const routes: Routes = [
       { path: "crearProductos", component: ProductosCreateComponent, outlet: "contentAdmin" },
       { path: "editarProductos", component: ProductosEditComponent, outlet: "contentAdmin" },
     ]
+  },
+  
+  {
+    path: 'login-nav', component: LoginNavComponent,
+    children: [
+      { path: "", component: LoginComponent, outlet: "contentLogin" }
+    ]
+  },
+
+  {
+    path: '**', pathMatch: 'full', redirectTo:'login-nav',
   }
 ];
 
