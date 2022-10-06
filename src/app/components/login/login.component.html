@@ -41,7 +41,7 @@
             </span><br><br><br>
             <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                  <input type="text" class="form-control" id="categoria" placeholder="Correo Electronico" formControlName="categoria">
+                  <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
                   <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
                       <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
                           Debe ingresar el correo electronico
@@ -49,7 +49,7 @@
                   </small >
               </div>
               <div class="form-group">
-                  <input type="password" class="form-control" id="codigoSAP" placeholder="Contraseña" formControlName="codigoSAP">
+                  <input type="password" class="form-control" id="passw" placeholder="Contraseña" formControlName="codigoSAP">
                   <small *ngIf="categoryForm.controls['codigoSAP'].invalid && (categoryForm.controls['codigoSAP'].dirty || categoryForm.controls['codigoSAP'].touched)">
                       <small  *ngIf="categoryForm.controls['codigoSAP'].errors" style="color: red;">
                           Debe ingresar la contraseña.

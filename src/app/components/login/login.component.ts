@@ -3,10 +3,10 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { faCopy, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CategoriasEntity } from 'src/app/models/categorias';
 import { Router } from '@angular/router';
-import { CategoriasService } from 'src/app/services/categorias.service';
 import Swal from 'sweetalert2';
+import { SociedadesEntity } from 'src/app/models/sociedades';
+import { SociedadesService } from 'src/app/services/sociedades.service';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +44,7 @@ export class LoginComponent {
   });
   private db: any;
   
-  constructor(private breakpointObserver: BreakpointObserver, private readonly httpService: CategoriasService, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private readonly httpService: SociedadesService, private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -53,35 +53,66 @@ export class LoginComponent {
     if (!this.categoryForm.valid) {
       this.categoryForm.markAllAsTouched();
     } else {
-      const categoriaEntity: CategoriasEntity = {
-        id: "",
-        categoria: this.categoryForm.value!.categoria ?? "",
-        cod_sap: this.categoryForm.value!.codigoSAP ?? "",
-        etiquetas: this.categoryForm.value!.etiquetas ?? "",
-        almacen_id: ''
+      const userEntity: SociedadesEntity = {
+        idGrupo: '',
+        nombre_comercial: '',
+        id_fiscal: '',
+        email: this.categoryForm.value!.categoria ?? "",
+        telefono: '',
+        password: '',
+        funcion: ''
       }
-      this.httpService.agregarCategoria(categoriaEntity).subscribe(res => {
+      this.httpService.obtenerUsuario(userEntity).subscribe(res => {
         if (res.codigoError == "OK") {
-          Swal.fire({
-            icon: 'success',
-            title: 'Guardado Exitosamente.',
-            text: `Se ha creado la categoria ${this.categoryForm.value.categoria}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok"
-          }).finally(() => {
-            this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['categorias'] } }]);
+          const sociedadEntity: SociedadesEntity = {
+            idGrupo: '',
+            nombre_comercial: '',
+            id_fiscal: '',
+            email: this.categoryForm.value!.categoria ?? "",
+            funcion : '',
+            telefono: '',
+            password: this.categoryForm.value!.codigoSAP ?? ""
+          }
+          this.httpService.obtenerSociedadL(sociedadEntity).subscribe(res => {
+            if (res.codigoError == "OK") {
+              const rol = res.lstSociedades[0].funcion;
+              switch (rol) {
+                case "admin":
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Bienvenido Administrador!!!'
+                    }).finally(() => {
+                      this.router.navigate(['/navegation-adm']);
+                    })
+                  break;
+
+                case "client":
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Bienvenido!!!'
+                    }).finally(() => {
+                      this.router.navigate(['/navegation-cl']);
+                    })
+                  break;
+              }
+            }else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Contraseña Inconrrecta.'
+              }).finally(() => {
+                this.router.navigate(['/login-nav']);
+              });
+            }
           });
-        } else {
+        }else{
           Swal.fire({
             icon: 'error',
-            title: 'Ha ocurrido un error.',
-            text: res.descripcionError,
-            showConfirmButton: false,
+            title: 'El usuario no existe.'
+          }).finally(() => {
+            this.router.navigate(['/login-nav']);
           });
+
         }
-      }, () => {
-        console.log("No se pudo Guardar Información");
-        this.httpService.agregarCategoriaBDD(categoriaEntity);
       })
     }
   }

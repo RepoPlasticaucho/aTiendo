@@ -13,4 +13,6 @@ export interface SociedadesEntity {
     id_fiscal: string;
     email: string;
     telefono: string;
+    password: string;
+    funcion : string;
 }

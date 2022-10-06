@@ -39,12 +39,14 @@ export class AlmacenessociedadComponent implements OnInit {
       responsive:true
     }
     const almacen: SociedadesEntity = {
-      idSociedad:'8',
+      idSociedad: '8',
       idGrupo: '',
       nombre_comercial: '',
       id_fiscal: '',
       email: '',
-      telefono: ''
+      telefono: '',
+      password: '',
+      funcion:''
     }
     console.log(almacen);
 

@@ -89,6 +89,8 @@ export class SociedadesEditComponent implements OnInit {
           nombre_comercial: this.corporationForm.value!.nombreComercial ?? "",
           email: this.corporationForm.value!.correoElectronico ?? "",
           telefono: this.corporationForm.value!.telefono ?? "",
+          password: '',
+          funcion: ''
         };
         this.httpService.actualizarSociedad(sociedadEntity).subscribe(res => {
           if (res.codigoError == "OK") {
