@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { AlmacenesEntity } from 'src/app/models/almacenes';
+import { AlmacenesService } from 'src/app/services/almacenes.service';
+import { Router } from '@angular/router';
+import { SociedadesEntity } from 'src/app/models/sociedades';
 
 @Component({
   selector: 'app-dashboard-cl',
@@ -42,5 +46,36 @@ export class DashboardClComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  lstAlmacenes: AlmacenesEntity[] = [];
+
+  constructor(private breakpointObserver: BreakpointObserver,
+    private readonly httpService: AlmacenesService,
+    private router: Router) {}
+  
+  ngOnInit(): void {
+
+    const almacen: SociedadesEntity = {
+      
+      idSociedad: JSON.parse(sessionStorage.getItem('sociedadid')||"[]"),
+      idGrupo: '',
+      nombre_comercial: '',
+      id_fiscal: '',
+      email: '',
+      telefono: '',
+      password: '',
+      funcion:''
+    }
+    console.log(almacen);
+
+    this.httpService.obtenerAlmacenesSociedad(almacen).subscribe(res => {
+      if (res.codigoError != "OK") {
+        console.log("Usuario sin almacenes")
+      } else {
+        this.lstAlmacenes = res.lstAlmacenes;
+      }
+      
+    })
+
+  
+  }
 }
