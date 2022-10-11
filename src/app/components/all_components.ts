@@ -48,3 +48,5 @@ export { InventariosPedidoLineasComponent } from "./inventories/inventarios-pedi
 export { InventariosPedidoModelosComponent } from "./inventories/inventarios-pedido-modelos/inventarios-pedido-modelos.component";
 export { InventariosPedidoCategoriaComponent } from "./inventories/inventarios-pedido-categoria/inventarios-pedido-categoria.component";
 export { PedidoSugeridoComponent } from "./orders/pedido-sugerido/pedido-sugerido.component";
+export { DashboardBoComponent} from "./dashboard-bo/dashboard-bo.component";
+export { NavegationBoComponent} from "./navegation-bo/navegation-bo.component";

@@ -79,6 +79,8 @@ import { PedidoSugeridoLineaComponent } from './components/orders/pedido-sugerid
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { LoginComponent } from './components/login/login.component';
 import { LoginNavComponent } from './components/login-nav/login-nav.component';
+import { NavegationBoComponent } from './components/navegation-bo/navegation-bo.component';
+import { DashboardBoComponent } from './components/dashboard-bo/dashboard-bo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -140,6 +142,8 @@ import { LoginNavComponent } from './components/login-nav/login-nav.component';
     PedidoSugeridoLineaComponent,
     LoginComponent,
     LoginNavComponent,
+    NavegationBoComponent,
+    DashboardBoComponent,
     
   ],
   imports: [

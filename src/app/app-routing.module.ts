@@ -1,7 +1,7 @@
 import { LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlmacenesComponent, AlmacenesCreateComponent, AlmacenesEditComponent, AlmacenessociedadComponent, AlmacenessociedadCreateComponent, AlmacenessociedadEditComponent, AtributosComponent, AtributosCreateComponent, AtributosEditComponent, CategoriasComponent, CategoriasCreateComponent, CategoriasEditComponent, ColorsComponent, ColorsCreateComponent, ColorsEditComponent, DashboardAdmComponent, DashboardClComponent, GenerosComponent, GenerosCreateComponent, GenerosEditComponent, GruposComponent, GruposCreateComponent, GruposEditComponent, InventariosComponent, InventariosPedidoCategoriaComponent, InventariosPedidoColoresComponent, InventariosPedidoComponent, InventariosPedidoLineasComponent, InventariosPedidoModelosComponent, LineasComponent, LineasCreateComponent, LineasEditComponent, MarcasComponent, MarcasCreateComponent, MarcasEditComponent, ModeloproductosComponent, ModeloproductosCreateComponent, ModeloproductosEditComponent, ModelosComponent, ModelosCreateComponent, ModelosEditComponent, NavegationAdmComponent, NavegationClComponent, PedidoSugeridoComponent, ProductosComponent, ProductosCreateComponent, ProductosEditComponent, SociedadesComponent, SociedadesCreateComponent, SociedadesEditComponent } from './components/all_components';
+import { AlmacenesComponent, AlmacenesCreateComponent, AlmacenesEditComponent, AlmacenessociedadComponent, AlmacenessociedadCreateComponent, AlmacenessociedadEditComponent, AtributosComponent, AtributosCreateComponent, AtributosEditComponent, CategoriasComponent, CategoriasCreateComponent, CategoriasEditComponent, ColorsComponent, ColorsCreateComponent, ColorsEditComponent, DashboardAdmComponent, DashboardBoComponent, DashboardClComponent, GenerosComponent, GenerosCreateComponent, GenerosEditComponent, GruposComponent, GruposCreateComponent, GruposEditComponent, InventariosComponent, InventariosPedidoCategoriaComponent, InventariosPedidoColoresComponent, InventariosPedidoComponent, InventariosPedidoLineasComponent, InventariosPedidoModelosComponent, LineasComponent, LineasCreateComponent, LineasEditComponent, MarcasComponent, MarcasCreateComponent, MarcasEditComponent, ModeloproductosComponent, ModeloproductosCreateComponent, ModeloproductosEditComponent, ModelosComponent, ModelosCreateComponent, ModelosEditComponent, NavegationAdmComponent, NavegationBoComponent, NavegationClComponent, PedidoSugeridoComponent, ProductosComponent, ProductosCreateComponent, ProductosEditComponent, SociedadesComponent, SociedadesCreateComponent, SociedadesEditComponent } from './components/all_components';
 import { LoginNavComponent } from './components/login-nav/login-nav.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -65,7 +65,39 @@ const routes: Routes = [
       { path: "editarProductos", component: ProductosEditComponent, outlet: "contentAdmin" },
     ]
   },
-  
+  {
+    path: 'navegation-bo', component: NavegationBoComponent,
+    children: [
+      { path: "", component: DashboardBoComponent, outlet: "contentBo" },
+      { path: "almacenes", component: AlmacenesComponent, outlet: "contentBo" },
+      { path: "crearAlmacenes", component: AlmacenesCreateComponent, outlet: "contentBo" },
+      { path: "editarAlmacenes", component: AlmacenesEditComponent, outlet: "contentBo" },
+      { path: "grupos", component: GruposComponent, outlet: "contentBo" },
+      { path: "editarGrupos", component: GruposEditComponent, outlet: "contentBo" },
+      { path: "crearGrupos", component: GruposCreateComponent, outlet: "contentBo" },
+      { path: "sociedades", component: SociedadesComponent, outlet: "contentBo" },
+      { path: "crearSociedades", component: SociedadesCreateComponent, outlet: "contentBo" },
+      { path: "editarSociedades", component: SociedadesEditComponent, outlet: "contentBo" },
+      { path: "categorias", component: CategoriasComponent, outlet: "contentBo" },
+      { path: "crearCategorias", component: CategoriasCreateComponent, outlet: "contentBo" },
+      { path: "editarCategorias", component: CategoriasEditComponent, outlet: "contentBo" },
+      { path: "lineas", component: LineasComponent, outlet: "contentBo" },
+      { path: "crearLineas", component: LineasCreateComponent, outlet: "contentBo" },
+      { path: "editarLineas", component: LineasEditComponent, outlet: "contentBo" },
+      { path: "marcas", component: MarcasComponent, outlet: "contentBo" },
+      { path: "crearMarcas", component: MarcasCreateComponent, outlet: "contentBo" },
+      { path: "editarMarcas", component: MarcasEditComponent, outlet: "contentBo" },
+      { path: "colores", component: ColorsComponent, outlet: "contentBo" },
+      { path: "crearColores", component: ColorsCreateComponent, outlet: "contentBo" },
+      { path: "editarColores", component: ColorsEditComponent, outlet: "contentBo" },
+      { path: "atributos", component: AtributosComponent, outlet: "contentBo" },
+      { path: "crearAtributos", component: AtributosCreateComponent, outlet: "contentBo" },
+      { path: "editarAtributos", component: AtributosEditComponent, outlet: "contentBo" },
+      { path: "productos", component: ProductosComponent, outlet: "contentAdmin" },
+      { path: "crearProductos", component: ProductosCreateComponent, outlet: "contentAdmin" },
+      { path: "editarProductos", component: ProductosEditComponent, outlet: "contentAdmin" },
+    ]
+  },
   {
     path: 'login-nav', component: LoginNavComponent,
     children: [
