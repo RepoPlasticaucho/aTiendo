@@ -11,7 +11,8 @@ const initCorporation: SociedadesEntity = {
   id_fiscal: "",
   telefono: "",
   password: "",
-  funcion: ''
+  funcion: '',
+  idSociedad: ''
 }
 
 @Injectable({

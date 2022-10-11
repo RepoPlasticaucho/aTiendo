@@ -6,7 +6,7 @@ export interface Sociedades {
 
 export interface SociedadesEntity {
     idGrupo: string;
-    idSociedad?: string;
+    idSociedad: string;
     nombreGrupo?: string;
     razon_social?: string;
     nombre_comercial: string;

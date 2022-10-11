@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEdit, faPlus, faTrashAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { Session } from 'inspector';
 import { Subject } from 'rxjs';
 import { AlmacenesEntity } from 'src/app/models/almacenes';
 import { SociedadesEntity } from 'src/app/models/sociedades';
@@ -38,8 +39,10 @@ export class AlmacenessociedadComponent implements OnInit {
       info: true,
       responsive:true
     }
+
     const almacen: SociedadesEntity = {
-      idSociedad: '8',
+      
+      idSociedad: JSON.parse(sessionStorage.getItem('sociedadid')||"[]"),
       idGrupo: '',
       nombre_comercial: '',
       id_fiscal: '',

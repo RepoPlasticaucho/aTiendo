@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { SociedadesEntity } from 'src/app/models/sociedades';
 import { SociedadesService } from 'src/app/services/sociedades.service';
+import { Session } from 'inspector';
 
 @Component({
   selector: 'app-login',
@@ -15,23 +16,6 @@ import { SociedadesService } from 'src/app/services/sociedades.service';
 })
 export class LoginComponent {
   /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Categorias', cols: 1, rows: 1, name: "las categorias de productos", figure: "file_copy" },
-          { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment" }
-          
-        ];
-      }
-
-      return [
-        { title: 'Categorias', cols: 1, rows: 1, name: "las categorias de productos", figure: "file_copy", dir: "navegation-adm/(contentAdmin:categorias)" },
-        { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment", dir: "navegation-adm/(contentAdmin:lineas)" }
-       
-      ];
-    })
-  );
 
   faTimes = faTimes;
   faCopy = faCopy;
@@ -60,7 +44,8 @@ export class LoginComponent {
         email: this.categoryForm.value!.categoria ?? "",
         telefono: '',
         password: '',
-        funcion: ''
+        funcion: '',
+        idSociedad: ''
       }
       this.httpService.obtenerUsuario(userEntity).subscribe(res => {
         if (res.codigoError == "OK") {
@@ -69,14 +54,17 @@ export class LoginComponent {
             nombre_comercial: '',
             id_fiscal: '',
             email: this.categoryForm.value!.categoria ?? "",
-            funcion : '',
+            funcion: '',
             telefono: '',
-            password: this.categoryForm.value!.codigoSAP ?? ""
+            password: this.categoryForm.value!.codigoSAP ?? "",
+            idSociedad: ''
           }
           this.httpService.obtenerSociedadL(sociedadEntity).subscribe(res => {
             if (res.codigoError == "OK") {
               const rol = res.lstSociedades[0].funcion;
-              switch (rol) {
+              const idsociedad = res.lstSociedades[0].idSociedad;
+              sessionStorage.setItem('sociedadid',idsociedad)
+               switch (rol) {
                 case "admin":
                   Swal.fire({
                     icon: 'success',
