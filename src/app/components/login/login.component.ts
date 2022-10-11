@@ -63,7 +63,7 @@ export class LoginComponent {
             if (res.codigoError == "OK") {
               const rol = res.lstSociedades[0].funcion;
               const idsociedad = res.lstSociedades[0].idSociedad;
-              sessionStorage.setItem('sociedadid',idsociedad)
+              localStorage.setItem('sociedadid',idsociedad)
                switch (rol) {
                 case "admin":
                   Swal.fire({

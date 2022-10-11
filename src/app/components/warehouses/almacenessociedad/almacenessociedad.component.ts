@@ -42,7 +42,7 @@ export class AlmacenessociedadComponent implements OnInit {
 
     const almacen: SociedadesEntity = {
       
-      idSociedad: JSON.parse(sessionStorage.getItem('sociedadid')||"[]"),
+      idSociedad: JSON.parse(localStorage.getItem('sociedadid')||"[]"),
       idGrupo: '',
       nombre_comercial: '',
       id_fiscal: '',

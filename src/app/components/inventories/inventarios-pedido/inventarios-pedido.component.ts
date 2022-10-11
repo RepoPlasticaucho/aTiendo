@@ -27,7 +27,6 @@ export class InventariosPedidoComponent implements OnInit {
   lstInventarios: InventariosEntity[] = [];
   lstCategorias: CategoriasEntity[] = [];
   cat : string | undefined;
-  var = "6";
   constructor(private readonly httpService: InventariosService,
     private router: Router) { }
 
@@ -44,7 +43,7 @@ export class InventariosPedidoComponent implements OnInit {
       responsive:true
     }
     const almacen: AlmacenesEntity = {
-      idAlmacen: this.var,
+      idAlmacen: JSON.parse(localStorage.getItem('almacenid')||"[]"),
       sociedad_id: '',
       nombresociedad: '',
       direccion: '',
@@ -68,14 +67,14 @@ export class InventariosPedidoComponent implements OnInit {
         
         this.httpService.obtenerPortafolios(almacen).subscribe(res => {
           if (res.codigoError != "OK") {
-            /*
+            
             Swal.fire({
-            //  icon: 'error',
-             // title: 'Ha ocurrido un error.',
-             // text: res.descripcionError,
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
              // showConfirmButton: false,
               // timer: 3000
-            });*/
+            });
           } else {
             this.lstInventarios = res.lstInventarios;
             this.dtTrigger.next('');
@@ -106,7 +105,7 @@ export class InventariosPedidoComponent implements OnInit {
       id: '',
       dInventario: '',
       producto_id: '',
-      almacen_id: this.var,
+      almacen_id: JSON.parse(localStorage.getItem('almacenid')||"[]"),
       almacen: '',
       stock: '',
       stock_optimo: '',
@@ -135,7 +134,7 @@ export class InventariosPedidoComponent implements OnInit {
       id: '',
       dInventario: '',
       producto_id: '',
-      almacen_id: this.var,
+      almacen_id: JSON.parse(localStorage.getItem('almacenid')||"[]"),
       almacen: '',
       stock: '',
       stock_optimo: '',

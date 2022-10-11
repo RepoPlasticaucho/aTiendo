@@ -1,6 +1,7 @@
 <div style="width: 90%;margin: auto;">
     <div class="card">
         <br>
+        
         <div class="card-header">
             <div class="row mx-3">
                 <fa-icon [icon]="faUserFriends" [size]="'3x'" style="color: #636363;"></fa-icon>
@@ -9,7 +10,23 @@
                     <fa-icon [icon]="faPlus" class="btn btn-success" [size]="'lg'" data-toggle="tooltip" data-placement="bottom" title="Agregar una nueva sociedad" ></fa-icon>
                 </div>
             </div>
-        </div>
+        </div><br>
+        <mat-grid-list cols="6" rowHeight="50px">
+            <mat-grid-tile>
+                <a class="btn button" href="./navegation-cl/(contentClient:inventarios-productos)"
+                    style="text-align:center;
+                            font-size: 15px; width:140px; 
+                               height:35px;
+                               text-align:center; 
+                               margin-top: 10px;
+                               background: rgb(54,169,225,0.8);"
+                ><span style="color: white;">
+                    VOLVER
+                </span>
+                
+                </a>
+                </mat-grid-tile>
+        </mat-grid-list><br>
         <div class="card-body ">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                 <thead style="color: #636363;">

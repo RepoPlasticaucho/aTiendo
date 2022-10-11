@@ -37,8 +37,8 @@ export class DashboardClComponent {
         { title: 'Ingresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
         { title: 'Egresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
         { title: 'Saldos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
-        { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios)"},
-        { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-pedido)"},
+        { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-productos)"},
+        { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-almacen)"},
         { title: 'Pedido Sugerido', cols: 1, rows: 1, name: "las productos", figure: "widgets", dir: "navegation-cl/(contentClient:pedido-sugeridos)"},
         { title: 'Movimientos', cols: 1, rows: 1, name: "los productos", figure: "monitor" },
         { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city", dir: "navegation-cl/(contentClient:almacenes)" }
@@ -52,30 +52,5 @@ export class DashboardClComponent {
     private readonly httpService: AlmacenesService,
     private router: Router) {}
   
-  ngOnInit(): void {
-
-    const almacen: SociedadesEntity = {
-      
-      idSociedad: JSON.parse(sessionStorage.getItem('sociedadid')||"[]"),
-      idGrupo: '',
-      nombre_comercial: '',
-      id_fiscal: '',
-      email: '',
-      telefono: '',
-      password: '',
-      funcion:''
-    }
-    console.log(almacen);
-
-    this.httpService.obtenerAlmacenesSociedad(almacen).subscribe(res => {
-      if (res.codigoError != "OK") {
-        console.log("Usuario sin almacenes")
-      } else {
-        this.lstAlmacenes = res.lstAlmacenes;
-      }
-      
-    })
-
   
-  }
 }

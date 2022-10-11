@@ -81,6 +81,8 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginNavComponent } from './components/login-nav/login-nav.component';
 import { NavegationBoComponent } from './components/navegation-bo/navegation-bo.component';
 import { DashboardBoComponent } from './components/dashboard-bo/dashboard-bo.component';
+import { InventariosAlmacenComponent } from './components/inventories/inventarios-almacen/inventarios-almacen.component';
+import { InventariosProductosComponent } from './components/inventories/inventarios-productos/inventarios-productos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -144,6 +146,8 @@ import { DashboardBoComponent } from './components/dashboard-bo/dashboard-bo.com
     LoginNavComponent,
     NavegationBoComponent,
     DashboardBoComponent,
+    InventariosAlmacenComponent,
+    InventariosProductosComponent,
     
   ],
   imports: [

@@ -40,7 +40,7 @@ export class InventariosComponent implements OnInit {
       responsive:true
     }
     const almacen: AlmacenesEntity = {
-      idAlmacen: '6',
+      idAlmacen: JSON.parse(localStorage.getItem('almacenid')||"[]"),
       sociedad_id: '',
       nombresociedad: '',
       direccion: '',

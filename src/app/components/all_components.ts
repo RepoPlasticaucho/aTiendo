@@ -1,3 +1,4 @@
+import { from } from "rxjs";
 export { ProductosCreateComponent } from "./products/productos-create/productos-create.component";
 export { ProductosEditComponent } from "./products/productos-edit/productos-edit.component";
 export { ProductosComponent } from "./products/productos/productos.component";
@@ -50,3 +51,5 @@ export { InventariosPedidoCategoriaComponent } from "./inventories/inventarios-p
 export { PedidoSugeridoComponent } from "./orders/pedido-sugerido/pedido-sugerido.component";
 export { DashboardBoComponent} from "./dashboard-bo/dashboard-bo.component";
 export { NavegationBoComponent} from "./navegation-bo/navegation-bo.component";
+export { InventariosAlmacenComponent} from "./inventories/inventarios-almacen/inventarios-almacen.component";
+export { InventariosProductosComponent} from "./inventories/inventarios-productos/inventarios-productos.component";
