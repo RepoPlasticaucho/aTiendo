@@ -74,3 +74,10 @@ h5 {
   margin-inline-end: 0px;
   font-family: inherit;
 }
+
+.circular--square {
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+}
