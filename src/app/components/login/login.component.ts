@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { SociedadesEntity } from 'src/app/models/sociedades';
 import { SociedadesService } from 'src/app/services/sociedades.service';
 import { Session } from 'inspector';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ export class LoginComponent {
     etiquetas: new FormControl('',),
   });
   private db: any;
-  
+  encPass: string | undefined;
   constructor(private breakpointObserver: BreakpointObserver, private readonly httpService: SociedadesService, private router: Router) {}
 
   ngOnInit(): void {
@@ -49,6 +50,19 @@ export class LoginComponent {
       }
       this.httpService.obtenerUsuario(userEntity).subscribe(res => {
         if (res.codigoError == "OK") {
+
+          var salt = CryptoJS.enc.Base64.parse("SXZhbiBNZWR2ZWRldg==");
+          var iv = CryptoJS.enc.Hex.parse("69135769514102d0eded589ff874cacd");
+          var key564Bits10000Iterations = CryptoJS.PBKDF2("Venus21!", salt, {keySize: 256/32 + 128/32, iterations: 10000, hasher: CryptoJS.algo.SHA512});
+          const pass = this.categoryForm.value!.codigoSAP ?? ""
+          var encrypted = CryptoJS.AES.encrypt(pass, key564Bits10000Iterations, {
+            iv: iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+          });
+          this.encPass= encrypted.toString();
+         // console.log(this.encPass);
+
           const sociedadEntity: SociedadesEntity = {
             idGrupo: '',
             nombre_comercial: '',
@@ -56,13 +70,16 @@ export class LoginComponent {
             email: this.categoryForm.value!.categoria ?? "",
             funcion: '',
             telefono: '',
-            password: this.categoryForm.value!.codigoSAP ?? "",
+            password: this.encPass,
             idSociedad: ''
           }
+          
+
           this.httpService.obtenerSociedadL(sociedadEntity).subscribe(res => {
             if (res.codigoError == "OK") {
               const rol = res.lstSociedades[0].funcion;
               const idsociedad = res.lstSociedades[0].idSociedad;
+              console.log(res);
               localStorage.setItem('sociedadid',idsociedad)
                switch (rol) {
                 case "admin":
