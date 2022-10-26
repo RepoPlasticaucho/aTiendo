@@ -28,7 +28,8 @@ export class LoginComponent {
     etiquetas: new FormControl('',),
   });
   private db: any;
-  encPass: string | undefined;
+  encPass!: string;
+  passwre!: string;
   constructor(private breakpointObserver: BreakpointObserver, private readonly httpService: SociedadesService, private router: Router) {}
 
   ngOnInit(): void {
@@ -60,6 +61,8 @@ export class LoginComponent {
             mode: CryptoJS.mode.CBC,
             padding: CryptoJS.pad.Pkcs7
           });
+          
+          this.passwre = pass;
           this.encPass= encrypted.toString();
          // console.log(this.encPass);
 
@@ -79,8 +82,10 @@ export class LoginComponent {
             if (res.codigoError == "OK") {
               const rol = res.lstSociedades[0].funcion;
               const idsociedad = res.lstSociedades[0].idSociedad;
-              console.log(res);
-              localStorage.setItem('sociedadid',idsociedad)
+              const passwa = this.passwre;
+              console.log(passwa);
+              localStorage.setItem('sociedadid',idsociedad);
+              localStorage.setItem('passwa',passwa);
                switch (rol) {
                 case "admin":
                   Swal.fire({

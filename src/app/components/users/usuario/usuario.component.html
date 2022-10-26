@@ -1,1 +1,147 @@
-<p>usuario works!</p>
+
+<div class="grid-container" style="color: grey;">
+    <h1 class="mat-h1"></h1>
+    <div style="text-align: right;">
+        <button mat-button [matMenuTriggerFor]="menu" class="material-icons-outlined" style="font-size: 30px ;color: #3163ad">
+        <img  class="circular--square" src="https://atiendo.ec/black/img/anime3.png" 
+            width="35" height="35"><mat-icon class="mat-18">ligature</mat-icon>
+        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-menu #menu="matMenu">
+            <a [routerLink]="[{ outlets: { contentAdmin: ['usuario'] } }]" class="mat-menu-item">Perfil</a>
+            <a [routerLink]="[{ outlets: { contentAdmin: ['usuario'] } }]" class="mat-menu-item">Configuracion</a>
+            <a [routerLink]="[{ outlets: { contentAdmin: ['usuario'] } }]" class="mat-menu-item">Salir</a>
+        
+        </mat-menu>           
+    </div>
+    <br>
+    <mat-grid-list cols="1" rowHeight="950px">
+            <mat-grid-tile >
+                <div class="col-md-8">
+                    <mat-card class="dashboard-card" 
+                        style="
+                            padding: 15px;
+                            border-radius: 10px;">
+                             <div align="left">
+                                <h5 class="title">Editar Perfil</h5>
+                            </div>
+                            <div align="right">
+                                <a  class="btn btn-secondary " (click)="onPass()"></a>                          
+                            </div>
+                            <br>
+                            <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+                                
+                                <div class="form-group">
+                                    <label for="grupo">Razon Social</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Razon Social" formControlName="categoria">
+                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
+                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
+                                            Debe ingresar la Razon Social
+                                        </small >
+                                    </small >
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="grupo">Nombre Comercial</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
+                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
+                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
+                                            Debe ingresar el Nombre Comercial
+                                        </small >
+                                    </small >
+                                </div> <br>
+                                <div class="form-group">
+                                    <label for="grupo">ID Fiscal</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
+                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
+                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
+                                            Debe ingresar la Identificacion Fiscal
+                                        </small >
+                                    </small >
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="grupo">Correo Electronico</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
+                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
+                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
+                                            Debe ingresar el Correo Electronico
+                                        </small >
+                                    </small >
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="grupo">Telefono</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
+                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
+                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
+                                            Debe ingresar el telefono
+                                        </small >
+                                    </small >
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="grupo">Paginacion</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
+                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
+                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
+                                            Debe ingresar el correo electronico
+                                        </small >
+                                    </small >
+                                </div><br>
+                                <div align="center">
+                                    <button type="submit" class="btn btn-primary"><!--[disabled]="!this.groupForm.valid"-->
+                                        <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>
+                                        Guardar
+                                    </button>
+                                  </div>
+                               
+                            </form>            
+                            <br>
+                        </mat-card>
+                </div> 
+                <div class="col-md-4">
+                    <mat-card class="dashboard-card" 
+                            style="
+                                padding: 15px;
+                                border-radius: 10px;">
+                            <div class="card card-user">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <div class="author"align="center">
+                                            <div class="block block-one"></div>
+                                            <div class="block block-two"></div>
+                                            <div class="block block-three"></div>
+                                            <div class="block block-four"></div>
+                                            <a href="#">
+                                                <img class="avatar" src="https://atiendo.ec/black/img/anime3.png" alt="">
+                                            </a>
+                                            <p class="description" style="text-align: center;">
+                                                Ceo/Co-Founder
+                                            </p>
+                                        </div>
+                                        
+                                    <div class="card-description">
+                                        <p>
+                                            'Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                                        </p> 
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="button-container" align="center">
+                                        <button class="btn btn-icon btn-round btn-facebook">
+                                            <i class="fab fa-facebook"></i>
+                                        </button>
+                                        <button class="btn btn-icon btn-round btn-twitter">
+                                            <i class="fab fa-twitter"></i>
+                                        </button>
+                                        <button class="btn btn-icon btn-round btn-google">
+                                            <i class="fab fa-google-plus"></i>
+                                        </button>
+                                        </div>
+                                </div>
+                            </div>                   
+                    
+                    </mat-card>
+                </div>    
+                        
+            </mat-grid-tile>
+    </mat-grid-list>
+   
+</div>
