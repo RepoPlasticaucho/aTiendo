@@ -71,7 +71,8 @@ export class SociedadesCreateComponent implements OnInit {
           telefono: this.corporationForm.value!.telefono ?? "",
           password: '',
           funcion: '',
-          idSociedad: ''
+          idSociedad: '',
+          razon_social: ''
         };
         this.httpService.agregarSociedad(sociedadEntity).subscribe(res => {
           if (res.codigoError == "OK") {

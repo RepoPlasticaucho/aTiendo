@@ -47,7 +47,8 @@ export class LoginComponent {
         telefono: '',
         password: '',
         funcion: '',
-        idSociedad: ''
+        idSociedad: '',
+        razon_social: ''
       }
       this.httpService.obtenerUsuario(userEntity).subscribe(res => {
         if (res.codigoError == "OK") {
@@ -74,7 +75,8 @@ export class LoginComponent {
             funcion: '',
             telefono: '',
             password: this.encPass,
-            idSociedad: ''
+            idSociedad: '',
+            razon_social: ''
           }
           
 

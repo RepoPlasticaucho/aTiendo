@@ -90,7 +90,8 @@ export class SociedadesEditComponent implements OnInit {
           email: this.corporationForm.value!.correoElectronico ?? "",
           telefono: this.corporationForm.value!.telefono ?? "",
           password: '',
-          funcion: ''
+          funcion: '',
+          razon_social: ''
         };
         this.httpService.actualizarSociedad(sociedadEntity).subscribe(res => {
           if (res.codigoError == "OK") {

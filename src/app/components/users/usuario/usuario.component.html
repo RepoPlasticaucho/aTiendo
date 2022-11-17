@@ -14,7 +14,7 @@
         </mat-menu>           
     </div>
     <br>
-    <mat-grid-list cols="1" rowHeight="950px">
+    <mat-grid-list cols="1" rowHeight="720px">
             <mat-grid-tile >
                 <div class="col-md-8">
                     <mat-card class="dashboard-card" 
@@ -25,74 +25,89 @@
                                 <h5 class="title">Editar Perfil</h5>
                             </div>
                             <div align="right">
-                                <a  class="btn btn-secondary " (click)="onPass()"></a>                          
+                                <a  class="btn btn-success" (click)="onPass()">Cambiar contraseña</a>                          
                             </div>
                             <br>
-                            <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
-                                
+                            <form [formGroup]="corporationForm" (ngSubmit)="onSubmit()">
                                 <div class="form-group">
-                                    <label for="grupo">Razon Social</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Razon Social" formControlName="categoria">
-                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
-                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
-                                            Debe ingresar la Razon Social
-                                        </small >
-                                    </small >
+                                    <label for="razonSocial">Razon Social</label>
+                                    <input type="text" class="form-control" id="razonSocial"
+                                        placeholder="Ingrese la Razon Social " formControlName="razonSocial">
+                                    <small
+                                        *ngIf="corporationForm.controls['nombreComercial'].invalid && (corporationForm.controls['nombreComercial'].dirty || corporationForm.controls['nombreComercial'].touched)">
+                                        <small *ngIf="corporationForm.controls['nombreComercial'].errors?.['required']"
+                                            style="color: red;">
+                                            Debe ingresar la Razon Social.
+                                        </small>
+                                    </small>
                                 </div>
-                                <br>
+                                <div class="form-group ">
+                                    <label for="idFiscal " style="margin: 0;">Identificación Fiscal</label>
+                                    <p style="font-size:0.75em; margin:0">Ingresar información sin guión</p>
+                                    <input type="text " class="form-control " id="idFiscal "
+                                        placeholder="Ingrese la identificación fiscal "
+                                        oninput="javascript: if (this.value.length> this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        maxlength="13" formControlName="idFiscal" (keypress)="keyPressNumbers($event)">
+                                    <small
+                                        *ngIf="corporationForm.controls['idFiscal'].invalid && (corporationForm.controls['idFiscal'].dirty || corporationForm.controls['idFiscal'].touched)">
+                                        <small *ngIf="corporationForm.controls['idFiscal'].errors?.['required']" style="color: red;">
+                                            Debe ingresar la identificación fiscal.
+                                        </small>
+                                        <small *ngIf="corporationForm.controls['idFiscal'].errors?.['minlength']" style="color: red;">
+                                            Mínimo 10 caracteres.
+                                        </small>
+                                    </small>
+                                </div>
                                 <div class="form-group">
-                                    <label for="grupo">Nombre Comercial</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
-                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
-                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
-                                            Debe ingresar el Nombre Comercial
-                                        </small >
-                                    </small >
-                                </div> <br>
+                                    <label for="nombreComercial">Nombre Comercial</label>
+                                    <input type="text" class="form-control" id="nombreComercial"
+                                        placeholder="Ingrese el Nombre Comercial " formControlName="nombreComercial">
+                                    <small
+                                        *ngIf="corporationForm.controls['nombreComercial'].invalid && (corporationForm.controls['nombreComercial'].dirty || corporationForm.controls['nombreComercial'].touched)">
+                                        <small *ngIf="corporationForm.controls['nombreComercial'].errors?.['required']"
+                                            style="color: red;">
+                                            Debe ingresar el Nombre Comercial.
+                                        </small>
+                                    </small>
+                                </div>
                                 <div class="form-group">
-                                    <label for="grupo">ID Fiscal</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
-                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
-                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
-                                            Debe ingresar la Identificacion Fiscal
-                                        </small >
-                                    </small >
-                                </div><br>
-                                <div class="form-group">
-                                    <label for="grupo">Correo Electronico</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
-                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
-                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
-                                            Debe ingresar el Correo Electronico
-                                        </small >
-                                    </small >
-                                </div><br>
-                                <div class="form-group">
-                                    <label for="grupo">Telefono</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
-                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
-                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
-                                            Debe ingresar el telefono
-                                        </small >
-                                    </small >
-                                </div><br>
-                                <div class="form-group">
-                                    <label for="grupo">Paginacion</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Correo Electronico" formControlName="categoria">
-                                    <small *ngIf="categoryForm.controls['categoria'].invalid && (categoryForm.controls['categoria'].dirty || categoryForm.controls['categoria'].touched)">
-                                        <small  *ngIf="categoryForm.controls['categoria'].errors" style="color: red;">
-                                            Debe ingresar el correo electronico
-                                        </small >
-                                    </small >
-                                </div><br>
-                                <div align="center">
-                                    <button type="submit" class="btn btn-primary"><!--[disabled]="!this.groupForm.valid"-->
-                                        <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>
-                                        Guardar
-                                    </button>
-                                  </div>
-                               
-                            </form>            
+                                    <label for="correoElectronico">Correo Electrónico</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Ingrese su correo electrónico"
+                                        formControlName="correoElectronico">
+                                    <small
+                                        *ngIf="corporationForm.controls['correoElectronico'].invalid && (corporationForm.controls['correoElectronico'].dirty || corporationForm.controls['correoElectronico'].touched)">
+                                        <small *ngIf="corporationForm.controls['correoElectronico'].errors?.['required']"
+                                            style="color: red;">
+                                            Debe ingresar su correo electrónico.
+                                        </small>
+                                        <small *ngIf="corporationForm.controls['correoElectronico'].errors?.['email']"
+                                            style="color: red;">
+                                            Correo electrónico no valido.
+                                        </small>
+                                    </small>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="telefono ">Teléfono</label>
+                                    <input type="text " class="form-control " id="telefono "
+                                        placeholder="Ingrese el número de teléfono "
+                                        oninput="javascript: if (this.value.length> this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        maxlength="10" formControlName="telefono" (keypress)="keyPressNumbers($event)">
+                                    <small
+                                        *ngIf="corporationForm.controls['telefono'].invalid && (corporationForm.controls['telefono'].dirty || corporationForm.controls['telefono'].touched)">
+                                        <small *ngIf="corporationForm.controls['telefono'].errors?.['required']" style="color: red;">
+                                            Debe ingresar el número de teléfono.
+                                        </small>
+                                        <small *ngIf="corporationForm.controls['telefono'].errors?.['minlength']" style="color: red;">
+                                            Mínimo 9 caracteres.
+                                        </small>
+                                    </small>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <!--[disabled]="!this.corporationForm.valid"-->
+                                    <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>
+                                    Guardar
+                                </button>
+                            </form>   
                             <br>
                         </mat-card>
                 </div> 

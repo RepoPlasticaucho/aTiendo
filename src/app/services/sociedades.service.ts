@@ -12,7 +12,8 @@ const initCorporation: SociedadesEntity = {
   telefono: "",
   password: "",
   funcion: '',
-  idSociedad: ''
+  idSociedad: '',
+  razon_social: ''
 }
 
 @Injectable({
@@ -53,5 +54,8 @@ export class SociedadesService {
   }
   obtenerUsuario(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ObtenerUsuario`, sociedad);
+  }
+  obtenerUser(sociedad: SociedadesEntity): Observable<Sociedades> {
+    return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ObtenerUser`, sociedad);
   }
 }
