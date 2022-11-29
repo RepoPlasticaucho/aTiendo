@@ -48,7 +48,9 @@ export class SociedadesService {
   actualizarSociedad(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ModificarSociedad`, sociedad);
   }
-
+  actualSociedad(sociedad: SociedadesEntity): Observable<Sociedades> {
+    return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ActualizarSociedad`, sociedad);
+  }
   obtenerSociedadL(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ObtenerSociedad`, sociedad);
   }

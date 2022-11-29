@@ -72,6 +72,43 @@ export class UsuarioComponent implements OnInit {
 
   }
   onSubmit(): void {
+    if (!this.corporationForm.valid) {
+      this.corporationForm.markAllAsTouched();
+    }else{
+      const sociedadEntity: SociedadesEntity = {
+        idSociedad: JSON.parse(localStorage.getItem('sociedadid')||"[]"),
+        idGrupo: "",
+        id_fiscal: this.corporationForm.value!.idFiscal ?? "",
+        nombre_comercial: this.corporationForm.value!.nombreComercial ?? "",
+        email: this.corporationForm.value!.correoElectronico ?? "",
+        telefono: this.corporationForm.value!.telefono ?? "",
+        password: '',
+        funcion: '',
+        razon_social: this.corporationForm.value!.razonSocial ?? ""
+      };
+      //console.log(sociedadEntity);
+      this.httpService.actualSociedad(sociedadEntity).subscribe(res => {
+        if (res.codigoError == "OK") {
+          Swal.fire({
+            icon: 'success',
+            title: 'Actualizado Correctamente.',
+            text: `Se ha actualizado la información`,
+            showConfirmButton: true,
+            confirmButtonText: "Ok"
+          }).finally(() => {
+            this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['usuario'] } }]);
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          });
+        }
+      })
+
+    }
   }
 
   keyPressNumbers(event: any) {
