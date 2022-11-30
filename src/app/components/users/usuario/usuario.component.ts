@@ -27,7 +27,7 @@ export class UsuarioComponent implements OnInit {
   });
   encPass: string | undefined;
   codigo: any;
-
+  fun: any
   constructor( private readonly httpService: SociedadesService, private router: Router) { }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class UsuarioComponent implements OnInit {
       funcion: '',
       razon_social: ''
     }
-    console.log(sociedad);
+   // console.log(sociedad);
 
     this.httpService.obtenerUser(sociedad).subscribe(res => {
       if (res.codigoError != "OK") {
@@ -62,13 +62,23 @@ export class UsuarioComponent implements OnInit {
         this.corporationForm.get("correoElectronico")?.setValue(res.lstSociedades[0].email);
         this.corporationForm.get("telefono")?.setValue(res.lstSociedades[0].telefono);
       }
-      console.log(res);
+
+      this.fun = res.lstSociedades[0].funcion;
     })
   }
 
   onPass(): void{
     
-      this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['usuario-pass'] } }]);
+    switch (this.fun) {
+      case "admin":
+              this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['usuario-pass'] } }]);
+      break;
+
+      case "client":
+           this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['usuario-pass'] } }]);
+      break;
+
+    }
 
   }
   onSubmit(): void {
@@ -95,8 +105,6 @@ export class UsuarioComponent implements OnInit {
             text: `Se ha actualizado la información`,
             showConfirmButton: true,
             confirmButtonText: "Ok"
-          }).finally(() => {
-            this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['usuario'] } }]);
           });
         } else {
           Swal.fire({

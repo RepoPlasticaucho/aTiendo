@@ -36,16 +36,16 @@
                                     <input type="password" class="form-control" id="razonSocial"
                                         placeholder="Ingrese la contraseña Actual " formControlName="razonSocial">
                                     <small
-                                        *ngIf="corporationForm.controls['nombreComercial'].invalid && (corporationForm.controls['nombreComercial'].dirty || corporationForm.controls['nombreComercial'].touched)">
-                                        <small *ngIf="corporationForm.controls['nombreComercial'].errors?.['required']"
+                                        *ngIf="corporationForm.controls['razonSocial'].invalid && (corporationForm.controls['razonSocial'].dirty || corporationForm.controls['razonSocial'].touched)">
+                                        <small *ngIf="corporationForm.controls['razonSocial'].errors?.['required']"
                                             style="color: red;">
-                                            Debe ingresar la contraseña avtual
+                                            Debe ingresar la contraseña actual
                                         </small>
                                     </small>
                                 </div>
                               
                                 <div class="form-group">
-                                    <label for="nombreComercial">Nueva Contraseña</label>
+                                    <label for="passwnew">Nueva Contraseña</label>
                                     <input type="password" class="form-control" id="passwnew"
                                         placeholder="Ingrese la nueva contraseña " formControlName="nombreComercial2">
                                     <small
@@ -57,7 +57,7 @@
                                     </small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nombreComercial">Confirmacion de la Nueva Contraseña</label>
+                                    <label for="passconfirm">Confirmacion de la Nueva Contraseña</label>
                                     <input type="password" class="form-control" id="passconfirm"
                                         placeholder="Ingrese la nueva contraseña " formControlName="nombreComercial1">
                                     <small

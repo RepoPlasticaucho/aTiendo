@@ -106,6 +106,7 @@ const routes: Routes = [
       { path: "editarProductos", component: ProductosEditComponent, outlet: "contentAdmin" },
     ]
   },
+  
   {
     path: 'login-nav', component: LoginNavComponent,
     children: [
