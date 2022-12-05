@@ -86,6 +86,7 @@ import { InventariosProductosComponent } from './components/inventories/inventar
 import { UsuariosComponent } from './components/users/usuarios/usuarios.component';
 import { UsuarioPassComponent } from './components/users/usuario-pass/usuario-pass.component';
 import { UsuarioComponent } from './components/users/usuario/usuario.component';
+import { CatalogosComponent } from './components/inventories/catalogos/catalogos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -154,6 +155,7 @@ import { UsuarioComponent } from './components/users/usuario/usuario.component';
     UsuariosComponent,
     UsuarioPassComponent,
     UsuarioComponent,
+    CatalogosComponent,
     
   ],
   imports: [

@@ -50,7 +50,10 @@ export class CategoriasService {
   actualizarCategoria(categoria: CategoriasEntity): Observable<Categorias> {
     return this.http.post<Categorias>(`${environment.apiUrl}categorias/ModificarCategorias`, categoria);
   }
-
+  
+  obtenerCategoriaNombre(categoria: CategoriasEntity): Observable<Categorias> {
+    return this.http.post<Categorias>(`${environment.apiUrl}almacenes/ObtenerCategoriaNombre`, categoria );
+  }
   agregarCategoriaBDD=(categoria: CategoriasEntity) =>{
     categoria._id=new Date().toISOString();
     this.db.get(categoria._id)
@@ -64,4 +67,5 @@ export class CategoriasService {
       });
   }
 
+  
 }

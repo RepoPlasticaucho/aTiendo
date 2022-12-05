@@ -101,4 +101,7 @@ export class ProductosComponent implements OnInit {
     this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['crearProductos'] } }]);
   }
 
+  onMigrar(){
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['catalogos'] } }]);
+  }
 }

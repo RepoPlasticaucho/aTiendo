@@ -54,4 +54,5 @@ export { NavegationBoComponent} from "./navegation-bo/navegation-bo.component";
 export { InventariosAlmacenComponent} from "./inventories/inventarios-almacen/inventarios-almacen.component";
 export { InventariosProductosComponent} from "./inventories/inventarios-productos/inventarios-productos.component";
 export { UsuarioComponent} from "./users/usuario/usuario.component";
-export { UsuarioPassComponent} from "./users/usuario-pass/usuario-pass.component"
+export { UsuarioPassComponent} from "./users/usuario-pass/usuario-pass.component";
+export { CatalogosComponent} from "./inventories/catalogos/catalogos.component"
