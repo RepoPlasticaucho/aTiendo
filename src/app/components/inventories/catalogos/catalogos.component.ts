@@ -1,3 +1,4 @@
+import { ConstantPool } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEdit, faList, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -7,10 +8,12 @@ import { CatalogosEntity } from 'src/app/models/catalogos';
 import { CategoriasEntity } from 'src/app/models/categorias';
 import { ColorsEntity } from 'src/app/models/colors';
 import { GenerosEntity } from 'src/app/models/generos';
+import { LineasEntity } from 'src/app/models/lineas';
 import { MarcasEntity } from 'src/app/models/marcas';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { CategoriasService } from 'src/app/services/categorias.service';
 import Swal from 'sweetalert2';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-catalogos',
@@ -26,7 +29,8 @@ export class CatalogosComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   lstCatalogos: CatalogosEntity[] = [];
-  
+  variable : string | undefined;
+
   constructor(private readonly httpService: CatalogosService,
     private router: Router) { }
 
@@ -236,9 +240,71 @@ export class CatalogosComponent implements OnInit {
              } 
            });  
          });
-
-
       }
+
+      ///CARGA DE LINEAS
+      this.httpService.obtenerCatalogoLineas().subscribe(res =>{
+        if (res.codigoError != "OK") {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          }); 
+        } else {
+            res.lstCatalogos.forEach((value) => {
+              const linea : LineasEntity ={
+                linea: value.tipo,
+                etiquetas: '',
+                cod_sap: '',
+                almacen_id: '',
+                categoria_nombre : value.categoria
+              }
+              this.httpService.obtenerCatalogoLinea(linea).subscribe(res => {
+                  if (res.codigoError != "OK") {
+                    const categoria : CategoriasEntity={
+                      cod_sap: '',
+                      etiquetas: '',
+                      almacen_id: '',
+                      categoria: value.categoria
+                    }
+                    this.httpService.obtenerCategoriaNombre(categoria).subscribe(res=>{
+                      const lstCat = res.lstCategorias;
+
+                      lstCat.forEach((valor) => {
+                        const lineanew :LineasEntity={
+                          linea: value.tipo,
+                          etiquetas: '',
+                          cod_sap: '',
+                          almacen_id: '',
+                          categoria_id : valor.id
+                        }
+                        this.httpService.agregarLinea(lineanew).subscribe(res =>{
+                          if (res.codigoError == "OK") {
+                            console.log("carga de Lineas con exito ")
+                          }else{
+                            Swal.fire({
+                              icon: 'error',
+                              title: 'Ha ocurrido un error en la crecacion de las Lineas.',
+                              text: res.descripcionError,
+                              showConfirmButton: false,
+                            });
+                          }
+                        });
+                      });
+                      
+
+                    })
+                  } else {
+                    console.log("No hay Generos Nuevos");
+
+                  }
+              })
+            });          
+          } 
+      });
+
+      ///
     })
   }
 

@@ -60,7 +60,7 @@ export class LineasEditComponent implements OnInit {
         });
       } else {
         this.codigo = res.id ?? "";
-        this.lineForm.get("categoria")?.setValue(res.categoria_id);
+        this.lineForm.get("categoria")?.setValue(res.categoria_id!);
         this.lineForm.get("linea")?.setValue(res.linea);
         this.lineForm.get("etiquetas")?.setValue(res.etiquetas);
         this.lineForm.get("codigoSAP")?.setValue(res.cod_sap);

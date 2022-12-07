@@ -6,7 +6,7 @@ export interface Lineas {
 
 export interface LineasEntity {
     id?: string;
-    categoria_id: string;
+    categoria_id?: string;
     categoria_nombre?: string;
     linea: string;
     etiquetas: string;

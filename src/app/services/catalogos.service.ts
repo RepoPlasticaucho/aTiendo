@@ -7,6 +7,7 @@ import { Catalogos, CatalogosEntity } from '../models/catalogos';
 import { Categorias, CategoriasEntity } from '../models/categorias';
 import { Colors, ColorsEntity } from '../models/colors';
 import { Generos, GenerosEntity } from '../models/generos';
+import { Lineas, LineasEntity } from '../models/lineas';
 import { Marcas, MarcasEntity } from '../models/marcas';
 
 
@@ -92,5 +93,21 @@ export class CatalogosService {
 
   agregarGenero(genero: GenerosEntity): Observable<Generos> {
     return this.http.post<Generos>(`${environment.apiUrl}generos/InsertarGeneros`, genero);
+  }
+
+  //// INSERTAR LINEAS//////
+  obtenerCatalogoLineas(): Observable<Catalogos> {
+    return this.http.get<Catalogos>(`${environment.apiUrl}catalogos/ObtenerCatalogosLineas`);
+  }
+
+  obtenerCatalogoLinea(linea: LineasEntity): Observable<Lineas> {
+    return this.http.post<Lineas>(`${environment.apiUrl}lineas/ObtenerCatalogoLineas`, linea);
+  }
+
+  obtenerCategoriaNombre(categoria: CategoriasEntity): Observable<Categorias> {
+    return this.http.post<Categorias>(`${environment.apiUrl}categorias/ObtenerCategoriaNombre`, categoria );
+  }
+  agregarLinea(linea: LineasEntity): Observable<Lineas> {
+    return this.http.post<Lineas>(`${environment.apiUrl}lineas/InsertarLineas`, linea);
   }
 }
