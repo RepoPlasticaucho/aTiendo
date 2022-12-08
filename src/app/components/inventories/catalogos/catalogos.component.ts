@@ -2,6 +2,7 @@ import { ConstantPool } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEdit, faList, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { Console } from 'console';
 import { Subject } from 'rxjs';
 import { AtributosEntity } from 'src/app/models/atributos';
 import { CatalogosEntity } from 'src/app/models/catalogos';
@@ -10,6 +11,7 @@ import { ColorsEntity } from 'src/app/models/colors';
 import { GenerosEntity } from 'src/app/models/generos';
 import { LineasEntity } from 'src/app/models/lineas';
 import { MarcasEntity } from 'src/app/models/marcas';
+import { ModelosEntity } from 'src/app/models/modelos';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { CategoriasService } from 'src/app/services/categorias.service';
 import Swal from 'sweetalert2';
@@ -292,12 +294,93 @@ export class CatalogosComponent implements OnInit {
                           }
                         });
                       });
-                      
-
                     })
                   } else {
-                    console.log("No hay Generos Nuevos");
+                    console.log("No hay Lineas Nuevas");
+                  }
+              })
+            });          
+          } 
+      });
 
+      ///// FUNCION PARA CARGAR MODELOS
+      this.httpService.obtenerCatalogoModelos().subscribe(res =>{
+        if (res.codigoError != "OK") {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          }); 
+        } else {
+            res.lstCatalogos.forEach((value) => {
+              const modelo : ModelosEntity={
+                linea_id: '',
+                linea_nombre: value.tipo,
+                modelo: value.producto,
+                etiquetas: '',
+                cod_sap: ''
+              }
+              //  console.log(modelo);
+              
+              this.httpService.obtenerCatalogoModelo(modelo).subscribe(res => {
+                  if (res.codigoError != "OK") {
+
+                    const linea : LineasEntity ={
+                      linea: value.tipo,
+                      etiquetas: '',
+                      cod_sap: '',
+                      almacen_id: '',
+                      categoria_nombre :value.categoria
+                    }
+                   // console.log(linea);
+                   this.httpService.obtenerLineaNombre(linea).subscribe(res=>{
+                      const lstLin = res.lstLineas; 
+                      lstLin.forEach((valor) => {
+                        const modelonew :ModelosEntity={
+                          linea_id: valor.id!,
+                          modelo: value.producto,
+                          etiquetas: value.producto,
+                          cod_sap: value.linea_producto_id
+                        }
+                      //  console.log(modelonew);
+                        this.httpService.agregarModelo(modelonew).subscribe(res =>{
+                          if (res.codigoError == "OK") {
+                            console.log("carga de Modelos con exito ")
+                          }else{
+                            Swal.fire({
+                              icon: 'error',
+                              title: 'Ha ocurrido un error en la crecacion de los Modelos.',
+                              text: res.descripcionError,
+                              showConfirmButton: false,
+                            });
+                          }
+                        })
+                      });
+                   })
+                  } else {
+                   // console.log(res.lstModelos);
+                    res.lstModelos.forEach((val) => {
+                      const modelonew :ModelosEntity={
+                        linea_id: val.linea_id,
+                        modelo: val.modelo,
+                        etiquetas: val.etiquetas,
+                        cod_sap: value.linea_producto_id,
+                        id:val.id
+                      }
+                      this.httpService.actualizarModelo(modelonew).subscribe(res =>{
+                          if (res.codigoError == "OK") {
+                            console.log(" Actualizacion de Modelos con exito ")
+                          }else{
+                            Swal.fire({
+                              icon: 'error',
+                              title: 'Ha ocurrido un error en la crecacion de los Modelos.',
+                              text: res.descripcionError,
+                              showConfirmButton: false,
+                            });
+                          }
+                        })
+                    });
                   }
               })
             });          
@@ -307,5 +390,4 @@ export class CatalogosComponent implements OnInit {
       ///
     })
   }
-
 }

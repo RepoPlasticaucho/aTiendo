@@ -9,6 +9,7 @@ import { Colors, ColorsEntity } from '../models/colors';
 import { Generos, GenerosEntity } from '../models/generos';
 import { Lineas, LineasEntity } from '../models/lineas';
 import { Marcas, MarcasEntity } from '../models/marcas';
+import { Modelos, ModelosEntity } from '../models/modelos';
 
 
 const initGruop: CatalogosEntity = {
@@ -107,7 +108,29 @@ export class CatalogosService {
   obtenerCategoriaNombre(categoria: CategoriasEntity): Observable<Categorias> {
     return this.http.post<Categorias>(`${environment.apiUrl}categorias/ObtenerCategoriaNombre`, categoria );
   }
+
   agregarLinea(linea: LineasEntity): Observable<Lineas> {
     return this.http.post<Lineas>(`${environment.apiUrl}lineas/InsertarLineas`, linea);
+  }
+
+  //// INSERTAR MODELOS
+
+  obtenerCatalogoModelos(): Observable<Catalogos> {
+    return this.http.get<Catalogos>(`${environment.apiUrl}catalogos/ObtenerCatalogosModelos`);
+  }
+
+  obtenerCatalogoModelo(modelo: ModelosEntity): Observable<Modelos> {
+    return this.http.post<Modelos>(`${environment.apiUrl}modelos/ObtenerCatalogoModelo`, modelo);
+  }
+
+  obtenerLineaNombre(linea: LineasEntity): Observable<Lineas> {
+    return this.http.post<Lineas>(`${environment.apiUrl}lineas/ObtenerLineasNombre`, linea );
+  }
+
+  agregarModelo(modelo: ModelosEntity): Observable<Modelos> {
+    return this.http.post<Modelos>(`${environment.apiUrl}modelos/InsertarModelos`, modelo);
+  }
+  actualizarModelo(modelo: ModelosEntity): Observable<Modelos> {
+    return this.http.post<Modelos>(`${environment.apiUrl}modelos/ModificarModelos`, modelo);
   }
 }
