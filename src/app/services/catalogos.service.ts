@@ -9,7 +9,9 @@ import { Colors, ColorsEntity } from '../models/colors';
 import { Generos, GenerosEntity } from '../models/generos';
 import { Lineas, LineasEntity } from '../models/lineas';
 import { Marcas, MarcasEntity } from '../models/marcas';
+import { ModeloProductos, ModeloProductosEntity } from '../models/modeloproductos';
 import { Modelos, ModelosEntity } from '../models/modelos';
+import { ProducAdmEntity, ProductAdm } from '../models/productadm';
 
 
 const initGruop: CatalogosEntity = {
@@ -113,7 +115,7 @@ export class CatalogosService {
     return this.http.post<Lineas>(`${environment.apiUrl}lineas/InsertarLineas`, linea);
   }
 
-  //// INSERTAR MODELOS
+  //// INSERTAR ACTUALIZAR Y OBTENER MODELOS
 
   obtenerCatalogoModelos(): Observable<Catalogos> {
     return this.http.get<Catalogos>(`${environment.apiUrl}catalogos/ObtenerCatalogosModelos`);
@@ -132,5 +134,39 @@ export class CatalogosService {
   }
   actualizarModelo(modelo: ModelosEntity): Observable<Modelos> {
     return this.http.post<Modelos>(`${environment.apiUrl}modelos/ModificarModelos`, modelo);
+  }
+
+  /// INSERTAR ACTUALIZAR Y OBTENER MODELOS PRODUCTOS
+  
+  obtenerCatalogoModeloProductos(): Observable<Catalogos> {
+    return this.http.get<Catalogos>(`${environment.apiUrl}catalogos/ObtenerCatalogosModelosProductos`);
+  }
+
+  ///CARGAR MODELOS PRODUCTOS
+  obtenerCatalogoModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
+    return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/ObtenerCatalogoModeloProductos`, modeloProducto);
+  }
+  obtenerModeloNombre(modelo: ModelosEntity): Observable<Modelos> {
+    return this.http.post<Modelos>(`${environment.apiUrl}modelos/ObtenerModelosNombre`, modelo);
+  }
+  agregarModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
+    return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/InsertarModeloProductos`, modeloProducto);
+  }
+
+  //CARGAR SKUS
+  obtenerCatalogoProductos(): Observable<Catalogos> {
+    return this.http.get<Catalogos>(`${environment.apiUrl}catalogos/ObtenerCatalogosProductos`);
+  }
+
+  obtenerCatalogoProducto(producto : ProducAdmEntity): Observable<ProductAdm> {
+    return this.http.post<ProductAdm>(`${environment.apiUrl}productos/ObtenerCatalogosProductos`,producto);
+  }
+
+  obtenerModeloProductosNombre(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
+    return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/ObtenerModeloProductosNombre`, modeloProducto);
+  }
+
+  agregarProducto(producto: ProducAdmEntity): Observable<ProductAdm> {
+    return this.http.post<ProductAdm>(`${environment.apiUrl}productos/InsertarProductos`, producto);
   }
 }

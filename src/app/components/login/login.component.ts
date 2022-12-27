@@ -50,6 +50,9 @@ export class LoginComponent {
         idSociedad: '',
         razon_social: ''
       }
+
+      console.log(userEntity);
+      
       this.httpService.obtenerUsuario(userEntity).subscribe(res => {
         if (res.codigoError == "OK") {
 

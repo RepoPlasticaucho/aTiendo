@@ -19,4 +19,5 @@ export interface ModeloProductosEntity {
     modelo_producto: string;
     cod_sap: string;
     cod_familia?: string;
+    etiquetas?: string;
 }
