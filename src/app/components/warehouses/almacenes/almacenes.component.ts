@@ -59,7 +59,7 @@ export class AlmacenesComponent implements OnInit, OnDestroy {
   eliminarAlmacenes(almacen: AlmacenesEntity): void {
     Swal.fire({
       icon: 'question',
-      title: `¿Esta seguro de eliminar ${almacen.direccion}?`,
+      title: `¿Esta seguro de eliminar ${almacen.nombresociedad}?`,
       showDenyButton: true,
       confirmButtonText: 'Si',
       denyButtonText: 'No',
@@ -70,7 +70,7 @@ export class AlmacenesComponent implements OnInit, OnDestroy {
             Swal.fire({
               icon: 'success',
               title: 'Eliminado Exitosamente.',
-              text: `Se ha eliminado el grupo ${almacen.direccion}`,
+              text: `Se ha eliminado el grupo ${almacen.nombresociedad}`,
               showConfirmButton: true,
               confirmButtonText: "Ok"
             }).then(() => {

@@ -55,42 +55,43 @@ export class ProductosComponent implements OnInit {
   }
 
   editarProducto(producto: ProducAdmEntity): void {
-    // this.httpService.asignarModeloProducto(modeloProducto);
-    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['editarProductos'] } }]);
+     this.httpService.asignarProducto(producto);
+    // console.log(producto);
+      this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['editarProductos'] } }]);
   }
 
   eliminarProducto(producto: ProducAdmEntity): void {
-    // Swal.fire({
-    //   icon: 'question',
-    //   title: `¿Esta seguro de eliminar ${modeloProducto.modelo_producto}?`,
-    //   showDenyButton: true,
-    //   confirmButtonText: 'Si',
-    //   denyButtonText: 'No',
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     this.httpService.eliminarModeloProducto(modeloProducto).subscribe(res => {
-    //       if (res.codigoError == 'OK') {
-    //         Swal.fire({
-    //           icon: 'success',
-    //           title: 'Eliminado Exitosamente.',
-    //           text: `Se ha eliminado el Modelo-Producto ${modeloProducto.modelo_producto}`,
-    //           showConfirmButton: true,
-    //           confirmButtonText: "Ok"
-    //         }).then(() => {
-    //           // this.groupForm.reset();
-    //           window.location.reload();
-    //         });
-    //       } else {
-    //         Swal.fire({
-    //           icon: 'error',
-    //           title: 'Ha ocurrido un error.',
-    //           text: res.descripcionError,
-    //           showConfirmButton: false,
-    //         });
-    //       }
-    //     })
-    //   }
-    // })
+     Swal.fire({
+       icon: 'question',
+       title: `¿Esta seguro de eliminar ${producto.nombre}?`,
+       showDenyButton: true,
+       confirmButtonText: 'Si',
+       denyButtonText: 'No',
+     }).then((result) => {
+       if (result.isConfirmed) {
+         this.httpService.eliminarProducto(producto).subscribe(res => {
+           if (res.codigoError == 'OK') {
+             Swal.fire({
+               icon: 'success',
+               title: 'Eliminado Exitosamente.',
+               text: `Se ha eliminado el Modelo-Producto ${producto.nombre}`,
+               showConfirmButton: true,
+               confirmButtonText: "Ok"
+             }).then(() => {
+               // this.groupForm.reset();
+               window.location.reload();
+             });
+           } else {
+             Swal.fire({
+               icon: 'error',
+               title: 'Ha ocurrido un error.',
+               text: res.descripcionError,
+               showConfirmButton: false,
+             });
+           }
+          })
+       }
+     })
   }
 
   ngOnDestroy(): void {
