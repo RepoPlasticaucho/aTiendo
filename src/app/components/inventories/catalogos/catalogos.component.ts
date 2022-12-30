@@ -365,7 +365,7 @@ export class CatalogosComponent implements OnInit {
                  })
                 } else {
                   console.log("No hay Modelos nuevos")
-                 /* console.log(res.lstModelos);
+                  console.log(res.lstModelos);
                   res.lstModelos.forEach((val) => {
                     const modelonew :ModelosEntity={
                       linea_id: val.linea_id,
@@ -387,7 +387,7 @@ export class CatalogosComponent implements OnInit {
                           });
                         }
                       })
-                  });*/
+                  });
                 }
             })
           });          
@@ -499,8 +499,13 @@ export class CatalogosComponent implements OnInit {
                           }
                           this.httpService.agregarModeloProducto(modelo_productonew).subscribe(res=>{
                             if (res.codigoError == "OK") {
-                              console.log("carga de Modelos Productos con exito ")
-                            }else{
+                              Swal.fire({
+                                icon: 'success',
+                                title: 'Guardado Exitosamente.',
+                                text: `Se ha creado los Productos`,
+                                showConfirmButton: true,
+                                confirmButtonText: "Ok"
+                              });                            }else{
                               Swal.fire({
                                 icon: 'error',
                                 title: 'Ha ocurrido un error en la crecacion de los Modelos Productos.',
