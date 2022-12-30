@@ -28,21 +28,16 @@ export class MarcasService {
   asignarMarca(marca: MarcasEntity) {
     this.marca$.next(marca);
   }
-
   obtenerMarcas(): Observable<Marcas> {
     return this.http.get<Marcas>(`${environment.apiUrl}marcas/ObtenerMarcas`);
   }
-
   agregarMarca(marca: MarcasEntity): Observable<Marcas> {
     return this.http.post<Marcas>(`${environment.apiUrl}marcas/InsertarMarcas`, marca);
   }
-
   actualizarMarca(marca: MarcasEntity): Observable<Marcas> {
     return this.http.post<Marcas>(`${environment.apiUrl}marcas/ModificarMarcas`, marca);
   }
-
   eliminarMarca(marca: MarcasEntity): Observable<Marcas> {
     return this.http.post<Marcas>(`${environment.apiUrl}marcas/EliminarMarcas`, marca);
   }
-
 }

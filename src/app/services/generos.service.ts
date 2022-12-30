@@ -30,15 +30,12 @@ export class GenerosService {
   obtenerGeneros(): Observable<Generos> {
     return this.http.get<Generos>(`${environment.apiUrl}generos/ObtenerGeneros`);
   }
-
   agregarGenero(genero: GenerosEntity): Observable<Generos> {
     return this.http.post<Generos>(`${environment.apiUrl}generos/InsertarGeneros`, genero);
   }
-
   actualizarGenero(genero: GenerosEntity): Observable<Generos> {
     return this.http.post<Generos>(`${environment.apiUrl}generos/ModificarGeneros`, genero);
   }
-
   eliminarGenero(genero: GenerosEntity): Observable<Generos> {
     return this.http.post<Generos>(`${environment.apiUrl}generos/EliminarGeneros`, genero);
   }

@@ -26,25 +26,19 @@ export class LineasService {
   get obtenerlinea$(): Observable<LineasEntity> {
     return this.line$.asObservable();
   }
-
   asignarLinea(linea: LineasEntity) {
     this.line$.next(linea);
   }
-
   obtenerLineas(): Observable<Lineas> {
     return this.http.get<Lineas>(`${environment.apiUrl}lineas/ObtenerLineas`);
   }
-
   agregarLinea(linea: LineasEntity): Observable<Lineas> {
     return this.http.post<Lineas>(`${environment.apiUrl}lineas/InsertarLineas`, linea);
   }
-
   actualizarLinea(linea: LineasEntity): Observable<Lineas> {
     return this.http.post<Lineas>(`${environment.apiUrl}lineas/ModificarLineas`, linea);
   }
-
   eliminarLinea(linea: LineasEntity): Observable<Lineas> {
     return this.http.post<Lineas>(`${environment.apiUrl}lineas/EliminarLineas`, linea);
   }
-
 }

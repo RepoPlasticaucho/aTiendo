@@ -38,19 +38,15 @@ export class ModeloproductosService {
     this.modelProduct$ = new BehaviorSubject<ModeloProductosEntity>(initModelProduct);
     this.modelProduct$.next(modeloProducto);
   }
-
   obtenerModelosProductos(): Observable<ModeloProductos> {
     return this.http.get<ModeloProductos>(`${environment.apiUrl}modeloProducto/ObtenerModeloProductos`);
   }
-
   agregarModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
     return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/InsertarModeloProductos`, modeloProducto);
   }
-
   actualizarModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
     return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/ModificarModeloProductos`, modeloProducto);
   }
-
   eliminarModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
     return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/EliminarModeloProductos`, modeloProducto);
   }

@@ -30,27 +30,21 @@ export class CategoriasService {
   get obtenercategoria$(): Observable<CategoriasEntity> {
     return this.category$.asObservable();
   }
-
   asignarCategoria(categoria: CategoriasEntity) {
     this.category$.next(categoria);
   }
-
   obtenerCategorias(): Observable<Categorias> {
     return this.http.get<Categorias>(`${environment.apiUrl}categorias/ObtenerCategorias`);
   }
-
   agregarCategoria(categoria: CategoriasEntity): Observable<Categorias> {
     return this.http.post<Categorias>(`${environment.apiUrl}categorias/InsertarCategorias`, categoria);
   }
-
   eliminarCategoria(categoria: CategoriasEntity): Observable<Categorias> {
     return this.http.post<Categorias>(`${environment.apiUrl}categorias/EliminarCategorias`, categoria);
   }
-
   actualizarCategoria(categoria: CategoriasEntity): Observable<Categorias> {
     return this.http.post<Categorias>(`${environment.apiUrl}categorias/ModificarCategorias`, categoria);
   }
-  
   obtenerCategoriaNombre(categoria: CategoriasEntity): Observable<Categorias> {
     return this.http.post<Categorias>(`${environment.apiUrl}almacenes/ObtenerCategoriaNombre`, categoria );
   }

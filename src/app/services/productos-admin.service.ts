@@ -36,24 +36,19 @@ export class ProductosAdminService {
   get obtenerproducto$(): Observable<ProducAdmEntity> {
     return this.modelProduct$.asObservable();
   }
-
   asignarProducto(producto: ProducAdmEntity) {
     this.modelProduct$ = new BehaviorSubject<ProducAdmEntity>(initProduct);
     this.modelProduct$.next(producto);
   }
-
   obtenerProductos(): Observable<ProductAdm> {
     return this.http.get<ProductAdm>(`${environment.apiUrl}productos/ObtenerProductos`);
   }
-
   agregarProducto(producto: ProducAdmEntity): Observable<ProductAdm> {
     return this.http.post<ProductAdm>(`${environment.apiUrl}productos/InsertarProductos`, producto);
   }
-
   eliminarProducto(producto: ProducAdmEntity): Observable<ProductAdm> {
     return this.http.post<ProductAdm>(`${environment.apiUrl}modeloProducto/EliminarModeloProductos`, producto);
   }
-
   actualizarProducto(producto: ProducAdmEntity): Observable<ProductAdm> {
     return this.http.post<ProductAdm>(`${environment.apiUrl}modeloProducto/ModificarModeloProductos`, producto);
   }

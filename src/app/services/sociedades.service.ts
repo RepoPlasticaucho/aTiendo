@@ -32,30 +32,24 @@ export class SociedadesService {
   asignarSociedad(sociedad: SociedadesEntity) {
     this.sociedad$.next(sociedad);
   }
-
   agregarSociedad(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/InsertarSociedad`, sociedad);
   }
-
   obtenerSociedades(): Observable<Sociedades> {
     return this.http.get<Sociedades>(`${environment.apiUrl}sociedades/ObtenerSociedades`);
   }
-
   eliminarSociedad(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/EliminarSociedad`, sociedad);
   }
-
   actualizarSociedad(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ModificarSociedad`, sociedad);
   }
   actualSociedad(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ActualizarSociedad`, sociedad);
   }
-
   actualizarPass(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ActualizarPass`, sociedad);
   }
-
   obtenerSociedadL(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ObtenerSociedad`, sociedad);
   }

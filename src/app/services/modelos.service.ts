@@ -26,25 +26,19 @@ export class ModelosService {
   get obtenermodelo$(): Observable<ModelosEntity> {
     return this.model$.asObservable();
   }
-
   asignarModelo(modelo: ModelosEntity) {
     this.model$.next(modelo);
   }
-
   obtenerModelos(): Observable<Modelos> {
     return this.http.get<Modelos>(`${environment.apiUrl}modelos/ObtenerModelos`);
   }
-
   agregarModelo(modelo: ModelosEntity): Observable<Modelos> {
     return this.http.post<Modelos>(`${environment.apiUrl}modelos/InsertarModelos`, modelo);
   }
-
   actualizarModelo(modelo: ModelosEntity): Observable<Modelos> {
     return this.http.post<Modelos>(`${environment.apiUrl}modelos/ModificarModelos`, modelo);
   }
-
   eliminarModelo(modelo: ModelosEntity): Observable<Modelos> {
     return this.http.post<Modelos>(`${environment.apiUrl}modelos/EliminarModelos`, modelo);
   }
-
 }
