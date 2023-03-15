@@ -41,7 +41,8 @@ export class DashboardClComponent {
         { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-almacen)"},
         { title: 'Pedido Sugerido', cols: 1, rows: 1, name: "las productos", figure: "widgets", dir: "navegation-cl/(contentClient:pedido-sugeridos)"},
         { title: 'Movimientos', cols: 1, rows: 1, name: "los productos", figure: "monitor" },
-        { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city", dir: "navegation-cl/(contentClient:almacenes)" }
+        { title: 'Almacenes', cols: 1, rows: 1, name: "los almacenes", figure: "location_city", dir: "navegation-cl/(contentClient:almacenes)" },
+        { title: 'Usuarios', cols: 1, rows: 1, name: "los usuarios", figure: "person", dir: "navegation-cl/(contentClient:terceros)" }
       ];
     })
   );

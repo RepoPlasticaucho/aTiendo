@@ -87,6 +87,8 @@ import { UsuariosComponent } from './components/users/usuarios/usuarios.componen
 import { UsuarioPassComponent } from './components/users/usuario-pass/usuario-pass.component';
 import { UsuarioComponent } from './components/users/usuario/usuario.component';
 import { CatalogosComponent } from './components/inventories/catalogos/catalogos.component';
+import { TercerosComponent } from './components/users/terceros/terceros.component';
+import { TercerosCreateComponent } from './components/users/terceros-create/terceros-create.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -156,6 +158,8 @@ import { CatalogosComponent } from './components/inventories/catalogos/catalogos
     UsuarioPassComponent,
     UsuarioComponent,
     CatalogosComponent,
+    TercerosComponent,
+    TercerosCreateComponent,
     
   ],
   imports: [
