@@ -89,6 +89,8 @@ import { UsuarioComponent } from './components/users/usuario/usuario.component';
 import { CatalogosComponent } from './components/inventories/catalogos/catalogos.component';
 import { TercerosComponent } from './components/users/terceros/terceros.component';
 import { TercerosCreateComponent } from './components/users/terceros-create/terceros-create.component';
+import { TercerosalmacenComponent } from './components/users/tercerosalmacen/tercerosalmacen.component';
+import { TercerosusuariosComponent } from './components/users/tercerosusuarios/tercerosusuarios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,6 +162,8 @@ import { TercerosCreateComponent } from './components/users/terceros-create/terc
     CatalogosComponent,
     TercerosComponent,
     TercerosCreateComponent,
+    TercerosalmacenComponent,
+    TercerosusuariosComponent,
     
   ],
   imports: [

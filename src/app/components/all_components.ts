@@ -57,4 +57,6 @@ export { UsuarioComponent} from "./users/usuario/usuario.component";
 export { UsuarioPassComponent} from "./users/usuario-pass/usuario-pass.component";
 export { CatalogosComponent} from "./inventories/catalogos/catalogos.component";
 export { TercerosComponent} from "./users/terceros/terceros.component";
-export {TercerosCreateComponent} from "./users/terceros-create/terceros-create.component"
+export { TercerosCreateComponent} from "./users/terceros-create/terceros-create.component";
+export { TercerosalmacenComponent} from "./users/tercerosalmacen/tercerosalmacen.component";
+export { TercerosusuariosComponent} from "./users/tercerosusuarios/tercerosusuarios.component"
