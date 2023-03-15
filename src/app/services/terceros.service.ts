@@ -48,17 +48,17 @@ export class TercerosService {
   obtenerTerceros(tercero: TercerosEntity): Observable<Terceros> {
     return this.http.post<Terceros>(`${environment.apiUrl}terceros/ObtenerTerceros`, tercero );
   }
-  /*
-  agregarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/InsertarAlmacen`, almacen);
+  
+  agregarTerceros(tercero: TercerosEntity): Observable<Terceros> {
+    return this.http.post<Terceros>(`${environment.apiUrl}terceros/InsertarTerceros`, tercero);
   }
 
-  eliminarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/EliminarAlmacen`, almacen);
+  eliminarTerceros(tercero: TercerosEntity): Observable<Terceros> {
+    return this.http.post<Terceros>(`${environment.apiUrl}terceros/EliminarTerceros`, tercero);
   }
 
-  actualizarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
-    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ModificarAlmacen`, almacen);
+  actualizarTerceros(tercero: TercerosEntity): Observable<Terceros> {
+    return this.http.post<Terceros>(`${environment.apiUrl}almacenes/ModificarAlmacen`, tercero);
   }
-  */
+  
 }
