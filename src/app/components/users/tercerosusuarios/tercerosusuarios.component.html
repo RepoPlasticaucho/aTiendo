@@ -43,7 +43,9 @@
                         <th style="width: 20%; ">Correo Electronico</th>
                         <th style="width: 20%; ">Direccion</th>
                         <th style="width: 20%; ">Fecha de Nacimiento</th>
-                        <th style="width: 60%; ">Opciones</th>
+                        <th style="width: 60%; "></th>
+                        <th style="width: 60%; "></th>
+
                     </tr>
                 </thead>
                 <tbody style="color: #767695;">
@@ -58,6 +60,8 @@
                         <td>{{tercero.fecha_nac}}</td>
                         <td style="text-align: center;">
                             <fa-icon [icon]="faEdit" class="btn btn-info" [size]="'lg'" style="margin-right: 5px;" data-placement="bottom" title="Editar Usuario" (click)="editarTercero(tercero)"></fa-icon>
+                        </td>
+                        <td style="text-align: center;">
                             <fa-icon [icon]="faTrashAlt" class="btn btn-danger" [size]="'lg'" data-placement="bottom" title="Eliminar Usuario" (click)="eliminarTercero(tercero)"></fa-icon>
                         </td>
                     </tr>

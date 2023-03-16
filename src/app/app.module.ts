@@ -91,6 +91,9 @@ import { TercerosComponent } from './components/users/terceros/terceros.componen
 import { TercerosCreateComponent } from './components/users/terceros-create/terceros-create.component';
 import { TercerosalmacenComponent } from './components/users/tercerosalmacen/tercerosalmacen.component';
 import { TercerosusuariosComponent } from './components/users/tercerosusuarios/tercerosusuarios.component';
+import { TercerosusuariosCreateComponent } from './components/users/tercerosusuarios-create/tercerosusuarios-create.component';
+import { TercerosusuariosEditComponent } from './components/users/tercerosusuarios-edit/tercerosusuarios-edit.component';
+import { TercerosEditComponent } from './components/users/terceros-edit/terceros-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -164,6 +167,9 @@ import { TercerosusuariosComponent } from './components/users/tercerosusuarios/t
     TercerosCreateComponent,
     TercerosalmacenComponent,
     TercerosusuariosComponent,
+    TercerosusuariosCreateComponent,
+    TercerosusuariosEditComponent,
+    TercerosEditComponent,
     
   ],
   imports: [

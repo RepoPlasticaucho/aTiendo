@@ -59,4 +59,5 @@ export { CatalogosComponent} from "./inventories/catalogos/catalogos.component";
 export { TercerosComponent} from "./users/terceros/terceros.component";
 export { TercerosCreateComponent} from "./users/terceros-create/terceros-create.component";
 export { TercerosalmacenComponent} from "./users/tercerosalmacen/tercerosalmacen.component";
-export { TercerosusuariosComponent} from "./users/tercerosusuarios/tercerosusuarios.component"
+export { TercerosusuariosComponent} from "./users/tercerosusuarios/tercerosusuarios.component";
+export { TercerosusuariosCreateComponent} from "./users/tercerosusuarios-create/tercerosusuarios-create.component";

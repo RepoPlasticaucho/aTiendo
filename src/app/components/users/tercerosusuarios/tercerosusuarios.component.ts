@@ -118,6 +118,6 @@ export class TercerosusuariosComponent implements OnInit {
   }
 
   agregarTerceros() {
-    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['terceros-create'] } }]);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['tercerosusuarios-create'] } }]);
   }
 }
