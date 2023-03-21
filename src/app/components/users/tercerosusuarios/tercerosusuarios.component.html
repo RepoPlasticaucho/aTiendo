@@ -41,10 +41,12 @@
                         <th style="width: 20%; ">Identificacion</th>
                         <th style="width: 20%; ">Nombres</th>
                         <th style="width: 20%; ">Correo Electronico</th>
+                        <th style="width: 20%; ">Provincia</th>
+                        <th style="width: 20%; ">Ciudad</th>
                         <th style="width: 20%; ">Direccion</th>
                         <th style="width: 20%; ">Fecha de Nacimiento</th>
-                        <th style="width: 60%; "></th>
-                        <th style="width: 60%; "></th>
+                        <th style="width: 20%; "></th>
+                        <th style="width: 20%; "></th>
 
                     </tr>
                 </thead>
@@ -56,12 +58,13 @@
                         <td>{{tercero.id_fiscal}}</td>
                         <td>{{tercero.nombre}}</td>
                         <td>{{tercero.correo}}</td>
+                        <td>{{tercero.provincia}}</td>
+                        <td>{{tercero.ciudad}}</td>
                         <td>{{tercero.direccion}}</td>
                         <td>{{tercero.fecha_nac}}</td>
                         <td style="text-align: center;">
                             <fa-icon [icon]="faEdit" class="btn btn-info" [size]="'lg'" style="margin-right: 5px;" data-placement="bottom" title="Editar Usuario" (click)="editarTercero(tercero)"></fa-icon>
-                        </td>
-                        <td style="text-align: center;">
+                            &nbsp; &nbsp;  
                             <fa-icon [icon]="faTrashAlt" class="btn btn-danger" [size]="'lg'" data-placement="bottom" title="Eliminar Usuario" (click)="eliminarTercero(tercero)"></fa-icon>
                         </td>
                     </tr>

@@ -41,7 +41,7 @@ export class TercerosusuariosComponent implements OnInit {
 
     const tercero : TercerosEntity = {
       id: '',
-      almacen_id: JSON.parse(localStorage.getItem('almacenid')||"[]"),
+      almacen_id: JSON.parse(localStorage.getItem('almacenid') || "[]"),
       sociedad_id: JSON.parse(localStorage.getItem('sociedadid') || "[]"),
       tipotercero_id: '',
       tipousuario_id: '',
@@ -54,7 +54,10 @@ export class TercerosusuariosComponent implements OnInit {
       direccion: '',
       telefono: '',
       correo: '',
-      fecha_nac: ''
+      fecha_nac: '',
+      ciudad: '',
+      provincia: '',
+      ciudadid: ''
     }
     this.httpService.obtenerTerceros(tercero).subscribe(res => {
       if (res.codigoError != "OK") {

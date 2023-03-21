@@ -7,21 +7,24 @@ import { AlmacenesEntity } from '../models/almacenes';
 import { SociedadesEntity } from '../models/sociedades';
 
 const initGruop: TercerosEntity = {
-  id : "",
-  almacen_id : "",
-  sociedad_id : "",
-  tipotercero_id : "",
-  tipousuario_id : "",
+  id: "",
+  almacen_id: "",
+  sociedad_id: "",
+  tipotercero_id: "",
+  tipousuario_id: "",
   nombresociedad: "",
   nombrealmacen: "",
   nombretercero: "",
   tipousuario: "",
   nombre: "",
   id_fiscal: "",
-  direccion : "",
-  telefono : "",
-  correo : "",
-  fecha_nac : "",
+  direccion: "",
+  telefono: "",
+  correo: "",
+  fecha_nac: "",
+  ciudad: '',
+  provincia: '',
+  ciudadid: ''
 }
 
 @Injectable({

@@ -20,4 +20,7 @@ export interface TercerosEntity {
     telefono : string;
     correo : string;
     fecha_nac : string;
+    ciudad : string;
+    provincia:string;
+    ciudadid: string;
 }
