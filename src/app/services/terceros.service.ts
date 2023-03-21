@@ -53,7 +53,7 @@ export class TercerosService {
   }
   
   agregarTerceros(tercero: TercerosEntity): Observable<Terceros> {
-    return this.http.post<Terceros>(`${environment.apiUrl}terceros/InsertarTerceros`, tercero);
+    return this.http.post<Terceros>(`${environment.apiUrl}terceros/InsertarTercero`, tercero);
   }
 
   eliminarTerceros(tercero: TercerosEntity): Observable<Terceros> {

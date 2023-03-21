@@ -1,1 +1,69 @@
-<p>tercerosusuarios-create works!</p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row mx-3">
+                <fa-icon [icon]="faUserFriends" [size]="'3x'" style="color: #636363;"></fa-icon>
+                <h1 class="mx-5 " style="color: #636363;">Agregar Usuario</h1>
+                <div style="position: absolute;right:0;" class="mx-3">
+                    <fa-icon [icon]="faTimes" class="btn btn-danger" [size]="'lg'" data-toggle="tooltip"
+                        data-placement="bottom" title="Regresar a almacenes" (click)="visualizarAlmacenes()">
+                    </fa-icon>
+                </div>
+            </div>
+        </div>
+        <div class="card-body ">
+            <form [formGroup]="TercerosForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="grupo">Sociedades</label>
+                    <select class="form-control" (change)="changeGroup($event)" formControlName="sociedad">
+                        <option [value]=" 0 " selected>Seleccione una sociedad</option>
+                        <option *ngFor="let sociedad of " [value]="lstSociedades[0].idSociedad">
+                            {{lstSociedades[0].nombre_comercial}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectSociedades">
+                        <small *ngIf="selectSociedades " style="color: red; ">
+                            Debe seleccionar una sociedad.
+                        </small>
+                    </small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" class="form-control" id="Direccion"
+                        placeholder="Ingrese la direccion " formControlName="Direccion">
+                    <small
+                        *ngIf="TercerosForm.controls['direccion'].invalid && (TercerosForm.controls['direccion'].dirty || TercerosForm.controls['direccion'].touched)">
+                        <small *ngIf="TercerosForm.controls['direccion'].errors?.['required']"
+                            style="color: red;">
+                            Debe ingresar la direccion.
+                        </small>
+                    </small>
+                </div>
+                
+                <div class="form-group ">
+                    <label for="telefono ">Teléfono</label>
+                    <input type="text " class="form-control " id="telefono "
+                        placeholder="Ingrese el número de teléfono "
+                        oninput="javascript: if (this.value.length> this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        maxlength="10" formControlName="telefono" (keypress)="keyPressNumbers($event)">
+                    <small
+                        *ngIf="TercerosForm.controls['telefono'].invalid && (TercerosForm.controls['telefono'].dirty || TercerosForm.controls['telefono'].touched)">
+                        <small *ngIf="TercerosForm.controls['telefono'].errors?.['required']" style="color: red;">
+                            Debe ingresar el número de teléfono.
+                        </small>
+                        <small *ngIf="TercerosForm.controls['telefono'].errors?.['minlength']" style="color: red;">
+                            Mínimo 9 caracteres.
+                        </small>
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <!--[disabled]="!this.corporationForm.valid"-->
+                    <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>
+                    Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
