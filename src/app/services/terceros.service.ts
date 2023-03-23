@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Terceros, TercerosEntity } from '../models/terceros';
-import { AlmacenesEntity } from '../models/almacenes';
-import { SociedadesEntity } from '../models/sociedades';
+
 
 const initGruop: TercerosEntity = {
   id: "",

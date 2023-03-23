@@ -94,6 +94,8 @@ import { TercerosusuariosComponent } from './components/users/tercerosusuarios/t
 import { TercerosusuariosCreateComponent } from './components/users/tercerosusuarios-create/tercerosusuarios-create.component';
 import { TercerosusuariosEditComponent } from './components/users/tercerosusuarios-edit/tercerosusuarios-edit.component';
 import { TercerosEditComponent } from './components/users/terceros-edit/terceros-edit.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -189,6 +191,8 @@ import { TercerosEditComponent } from './components/users/terceros-edit/terceros
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    FormsModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     }),
