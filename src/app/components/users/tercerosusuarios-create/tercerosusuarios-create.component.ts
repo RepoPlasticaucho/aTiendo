@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { faSave, faTimes, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { CiudadesEntity } from 'src/app/models/ciudades';
 import { ProvinciasEntity } from 'src/app/models/provincias';
-import { Tipo_tercerosEntity } from 'src/app/models/tipo_tercero';
-import { Tipo_usuariosEntity } from 'src/app/models/tipo_usuario';
+import { TipotercerosEntity } from 'src/app/models/tipotercero';
+import { TipousuariosEntity } from 'src/app/models/tipousuario';
 import { CiudadesService } from 'src/app/services/ciudades.service';
 import { ProvinciasService } from 'src/app/services/provincias.service';
 import { TercerosService } from 'src/app/services/terceros.service';
-import { Tipo_terceroService } from 'src/app/services/tipo_terceros.service';
-import { Tipo_usuariosService } from 'src/app/services/tipo_usuarios.service';
+import { TipotercerosService } from 'src/app/services/tipotercero.service';
+import { TipousuariosService } from 'src/app/services/tipousuario.service';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -37,6 +38,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
      fecha_nac: new FormControl('', [Validators.required]),
      telefono: new FormControl('', [Validators.required, Validators.minLength(9)]),
    });
+
     //Variables para listas desplegables
    
     lstProvincias: ProvinciasEntity[] = [];
@@ -47,28 +49,28 @@ export class TercerosusuariosCreateComponent implements OnInit {
       created_at: '',
       update_at: ''
     };
+    //Variables para ejecucion del Form
     lstCiudades: CiudadesEntity[] = [];
     selectCiudades : boolean = false;
 
-    lstTipoTercero: Tipo_tercerosEntity[] = [];
+    lstTipoTerceros: TipotercerosEntity[] = [];
     selectTipoTercero : boolean = false;
     
-    lstTipoUsuario: Tipo_usuariosEntity[] = [];
+    lstTipoUsuarios: TipousuariosEntity[] = [];
     selectTipoUsuario : boolean = false;
+    
 
     constructor(
       private readonly httpService: TercerosService,
       private readonly httpServiceProvincias: ProvinciasService,
       private readonly httpServiceCiudades: CiudadesService,
-      private readonly httpServiceTipoTercero: Tipo_terceroService,
-      private readonly httpServiceTipoUsuaio: Tipo_usuariosService,
+      private readonly httpServiceTipoTercero: TipotercerosService,
+      private readonly httpServiceTipoUsuario : TipousuariosService,
       private router: Router) { }
 
   ngOnInit(): void {
 
-  //Obtener Combox padres 
-
-  this.httpServiceTipoTercero.obtenerTipo_terceros().subscribe(res => {
+  this.httpServiceTipoTercero.obtenerTipoterceros().subscribe(res =>{
     if (res.codigoError != "OK") {
       Swal.fire({
         icon: 'error',
@@ -76,11 +78,10 @@ export class TercerosusuariosCreateComponent implements OnInit {
         text: res.descripcionError,
         showConfirmButton: false,
       });
-    }else{
-      this.lstTipoTercero = res.lstTipo_Terceros;
-      console.log(res);
+    } else {
+      this.lstTipoTerceros = res.lstTipo_Tercero;
     }
-  })
+  });
 
   this.httpServiceProvincias.obtenerProvincias().subscribe(res => {
     if (res.codigoError != "OK") {
@@ -92,11 +93,10 @@ export class TercerosusuariosCreateComponent implements OnInit {
       });
     } else {
       this.lstProvincias = res.lstProvincias;
-      console.log(this.lstProvincias); 
     }
-  })
+  });
 
-  this.httpServiceTipoUsuaio.obtenerTipo_usuarios().subscribe(res => {
+  this.httpServiceTipoUsuario.obtenerTipousuarios().subscribe(res => {
     if (res.codigoError != "OK") {
       Swal.fire({
         icon: 'error',
@@ -104,9 +104,8 @@ export class TercerosusuariosCreateComponent implements OnInit {
         text: res.descripcionError,
         showConfirmButton: false,
       });
-    }else{
-      this.lstTipoUsuario = res.lstTipo_Usuarios;  
-      
+    } else {
+      this.lstTipoUsuarios = res.lstTipo_Usuario;
     }
   })
 }
@@ -124,7 +123,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
       created_at: '',
       update_at: ''
     }
-    console.log(provincian);
+    //console.log(provincian);
 
     this.httpServiceCiudades.obtenerCiudades(provincian).subscribe(res => {
       if (res.codigoError != "OK") {
@@ -140,12 +139,28 @@ export class TercerosusuariosCreateComponent implements OnInit {
     })
   }
 
-
+  //Validaciones de comboxs 
   changeGroup1(ciudad: any): void {
     if (ciudad.target.value == 0) {
       this.selectCiudades = true;
     } else {
       this.selectCiudades = false;
+      //this.warehousesForm.get("sociedad")?.setValue(sociedad.target.value);
+    }
+  }
+  changeGroup2(tipotercero: any): void {
+    if (tipotercero.target.value == 0) {
+      this.selectTipoTercero = true;
+    } else {
+      this.selectTipoTercero = false;
+      //this.warehousesForm.get("sociedad")?.setValue(sociedad.target.value);
+    }
+  }
+  changeGroup3(tipousuario: any): void {
+    if (tipousuario.target.value == 0) {
+      this.selectTipoUsuario = true;
+    } else {
+      this.selectTipoUsuario = false;
       //this.warehousesForm.get("sociedad")?.setValue(sociedad.target.value);
     }
   }
