@@ -1,8 +1,8 @@
-import { Provincias, ProvinciasEntity } from "../models/provincias";
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
+import { Provincias, ProvinciasEntity } from "../models/provincias";
 
 const initGruop: ProvinciasEntity = {
     id : '',
@@ -15,6 +15,7 @@ const initGruop: ProvinciasEntity = {
 @Injectable({
     providedIn: 'root'
 })
+
 export class ProvinciasService {
 
     private provincia$ = new BehaviorSubject<ProvinciasEntity>(initGruop);
