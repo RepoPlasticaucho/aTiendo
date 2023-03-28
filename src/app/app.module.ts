@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DataTablesModule } from 'angular-datatables';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GruposComponent } from './components/groups/grupos/grupos.component';
@@ -95,6 +94,10 @@ import { TercerosusuariosCreateComponent } from './components/users/tercerosusua
 import { TercerosusuariosEditComponent } from './components/users/tercerosusuarios-edit/tercerosusuarios-edit.component';
 import { TercerosEditComponent } from './components/users/terceros-edit/terceros-edit.component';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -193,6 +196,10 @@ import { FormsModule } from '@angular/forms';
     MatListModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,        
+    MatNativeDateModule,        
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     }),

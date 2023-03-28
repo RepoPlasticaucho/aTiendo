@@ -32,6 +32,8 @@ export class TercerosusuariosCreateComponent implements OnInit {
      ciudad: new FormControl('0', Validators.required),
      provincia: new FormControl('0', Validators.required),
      nombre: new FormControl('', [Validators.required]),
+     apellido: new FormControl('', [Validators.required]),
+     id_fiscal: new FormControl('', [Validators.required, Validators.minLength(9)]),
      correo: new FormControl('', [Validators.required]),
      direccion: new FormControl('', [Validators.required]),
      codigo: new FormControl('', [Validators.required]),
