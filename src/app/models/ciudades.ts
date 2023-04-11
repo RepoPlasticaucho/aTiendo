@@ -5,7 +5,7 @@ export interface Ciudades {
 }
 
 export interface CiudadesEntity {
-    id : string;
+    idciudad : string;
     ciudad: string;
     provinciaid: string;
     provincia: string

@@ -13,12 +13,11 @@
         </div>
         <div class="card-body ">
             <form [formGroup]="TercerosForm" (ngSubmit)="onSubmit()" >
-
                 <div class="form-group">
                     <label for="grupo">Tipo Usuario</label>
                     <select class="form-control" (change)="changeGroup3($event)" formControlName="tipo_usuario">
                         <option [value]=" 0 " selected>Seleccione un tipo usuario</option>
-                        <option *ngFor="let tipo_usuario of lstTipoUsuarios" [value]="tipo_usuario.id">
+                        <option *ngFor="let tipo_usuario of lstTipoUsuarios" [value]="tipo_usuario.usuario">
                             {{tipo_usuario.usuario}}
                         </option>
                     </select>
@@ -33,7 +32,7 @@
                     <label for="grupo">Tipo de Indentificacion</label>
                     <select class="form-control" (change)="changeGroup2($event)" formControlName="tipo_tercero">
                         <option [value]=" 0 " selected>Seleccione un tipo tercero</option>
-                        <option *ngFor="let tipo_tercero of lstTipoTerceros" [value]="tipo_tercero.id">
+                        <option *ngFor="let tipo_tercero of lstTipoTerceros" [value]="tipo_tercero.descripcion">
                             {{tipo_tercero.descripcion}}
                         </option>
                     </select>
@@ -45,7 +44,7 @@
                 </div>
                 <div class="form-group ">
                     <label for=" ">Identificacion</label>
-                    <input type="text " class="form-control " id="id_fiscal "
+                    <input type="text " class="form-control " id="id_fiscal"
                         placeholder="Ingrese el numero Identificacion "
                         oninput="javascript: if (this.value.length> this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         maxlength="13" formControlName="id_fiscal" (keypress)="keyPressNumbers($event)">
@@ -98,7 +97,7 @@
 
                 <div class="form-group ">
                     <label for="telefono ">Teléfono</label>
-                    <input type="text " class="form-control " id="telefono "
+                    <input type="text " class="form-control " id="telefono"
                         placeholder="Ingrese el número de teléfono "
                         oninput="javascript: if (this.value.length> this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         maxlength="10" formControlName="telefono" (keypress)="keyPressNumbers($event)">
@@ -113,7 +112,7 @@
                     </small>
                 </div>
 
-                <div>
+                <div class="form-group">
                     <label for="provincia">Provincia</label>
                     <select class="form-control" (change)="onSelect($event)" formControlName="provincia">
                         <option [value]=" 0 " selected>Seleccione una provincia</option>
@@ -121,13 +120,13 @@
                             {{provincia.provincia}}
                         </option>
                     </select>
-                    
+                   
                 </div>
                 <div class="form-group">
                     <label for="grupo">Ciudad</label>
                     <select class="form-control" (change)="changeGroup1($event)" formControlName="ciudad">
                         <option [value]=" 0 " selected>Seleccione una ciudad</option>
-                        <option *ngFor="let ciudad of lstCiudades" [value]="ciudad.id">
+                        <option *ngFor="let ciudad of lstCiudades" [value]="ciudad.ciudad">
                             {{ciudad.ciudad}}
                         </option>
                     </select>

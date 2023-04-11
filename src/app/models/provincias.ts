@@ -5,7 +5,7 @@ export interface Provincias {
 }
 
 export interface ProvinciasEntity {
-    id : string;
+    id? : string;
     provincia: string;
     codigo: string;
     created_at : string;

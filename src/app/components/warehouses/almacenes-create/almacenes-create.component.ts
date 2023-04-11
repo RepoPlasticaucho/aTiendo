@@ -56,12 +56,12 @@ export class AlmacenesCreateComponent implements OnInit {
    onSubmit(): void {
     
      if (!this.warehousesForm.valid) {
+      
        this.warehousesForm.markAllAsTouched();
        if (this.warehousesForm.get("sociedad")?.value == "0") {
-         this.selectSociedades = true;
-         
+         this.selectSociedades = true;         
        }
-     } else {
+    } else {
        if (this.warehousesForm.get("sociedad")?.value == "0") {
          this.selectSociedades = true;
        }
@@ -76,6 +76,7 @@ export class AlmacenesCreateComponent implements OnInit {
            idAlmacen: '',
            nombresociedad: ''
          };
+         console.log(almacenEntity)
          console.log(almacenEntity);
          this.httpService.agregarAlmacen(almacenEntity).subscribe(res => {
            if (res.codigoError == "OK") {
