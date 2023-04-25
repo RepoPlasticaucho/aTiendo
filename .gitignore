@@ -44,3 +44,8 @@ Thumbs.db
 #Environment
 src/environments/environment.prod.ts
 src/environments/environment.prod.ts
+
+#Packages
+package-lock.json
+package.json
+angular.json

@@ -126,7 +126,7 @@
                     <label for="grupo">Ciudad</label>
                     <select class="form-control" (change)="changeGroup1($event)" formControlName="ciudad">
                         <option [value]=" 0 " selected>Seleccione una ciudad</option>
-                        <option *ngFor="let ciudad of lstCiudades" [value]="ciudad.ciudad">
+                        <option *ngFor="let ciudad of lstCiudades" [value]= "ciudad.ciudad">
                             {{ciudad.ciudad}}
                         </option>
                     </select>

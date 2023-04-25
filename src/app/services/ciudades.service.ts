@@ -6,7 +6,7 @@ import { Ciudades, CiudadesEntity } from '../models/ciudades';
 import { ProvinciasEntity } from '../models/provincias';
 
 const initGruop: CiudadesEntity = {
-    idciudad: '',
+    idCiudad: '',
     provincia: '',
     codigo: '',
     created_at: '',
