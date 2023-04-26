@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Tipousuarios, TipousuariosEntity } from '../models/tipousuario';
 
 const initGruop: TipousuariosEntity = {
-    id : '',
+    idTipo_Usuario : '',
     usuario: ''
     
 }
@@ -30,5 +30,9 @@ export class TipousuariosService {
     
     obtenerTipousuarios(): Observable<Tipousuarios> {
         return this.http.get<Tipousuarios>(`${environment.apiUrl}tipo_usuario/ObtenerTipo_Usuario`);
+    }
+
+    obtenerTipoUsuariosN(usuario: TipousuariosEntity):Observable<Tipousuarios>{
+        return this.http.post<Tipousuarios>(`${environment.apiUrl}tipo_usuario/ObtenerTipo_UsuarioN`, usuario);
     }
 }
