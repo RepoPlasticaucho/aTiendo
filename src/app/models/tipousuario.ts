@@ -5,6 +5,6 @@ export interface Tipousuarios {
 }
 
 export interface TipousuariosEntity {
-    id : string;
-    usuario: string;
+    id? : string;
+    usuario?: string;
 }

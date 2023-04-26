@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faSave, faTimes, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { CiudadesEntity } from 'src/app/models/ciudades';
 import { ProvinciasEntity } from 'src/app/models/provincias';
-import { TercerosEntity } from 'src/app/models/terceros';
+import { ProvinciasService } from 'src/app/services/provincias.service';
 import { TipotercerosEntity } from 'src/app/models/tipotercero';
 import { TipousuariosEntity } from 'src/app/models/tipousuario';
 import { CiudadesService } from 'src/app/services/ciudades.service';
-import { ProvinciasService } from 'src/app/services/provincias.service';
+import { CiudadesEntity } from 'src/app/models/ciudades';
+import { TercerosEntity } from 'src/app/models/terceros';
 import { TercerosService } from 'src/app/services/terceros.service';
 import { TipotercerosService } from 'src/app/services/tipotercero.service';
 import { TipousuariosService } from 'src/app/services/tipousuario.service';
@@ -28,10 +28,10 @@ export class TercerosusuariosCreateComponent implements OnInit {
     faSave = faSave;
    //Creación de la variable para formulario
     TercerosForm = new FormGroup({
-      tipo_tercero: new FormControl('0',),
-      tipo_usuario: new FormControl('0', ),
-      ciudad: new FormControl('0', ),
-      provincia: new FormControl('0', ),
+      tipo_tercero: new FormControl('0',Validators.required),
+      tipo_usuario: new FormControl('0', Validators.required),
+      ciudad: new FormControl('0', Validators.required),
+      provincia: new FormControl('0', Validators.required),
       nombre: new FormControl('', [Validators.required]),
       fecha_nac: new FormControl('', [Validators.required]),
       apellido: new FormControl('', [Validators.required]),
@@ -55,15 +55,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
     //selectProvicias: boolean = false;
     //Variables para ejecucion del Form
     lstCiudades: CiudadesEntity[] = [];
-    selectCiudades : CiudadesEntity={
-      idciudad: '0',
-      ciudad: '',
-      provinciaid: '',
-      provincia: '',
-      codigo: '',
-      created_at: '',
-      update_at: ''
-    }
+    selectCiudades : boolean = false;
 
     lstTipoTerceros: TipotercerosEntity[] = [];
     selectTipoTercero : boolean = false;
@@ -123,32 +115,27 @@ export class TercerosusuariosCreateComponent implements OnInit {
 }
 
   onSubmit(){
-
-    if (!this.TercerosForm.valid) {
-
-      this.TercerosForm.markAllAsTouched();
-      const terceronew : TercerosEntity={
-        id: '',
-        almacen_id: JSON.parse(localStorage.getItem('almacenid') || "[]"),
-        sociedad_id: JSON.parse(localStorage.getItem('sociedadid') || "[]"),
-        tipotercero_id: '',
-        tipousuario_id: '',
-        nombresociedad: '',
-        nombrealmacen: '',
-        nombretercero: this.TercerosForm.value!.tipo_tercero ?? "",
-        tipousuario: this.TercerosForm.value!.tipo_usuario ?? "",
-        nombre: this.TercerosForm.value!.nombre ?? "" +' ' + this.TercerosForm.value!.apellido ??"",
-        id_fiscal: this.TercerosForm.value!.id_fiscal ?? "",
-        direccion: this.TercerosForm.value!.direccion ?? "",
-        telefono: this.TercerosForm.value!.telefono ?? "",
-        correo: this.TercerosForm.value!.correo ?? "",
-        fecha_nac: this.TercerosForm.value!.fecha_nac ?? "",
-        ciudad: this.TercerosForm.value!.ciudad ?? "",
-        provincia: this.TercerosForm.value!.provincia ?? "",
-        ciudadid: ''
-      }
-      console.log(terceronew);
+    const tercerodatos : TercerosEntity ={
+      id: '',
+      almacen_id:JSON.parse(localStorage.getItem('almacenid')||"[]"),
+      sociedad_id: JSON.parse(localStorage.getItem('sociedadid') || "[]"),
+      tipotercero_id: '',
+      tipousuario_id: '',
+      nombresociedad: '',
+      nombrealmacen: '',
+      nombretercero: this.TercerosForm.value!.tipo_tercero ?? "",
+      tipousuario: this.TercerosForm.value!.tipo_usuario ?? "",
+      nombre: (this.TercerosForm.value!.nombre ?? ""+ " "+ this.TercerosForm.value!.apellido ?? ""),
+      id_fiscal: this.TercerosForm.value!.id_fiscal ?? "",
+      direccion: this.TercerosForm.value!.direccion ?? "",
+      telefono: this.TercerosForm.value!.telefono ?? "",
+      correo: this.TercerosForm.value!.correo ?? "",
+      fecha_nac: this.TercerosForm.value!.fecha_nac ?? "",
+      ciudad: this.TercerosForm.value!.ciudad ?? "",
+      provincia: this.TercerosForm.value!.provincia ?? "",
+      ciudadid: this.lstCiudades[0].idCiudad
     }
+    console.log(tercerodatos);
   }
   
   // Combo dependendiente de evento 
@@ -184,15 +171,16 @@ export class TercerosusuariosCreateComponent implements OnInit {
     
   }
 
-  /*Validaciones de comboxs 
+  //Validaciones de comboxs 
   changeGroup1(ciudad: any) :void{
     if (ciudad.target.value == 0) {
       this.selectCiudades = true;
     } else {
       this.selectCiudades = false;
-      this.TercerosForm.get("ciudad")?.setValue(ciudad.target.value);
+     //this.TercerosForm.get("ciudad")?.setValue(ciudad.target.value);
     }
-  }*/
+  }
+  /*
   changeGroup1(e: any){
     const ciudadnew : CiudadesEntity = {
       idciudad: '',
@@ -219,7 +207,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
       }
     })
   }
-
+  */
   changeGroup2(tipo_tercero: any) :void{
     if (tipo_tercero.target.value == 0) {
       this.selectTipoTercero = true;
