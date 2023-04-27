@@ -98,6 +98,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule} from '@angular/material/datepicker';
+import { AlmaceningresosComponent } from './components/income/almaceningresos/almaceningresos.component';
 
 @NgModule({
   declarations: [
@@ -175,6 +176,7 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
     TercerosusuariosCreateComponent,
     TercerosusuariosEditComponent,
     TercerosEditComponent,
+    AlmaceningresosComponent,
     
   ],
   imports: [
