@@ -5,7 +5,7 @@ export interface Terceros {
 }
 
 export interface TercerosEntity {
-    id : string;
+    id? : string;
     almacen_id : string;
     sociedad_id : string;
     tipotercero_id : string;

@@ -6,7 +6,7 @@
                 <h1 class="mx-5 " style="color: #636363;">Agregar Usuario</h1>
                 <div style="position: absolute;right:0;" class="mx-3">
                     <fa-icon [icon]="faTimes" class="btn btn-danger" [size]="'lg'" data-toggle="tooltip"
-                        data-placement="bottom" title="Regresar a almacenes" (click)="visualizarAlmacenes()">
+                        data-placement="bottom" title="Regresar a terceros" (click)="visualizarTerceros()">
                     </fa-icon>
                 </div>
             </div>
@@ -46,22 +46,20 @@
                     <label for=" ">Identificacion</label>
                     <input type="text " class="form-control " id="id_fiscal"
                         placeholder="Ingrese el numero Identificacion "
-                        oninput="javascript: if (this.value.length> this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                        maxlength="13" formControlName="id_fiscal" (keypress)="keyPressNumbers($event)">
+                        pattern="[A-Z]{2}[0-9]{6}[A-Z]{1}"
+                        [maxlength]="idFiscalMaxLength" formControlName="id_fiscal">
                     <small
                         *ngIf="TercerosForm.controls['id_fiscal'].invalid && (TercerosForm.controls['id_fiscal'].dirty || TercerosForm.controls['id_fiscal'].touched)">
                         <small *ngIf="TercerosForm.controls['id_fiscal'].errors?.['required']" style="color: red;">
                             Debe ingresar el número de Identificacion.
-                        </small>
-                        <small *ngIf="TercerosForm.controls['id_fiscal'].errors?.['minlength']" style="color: red;">
-                            Mínimo 9 caracteres.
                         </small>
                     </small>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombres</label>
                     <input type="text" class="form-control" id="nombre"
-                        placeholder="Ingrese los nombres " formControlName="nombre">
+                        placeholder="Ingrese los nombres " formControlName="nombre"
+                        (keypress)="keyPressLetters($event)">
                     <small
                         *ngIf="TercerosForm.controls['nombre'].invalid && (TercerosForm.controls['nombre'].dirty || TercerosForm.controls['nombre'].touched)">
                         <small *ngIf="TercerosForm.controls['nombre'].errors?.['required']"
@@ -73,7 +71,8 @@
                 <div class="form-group">
                     <label for="apellido">Apellidos</label>
                     <input type="text" class="form-control" id="apellido"
-                        placeholder="Ingrese los Apellidos" formControlName="apellido">
+                        placeholder="Ingrese los Apellidos" formControlName="apellido"
+                        (keypress)="keyPressLetters($event)">
                     <small
                         *ngIf="TercerosForm.controls['apellido'].invalid && (TercerosForm.controls['apellido'].dirty || TercerosForm.controls['apellido'].touched)">
                         <small *ngIf="TercerosForm.controls['apellido'].errors?.['required']"
@@ -84,30 +83,26 @@
                 </div>
                 <div class="form-group">
                     <label for="correo">Correo Electronico</label>
-                    <input type="text" class="form-control" id="correo"
-                        placeholder="Ingrese el correo Electronico" formControlName="correo">
-                    <small
-                        *ngIf="TercerosForm.controls['correo'].invalid && (TercerosForm.controls['correo'].dirty || TercerosForm.controls['correo'].touched)">
-                        <small *ngIf="TercerosForm.controls['correo'].errors?.['required']"
-                            style="color: red;">
-                            Debe ingresar el correo electronico.
+                    <input type="text" [(ngModel)]="email" class="form-control" id="correo"
+                        placeholder="Ingrese el correo Electronico" formControlName="correo" pattern=".*@.*" required>
+                        <small
+                        *ngIf="TercerosForm.controls['correo'].invalid && TercerosForm.get('correo')!.invalid && (TercerosForm.controls['correo'].dirty || TercerosForm.controls['correo'].touched)">
+                        <small style="color: red;">
+                            Debe ingresar un correo válido.
                         </small>
                     </small>
                 </div>
 
-                <div class="form-group ">
-                    <label for="telefono ">Teléfono</label>
+                <div class="form-group ">   <label for="telefono ">Teléfono</label>
                     <input type="text " class="form-control " id="telefono"
-                        placeholder="Ingrese el número de teléfono "
+                
+                         placeholder="Ingrese el número de teléfono "
                         oninput="javascript: if (this.value.length> this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         maxlength="10" formControlName="telefono" (keypress)="keyPressNumbers($event)">
                     <small
                         *ngIf="TercerosForm.controls['telefono'].invalid && (TercerosForm.controls['telefono'].dirty || TercerosForm.controls['telefono'].touched)">
                         <small *ngIf="TercerosForm.controls['telefono'].errors?.['required']" style="color: red;">
                             Debe ingresar el número de teléfono.
-                        </small>
-                        <small *ngIf="TercerosForm.controls['telefono'].errors?.['minlength']" style="color: red;">
-                            Mínimo 9 caracteres.
                         </small>
                     </small>
                 </div>
@@ -120,7 +115,11 @@
                             {{provincia.provincia}}
                         </option>
                     </select>
-                   
+                    <small *ngIf="selectProvincias2">
+                        <small *ngIf="selectProvincias2" style="color: red; ">
+                            Debe seleccionar una provincia.
+                        </small>
+                    </small>
                 </div>
                 <div class="form-group">
                     <label for="grupo">Ciudad</label>
@@ -153,13 +152,15 @@
                 <div class="form-group">
                     <label for="fecha_nac">Fecha de Nacimiento</label><br>
                     
-                    <mat-form-field>
-                        <input  class="form-control" id="fecha_nac" 
-                            matInput [matDatepicker]="picker" placeholder="Ingrese la Fecha" 
-                            formControlName="fecha_nac">
+                    <mat-form-field appearance="fill">
+                        <mat-label>INGRESE LA FECHA</mat-label>
+                        <input id="fecha_nac" 
+                            matInput [matDatepicker]="picker" 
+                            formControlName="fecha_nac" [(ngModel)]="fechaSeleccionada" [disabled]="true">
+
                             <mat-datepicker-toggle matSuffix [for]="picker">
                             </mat-datepicker-toggle>
-                            <mat-datepicker #picker>
+                            <mat-datepicker #picker disabled="false">
                             </mat-datepicker>
                     </mat-form-field>
 

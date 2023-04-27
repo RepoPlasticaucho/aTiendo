@@ -12,13 +12,15 @@ import { TercerosEntity } from 'src/app/models/terceros';
 import { TercerosService } from 'src/app/services/terceros.service';
 import { TipotercerosService } from 'src/app/services/tipotercero.service';
 import { TipousuariosService } from 'src/app/services/tipousuario.service';
+import { DatePipe } from '@angular/common';
 
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tercerosusuarios-create',
   templateUrl: './tercerosusuarios-create.component.html',
-  styleUrls: ['./tercerosusuarios-create.component.css']
+  styleUrls: ['./tercerosusuarios-create.component.css'],
+  providers: [DatePipe]
 })
 export class TercerosusuariosCreateComponent implements OnInit {
 
@@ -27,22 +29,27 @@ export class TercerosusuariosCreateComponent implements OnInit {
   faUserFriends = faUserFriends;
   faSave = faSave;
 
-  
+  // Control de dígitos que ingresan al número de id
+  idFiscalMaxLength: number = 0;
+  email: string = '';
+
   //Creación de la variable para formulario
   TercerosForm = new FormGroup({
     tipo_tercero: new FormControl('0', Validators.required),
     tipo_usuario: new FormControl('0', Validators.required),
     ciudad: new FormControl('0', Validators.required),
     provincia: new FormControl('0', Validators.required),
-    nombre: new FormControl('', [Validators.required]),
-    fecha_nac: new FormControl('', [Validators.required]),
-    apellido: new FormControl('', [Validators.required]),
-    id_fiscal: new FormControl('', [Validators.required, Validators.minLength(9)]),
-    correo: new FormControl('', [Validators.required]),
-    direccion: new FormControl('', [Validators.required]),
-    codigo: new FormControl('', [Validators.required]),
-    telefono: new FormControl('', [Validators.required, Validators.minLength(9)]),
+    nombre: new FormControl('', Validators.required),
+    fecha_nac: new FormControl('', Validators.required),
+    apellido: new FormControl('', Validators.required),
+    id_fiscal: new FormControl('', Validators.required),
+    correo: new FormControl('', Validators.required),
+    direccion: new FormControl('', Validators.required),
+    telefono: new FormControl('', Validators.required),
   });
+
+  
+
 
   //Variables para listas desplegables
 
@@ -54,6 +61,8 @@ export class TercerosusuariosCreateComponent implements OnInit {
     created_at: '',
     update_at: ''
   };
+
+  selectProvincias2: boolean = false;
   //selectProvicias: boolean = false;
   //Variables para ejecucion del Form
   lstCiudades: CiudadesEntity[] = [];
@@ -68,6 +77,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
   lstTipoUsuarios2: TipousuariosEntity[] = [];
   selectTipoUsuario: boolean = false;
 
+  fechaSeleccionada: Date | null = null;
 
   constructor(
     private readonly httpService: TercerosService,
@@ -75,10 +85,12 @@ export class TercerosusuariosCreateComponent implements OnInit {
     private readonly httpServiceCiudades: CiudadesService,
     private readonly httpServiceTipoTercero: TipotercerosService,
     private readonly httpServiceTipoUsuario: TipousuariosService,
-    private router: Router) { }
+    private datePipe: DatePipe,
+    private router: Router) {
+  }
+
 
   ngOnInit(): void {
-
     this.httpServiceTipoTercero.obtenerTipoterceros().subscribe(res => {
       if (res.codigoError != "OK") {
         Swal.fire({
@@ -119,22 +131,21 @@ export class TercerosusuariosCreateComponent implements OnInit {
     })
   }
 
-  fechaString = this.TercerosForm.get('fecha_nac')!.value ?? "";
-  fecha = new Date(this.fechaString);
-
-  anio = this.fecha.getFullYear();
-  mes = this.fecha.getMonth() + 1;
-  dia = this.fecha.getDate();
-
-  fechaSQL = `${this.anio}/${this.mes.toString().padStart(2, '0')}/${this.dia.toString().padStart(2, '0')}`;
+  fechaFormateada: any = '';
 
   onSubmit() {
-    const tercerodatos: TercerosEntity = {
+    this.fechaFormateada = this.datePipe.transform(this.fechaSeleccionada, 'yyyy-MM-dd');
+
+    if (!this.TercerosForm.valid) {
+      this.TercerosForm.markAllAsTouched();
+      console.log("Errororoeoreorer");
+    } else {
+      const tercerodatos: TercerosEntity = {
       id: '',
       almacen_id: JSON.parse(localStorage.getItem('almacenid') || "[]"),
       sociedad_id: JSON.parse(localStorage.getItem('sociedadid') || "[]"),
-      tipotercero_id: this.lstTipoTerceros2[0].idTipo_tercero,
-      tipousuario_id: this.lstTipoUsuarios2[0].idTipo_Usuario,
+      tipotercero_id: this.lstTipoTerceros2[0].idTipo_tercero ?? 0,
+      tipousuario_id: this.lstTipoUsuarios2[0].idTipo_Usuario ?? 0,
       nombresociedad: '',
       nombrealmacen: '',
       nombretercero: this.TercerosForm.value!.tipo_tercero ?? "",
@@ -144,20 +155,49 @@ export class TercerosusuariosCreateComponent implements OnInit {
       direccion: this.TercerosForm.value!.direccion ?? "",
       telefono: this.TercerosForm.value!.telefono ?? "",
       correo: this.TercerosForm.value!.correo ?? "",
-      fecha_nac: this.fechaSQL ?? "",
-      ciudad: this.TercerosForm.value!.ciudad ?? "",
+      fecha_nac: this.fechaFormateada ?? "",
+      ciudad: this.TercerosForm.value!.ciudad ?? '',
       provincia: this.TercerosForm.value!.provincia ?? "",
-      ciudadid: this.lstCiudades2[0].idCiudad
+      ciudadid: this.lstCiudades2[0].idCiudad ?? 0
     }
     console.log(tercerodatos);
-    console.log(this.TercerosForm.get('fecha_nac')!.value ?? "");
-    console.log(this.fecha)
-    
+
+    /*
+    this.httpService.agregarTerceros(tercerodatos).subscribe(res => {
+      if (res.codigoError == "OK") {
+        Swal.fire({
+          icon: 'success',
+          title: 'Guardado Exitosamente.',
+          showConfirmButton: true,
+          confirmButtonText: "Ok"
+        }).finally(() => {
+          this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ha ocurrido un error.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+      }
+    }, () => {
+      console.log("No se pudo Guardar Información");
+      this.httpService.agregarCategoriaBDD(tercerodatos);
+    })
+    */
+  }
+
   }
 
   // Combo dependendiente de evento 
   onSelect(e: any) {
 
+    if (e.target.value == 0) {
+      this.selectProvincias2 = true;
+    } else {
+      this.selectProvincias2 = false;
+    }
     if (e.target.value == null || undefined) {
       this.lstCiudades = [];
     } else {
@@ -219,40 +259,30 @@ export class TercerosusuariosCreateComponent implements OnInit {
       })
     }
   }
-  /*
-  changeGroup1(e: any){
-    const ciudadnew : CiudadesEntity = {
-      idciudad: '',
-      ciudad: e.target.value,
-      provinciaid: '',
-      provincia: '',
-      codigo: '',
-      created_at: '',
-      update_at: ''
-    }
-    this.httpServiceCiudades.obtenerCiudadesN(ciudadnew).subscribe(res => {
-      if (res.codigoError != "OK") {
-        Swal.fire({
-          icon: 'error',
-          title: 'No se pudo obtener la Sociedad.',
-          text: res.descripcionError,
-          showConfirmButton: false,
-        });        
-      }else{
-        this.lstCiudades = res.lstCiudades
-        var cal = this.lstCiudades
-        console.log(cal);
-        console.log(this.TercerosForm.get("ciudad")?.value)
-      }
-    })
-  }
-  */
+
   changeGroup2(tipo_tercero: any): void {
     if (tipo_tercero.target.value == 0) {
       this.selectTipoTercero = true;
+      this.idFiscalMaxLength = 0;
     } else {
       this.selectTipoTercero = false;
 
+      // Control de ingreso 
+      const selectedValue = tipo_tercero.target.value;
+      if (selectedValue == 'RUC') {
+        this.idFiscalMaxLength = 13;
+      } else if (selectedValue === 'CEDULA') {
+        this.idFiscalMaxLength = 10;
+      } else if (selectedValue === 'PASAPORTE') {
+        this.idFiscalMaxLength = 12;
+      } else if (selectedValue === 'VENTA A CONSUMIDOR FINAL') {
+        this.idFiscalMaxLength = 10;
+      } else if (selectedValue === 'IDENTIFICACION DELEXTERIOR') {
+        this.idFiscalMaxLength = 16;
+      }
+      //
+      // Limpia el valor del input
+      this.TercerosForm.get('id_fiscal')?.setValue('');
       // Obtener ID de tipo_tercero
       const tipo_terceronew: TipotercerosEntity = {
         idTipo_tercero: '',
@@ -318,8 +348,19 @@ export class TercerosusuariosCreateComponent implements OnInit {
     }
   }
 
-
-  visualizarAlmacenes() {
-
+  keyPressLetters(event: any) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
   }
+
+
+  visualizarTerceros() {
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
+  }
+  
 }
