@@ -207,7 +207,8 @@ import { AlmacenesegresosComponent } from './components/outcome/almacenesegresos
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     }),
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    FormsModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: PathLocationStrategy}

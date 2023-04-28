@@ -5,9 +5,11 @@ import { environment } from 'src/environments/environment.prod';
 import { Tipoterceros, TipotercerosEntity } from '../models/tipotercero';
 
 const initGruop: TipotercerosEntity = {
-    id : '',
+    idTipo_tercero : '',
     descripcion: '',
     codigo: '',
+    created_at: '',
+    update_at: '',
     
 }
 
@@ -31,5 +33,9 @@ export class TipotercerosService {
     
     obtenerTipoterceros(): Observable<Tipoterceros> {
         return this.http.get<Tipoterceros>(`${environment.apiUrl}tipo_tercero/ObtenerTipo_Tercero`);
+    }
+
+    obtenerTipoTercerosN(descripcion: TipotercerosEntity):Observable<Tipoterceros>{
+        return this.http.post<Tipoterceros>(`${environment.apiUrl}tipo_tercero/ObtenerTipo_TerceroN`, descripcion);
     }
 }

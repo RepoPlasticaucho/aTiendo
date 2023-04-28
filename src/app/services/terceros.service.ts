@@ -26,10 +26,13 @@ const initGruop: TercerosEntity = {
   ciudadid: ''
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class TercerosService {
+
+  private db: any;
 
   private tercero$ = new BehaviorSubject<TercerosEntity>(initGruop);
 
@@ -61,6 +64,19 @@ export class TercerosService {
 
   actualizarTerceros(tercero: TercerosEntity): Observable<Terceros> {
     return this.http.post<Terceros>(`${environment.apiUrl}almacenes/ModificarAlmacen`, tercero);
+  }
+
+  agregarCategoriaBDD=(tercero: TercerosEntity) =>{
+    tercero.id=new Date().toISOString();
+    this.db.get(tercero.id)
+      .then((doc: any) => {
+        delete tercero.id;
+        doc = Object.assign(doc, tercero);
+        console.log(doc);
+        this.db.put(doc);
+      }).catch(() => {
+        this.db.put(tercero);
+      });
   }
   
 }
