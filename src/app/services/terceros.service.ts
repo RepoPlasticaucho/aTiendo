@@ -63,7 +63,7 @@ export class TercerosService {
   }
 
   actualizarTerceros(tercero: TercerosEntity): Observable<Terceros> {
-    return this.http.post<Terceros>(`${environment.apiUrl}almacenes/ModificarAlmacen`, tercero);
+    return this.http.post<Terceros>(`${environment.apiUrl}terceros/ModificarTerceros`, tercero);
   }
 
   agregarCategoriaBDD=(tercero: TercerosEntity) =>{

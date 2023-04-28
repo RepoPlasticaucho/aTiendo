@@ -85,7 +85,7 @@ export class TercerosusuariosComponent implements OnInit {
   eliminarTercero(tercero: TercerosEntity): void {
     Swal.fire({
       icon: 'question',
-      title: `¿Esta seguro de eliminar al usario: ${tercero.nombre}?`,
+      title: `¿Esta seguro de eliminar al usuario: ${tercero.nombre}?`,
       showDenyButton: true,
       confirmButtonText: 'Si',
       denyButtonText: 'No',
