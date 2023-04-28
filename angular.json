@@ -33,14 +33,17 @@
                             "src/manifest.webmanifest"
                         ],
                         "styles": [
-                          "src/custom-theme.scss",
-                          "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-                          "src/styles.css",
-                          "node_modules/datatables.net-dt/css/jquery.dataTables.min.css",
-                          "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css"
+                            "src/custom-theme.scss",
+                            "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+                            "src/styles.css",
+                            "node_modules/datatables.net-dt/css/jquery.dataTables.min.css",
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css"
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
+                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
                             "node_modules/datatables.net/js/jquery.dataTables.min.js",
                             "node_modules/datatables.net-responsive/js/dataTables.responsive.js"
                         ],

@@ -5,7 +5,9 @@ export interface Tipoterceros {
 }
 
 export interface TipotercerosEntity {
-    id : string;
+    idTipo_tercero : string;
     descripcion: string;
     codigo: string;
+    created_at: string;
+    update_at: string;
 }
