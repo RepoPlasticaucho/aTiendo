@@ -46,7 +46,6 @@
                     <label for=" ">Identificacion</label>
                     <input type="text " class="form-control " id="id_fiscal"
                         placeholder="Ingrese el numero Identificacion "
-                        pattern="[A-Z]{2}[0-9]{6}[A-Z]{1}"
                         [maxlength]="idFiscalMaxLength" formControlName="id_fiscal">
                     <small
                         *ngIf="TercerosForm.controls['id_fiscal'].invalid && (TercerosForm.controls['id_fiscal'].dirty || TercerosForm.controls['id_fiscal'].touched)">

@@ -138,7 +138,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
 
     if (!this.TercerosForm.valid) {
       this.TercerosForm.markAllAsTouched();
-      console.log("Errororoeoreorer");
+      console.log("Error");
     } else {
       const tercerodatos: TercerosEntity = {
       id: '',
@@ -162,12 +162,12 @@ export class TercerosusuariosCreateComponent implements OnInit {
     }
     console.log(tercerodatos);
 
-    /*
     this.httpService.agregarTerceros(tercerodatos).subscribe(res => {
       if (res.codigoError == "OK") {
         Swal.fire({
           icon: 'success',
           title: 'Guardado Exitosamente.',
+          text: `Se ha creado el usuario ${this.TercerosForm.value.nombre?.concat(" " + this.TercerosForm.value.apellido)}`,
           showConfirmButton: true,
           confirmButtonText: "Ok"
         }).finally(() => {
@@ -181,11 +181,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
           showConfirmButton: false,
         });
       }
-    }, () => {
-      console.log("No se pudo Guardar Información");
-      this.httpService.agregarCategoriaBDD(tercerodatos);
     })
-    */
   }
 
   }
@@ -360,7 +356,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
 
 
   visualizarTerceros() {
-    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
+    //this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['terceros'] } }]);
   }
   
 }
