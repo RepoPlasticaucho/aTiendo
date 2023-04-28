@@ -99,6 +99,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { AlmaceningresosComponent } from './components/income/almaceningresos/almaceningresos.component';
+import { AlmacenesegresosComponent } from './components/outcome/almacenesegresos/almacenesegresos.component';
 
 @NgModule({
   declarations: [
@@ -177,6 +178,7 @@ import { AlmaceningresosComponent } from './components/income/almaceningresos/al
     TercerosusuariosEditComponent,
     TercerosEditComponent,
     AlmaceningresosComponent,
+    AlmacenesegresosComponent,
     
   ],
   imports: [
