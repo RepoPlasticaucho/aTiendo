@@ -29,18 +29,18 @@ export class TercerosusuariosEditComponent implements OnInit {
   faSave = faSave;
 
   // Control de dígitos que ingresan al número de id
-  idFiscalMaxLength: number = 0;
-  email: string = '';
+  idFiscalMaxLength: number = 25;
+
 
   //Declaracion de variables
   private codigo: string = "";
 
   //Creación de la variable para formulario
   TercerosForm = new FormGroup({
-    tipo_tercero: new FormControl('0', Validators.required),
-    tipo_usuario: new FormControl('0', Validators.required),
-    ciudad: new FormControl('0', Validators.required),
-    provincia: new FormControl('0', Validators.required),
+    tipo_tercero: new FormControl('',Validators.required),
+    tipo_usuario: new FormControl('',Validators.required),
+    ciudad: new FormControl('', ),
+    provincia: new FormControl('', Validators.required),
     nombre: new FormControl('', Validators.required),
     fecha_nac: new FormControl('', Validators.required),
     id_fiscal: new FormControl('', Validators.required),
@@ -150,10 +150,103 @@ export class TercerosusuariosEditComponent implements OnInit {
         this.TercerosForm.get("provincia")?.setValue(res.provincia);
         this.TercerosForm.get("ciudad")?.setValue(res.ciudad);
         this.TercerosForm.get("direccion")?.setValue(res.direccion);
-        this.fechaSeleccionada = new Date(res.fecha_nac);;
+        this.fechaSeleccionada = new Date(res.fecha_nac);
         this.TercerosForm.get("fecha_nac")?.setValue(this.fechaSeleccionada.toISOString());
       }
     });
+
+    
+    // Extracción de tipousuario_id precargado
+    const tipo_usuarionew: TipousuariosEntity = {
+      idTipo_Usuario: '',
+      usuario: this.TercerosForm.value!.tipo_usuario ?? ""
+    }
+    this.httpServiceTipoUsuario.obtenerTipoUsuariosN(tipo_usuarionew).subscribe(res => {
+      if (res.codigoError != "OK") {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener la Sociedad.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+      } else {
+        this.lstTipoUsuarios2 = res.lstTipo_Usuario;
+      }
+    })
+
+    // Extracción de tipotercero_id precargado
+
+    const tipo_terceronew: TipotercerosEntity = {
+      idTipo_tercero: '',
+      descripcion: this.TercerosForm.value!.tipo_tercero ?? "",
+      codigo: '',
+      created_at: '',
+      update_at: ''
+    }
+    
+    this.httpServiceTipoTercero.obtenerTipoTercerosN(tipo_terceronew).subscribe(res => {
+      if (res.codigoError != "OK") {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener la Sociedad.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+      } else {
+        this.lstTipoTerceros2 = res.lstTipo_Tercero;
+      }
+    })
+
+    // Extracción de la provincia
+
+    const provincian: ProvinciasEntity = {
+      id: '',
+      provincia: this.TercerosForm.value!.provincia ?? "",
+      codigo: '',
+      created_at: '',
+      update_at: ''
+    }
+    //console.log(provincian);
+    this.httpServiceCiudades.obtenerCiudades(provincian).subscribe(res => {
+      if (res.codigoError != "OK") {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener la Sociedad.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+        this.lstCiudades = [];
+
+      } else {
+        this.lstCiudades = res.lstCiudades;
+
+      }
+    })
+
+    // Extracción de la ciudad
+    const ciudadnew: CiudadesEntity = {
+      idCiudad: '',
+      ciudad: this.TercerosForm.value!.ciudad ?? '',
+      provinciaid: '',
+      provincia: '',
+      codigo: '',
+      created_at: '',
+      update_at: ''
+    }
+    this.httpServiceCiudades.obtenerCiudadesN(ciudadnew).subscribe(res => {
+      if (res.codigoError != "OK") {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener la Sociedad.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+      } else {
+        this.lstCiudades2 = res.lstCiudades
+      }
+    })
+    
+
   }
   fechaFormateada: any = '';
 
@@ -195,7 +288,7 @@ export class TercerosusuariosEditComponent implements OnInit {
           showConfirmButton: true,
           confirmButtonText: "Ok"
         }).finally(() => {
-          //this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
+          this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['tercerosusuarios'] } }]);
         });
       } else {
         Swal.fire({
@@ -279,6 +372,7 @@ export class TercerosusuariosEditComponent implements OnInit {
       })
     }
   }
+
 
   changeGroup2(tipo_tercero: any): void {
     if (tipo_tercero.target.value == 0) {
@@ -380,7 +474,7 @@ export class TercerosusuariosEditComponent implements OnInit {
 
 
   visualizarTerceros() {
-    //this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['terceros'] } }]);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['tercerosusuarios'] } }]);
   }
 
 }

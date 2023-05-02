@@ -171,7 +171,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
           showConfirmButton: true,
           confirmButtonText: "Ok"
         }).finally(() => {
-          //this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
+          this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['tercerosusuarios'] } }]);
         });
       } else {
         Swal.fire({
@@ -356,7 +356,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
 
 
   visualizarTerceros() {
-    //this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['terceros'] } }]);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['tercerosusuarios'] } }]);
   }
   
 }
