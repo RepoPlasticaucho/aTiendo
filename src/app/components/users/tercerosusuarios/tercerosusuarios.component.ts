@@ -77,11 +77,6 @@ export class TercerosusuariosComponent implements OnInit {
 
   }
 
-  editarTercero(tercero: TercerosEntity): void {
-    this.httpService.asignarTercero(tercero);
-    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['editarTercero'] } }]);
-  }
-
   eliminarTercero(tercero: TercerosEntity): void {
     Swal.fire({
       icon: 'question',
@@ -122,5 +117,11 @@ export class TercerosusuariosComponent implements OnInit {
 
   agregarTerceros() {
     this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['tercerosusuarios-create'] } }]);
+  }
+
+  editarTerceros(tercero: TercerosEntity) {
+    console.log(tercero);
+    this.httpService.asignarTercero(tercero);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['tercerosusuarios-edit'] } }]);
   }
 }

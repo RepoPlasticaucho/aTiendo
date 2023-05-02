@@ -61,3 +61,4 @@ export { TercerosCreateComponent} from "./users/terceros-create/terceros-create.
 export { TercerosalmacenComponent} from "./users/tercerosalmacen/tercerosalmacen.component";
 export { TercerosusuariosComponent} from "./users/tercerosusuarios/tercerosusuarios.component";
 export { TercerosusuariosCreateComponent} from "./users/tercerosusuarios-create/tercerosusuarios-create.component";
+export { TercerosusuariosEditComponent} from "./users/tercerosusuarios-edit/tercerosusuarios-edit.component";

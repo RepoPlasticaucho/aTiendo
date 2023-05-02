@@ -171,7 +171,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
           showConfirmButton: true,
           confirmButtonText: "Ok"
         }).finally(() => {
-          this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
+          //this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
         });
       } else {
         Swal.fire({
@@ -346,7 +346,7 @@ export class TercerosusuariosCreateComponent implements OnInit {
 
   keyPressLetters(event: any) {
     const charCode = (event.which) ? event.which : event.keyCode;
-    if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)) {
+    if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && (charCode !== 32)) {
       event.preventDefault();
       return false;
     } else {
