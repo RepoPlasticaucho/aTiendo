@@ -100,7 +100,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { AlmaceningresosComponent } from './components/income/almaceningresos/almaceningresos.component';
 import { AlmacenesegresosComponent } from './components/outcome/almacenesegresos/almacenesegresos.component';
-import { PedidosComponent } from './components/outcome/pedidos/pedidos.component';
 import { PedidoprovComponent } from './components/income/pedidoprov/pedidoprov.component';
 import { PedidoventComponent } from './components/outcome/pedidovent/pedidovent.component';
 
@@ -182,7 +181,6 @@ import { PedidoventComponent } from './components/outcome/pedidovent/pedidovent.
     TercerosEditComponent,
     AlmaceningresosComponent,
     AlmacenesegresosComponent,
-    PedidosComponent,
     PedidoprovComponent,
     PedidoventComponent,
     
