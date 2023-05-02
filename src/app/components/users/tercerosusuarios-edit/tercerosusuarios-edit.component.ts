@@ -34,6 +34,7 @@ export class TercerosusuariosEditComponent implements OnInit {
 
   //Declaracion de variables
   private codigo: string = "";
+  private nombreCompleto: string = "";
 
   //Creación de la variable para formulario
   TercerosForm = new FormGroup({
@@ -42,6 +43,7 @@ export class TercerosusuariosEditComponent implements OnInit {
     ciudad: new FormControl('', ),
     provincia: new FormControl('', Validators.required),
     nombre: new FormControl('', Validators.required),
+    apellido: new FormControl('', Validators.required),
     fecha_nac: new FormControl('', Validators.required),
     id_fiscal: new FormControl('', Validators.required),
     correo: new FormControl('', Validators.required),
@@ -64,7 +66,7 @@ export class TercerosusuariosEditComponent implements OnInit {
   };
 
   selectProvincias2: boolean = false;
-  //selectProvicias: boolean = false;
+  
   //Variables para ejecucion del Form
   lstCiudades: CiudadesEntity[] = [];
   lstCiudades2: CiudadesEntity[] = [];
@@ -144,7 +146,12 @@ export class TercerosusuariosEditComponent implements OnInit {
         this.TercerosForm.get("tipo_usuario")?.setValue(res.tipousuario);
         this.TercerosForm.get("tipo_tercero")?.setValue(res.nombretercero);
         this.TercerosForm.get("id_fiscal")?.setValue(res.id_fiscal);
-        this.TercerosForm.get("nombre")?.setValue(res.nombre);
+
+        this.nombreCompleto = res.nombre;
+        const nombreApellido = this.nombreCompleto.split(' ');
+        this.TercerosForm.get("nombre")?.setValue(nombreApellido[0] + ' ' + nombreApellido[1]);
+        this.TercerosForm.get("apellido")?.setValue(nombreApellido[2] + ' ' + nombreApellido[3]);
+
         this.TercerosForm.get("correo")?.setValue(res.correo);
         this.TercerosForm.get("telefono")?.setValue(res.telefono);
         this.TercerosForm.get("provincia")?.setValue(res.provincia);
@@ -245,7 +252,6 @@ export class TercerosusuariosEditComponent implements OnInit {
         this.lstCiudades2 = res.lstCiudades
       }
     })
-    
 
   }
   fechaFormateada: any = '';
@@ -267,7 +273,7 @@ export class TercerosusuariosEditComponent implements OnInit {
       nombrealmacen: '',
       nombretercero: this.TercerosForm.value!.tipo_tercero ?? "",
       tipousuario: this.TercerosForm.value!.tipo_usuario ?? "",
-      nombre: this.TercerosForm.value!.nombre ?? "",
+      nombre: (this.TercerosForm.value!.nombre ?? "").concat(" " + this.TercerosForm.value!.apellido ?? ""),
       id_fiscal: this.TercerosForm.value!.id_fiscal ?? "",
       direccion: this.TercerosForm.value!.direccion ?? "",
       telefono: this.TercerosForm.value!.telefono ?? "",

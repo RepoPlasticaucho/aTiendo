@@ -63,7 +63,20 @@
                         *ngIf="TercerosForm.controls['nombre'].invalid && (TercerosForm.controls['nombre'].dirty || TercerosForm.controls['nombre'].touched)">
                         <small *ngIf="TercerosForm.controls['nombre'].errors?.['required']"
                             style="color: red;">
-                            Debe ingresar los nombres y apellidos.
+                            Debe ingresar los nombres.
+                        </small>
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellidos</label>
+                    <input type="text" class="form-control" id="apellido"
+                        placeholder="Ingrese los Apellidos" formControlName="apellido"
+                        (keypress)="keyPressLetters($event)">
+                    <small
+                        *ngIf="TercerosForm.controls['apellido'].invalid && (TercerosForm.controls['apellido'].dirty || TercerosForm.controls['apellido'].touched)">
+                        <small *ngIf="TercerosForm.controls['apellido'].errors?.['required']"
+                            style="color: red;">
+                            Debe ingresar los apellidos.
                         </small>
                     </small>
                 </div>
