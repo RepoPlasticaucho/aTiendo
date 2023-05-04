@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlmacenesComponent, AlmacenesCreateComponent, AlmacenesEditComponent, AlmacenessociedadComponent, AlmacenessociedadCreateComponent, AlmacenessociedadEditComponent, AtributosComponent, AtributosCreateComponent, AtributosEditComponent, CatalogosComponent, CategoriasComponent, CategoriasCreateComponent, CategoriasEditComponent, ColorsComponent, ColorsCreateComponent, ColorsEditComponent, DashboardAdmComponent, DashboardBoComponent, DashboardClComponent, GenerosComponent, GenerosCreateComponent, GenerosEditComponent, GruposComponent, GruposCreateComponent, GruposEditComponent, InventariosAlmacenComponent, InventariosComponent, InventariosPedidoCategoriaComponent, InventariosPedidoColoresComponent, InventariosPedidoComponent, InventariosPedidoLineasComponent, InventariosPedidoModelosComponent, InventariosProductosComponent, LineasComponent, LineasCreateComponent, LineasEditComponent, MarcasComponent, MarcasCreateComponent, MarcasEditComponent, ModeloproductosComponent, ModeloproductosCreateComponent, ModeloproductosEditComponent, ModelosComponent, ModelosCreateComponent, ModelosEditComponent, NavegationAdmComponent, NavegationBoComponent, NavegationClComponent, PedidoSugeridoComponent, ProductosComponent, ProductosCreateComponent, ProductosEditComponent, SociedadesComponent, SociedadesCreateComponent, SociedadesEditComponent, TercerosalmacenComponent, TercerosComponent, TercerosCreateComponent, TercerosusuariosComponent, TercerosusuariosCreateComponent, TercerosusuariosEditComponent, UsuarioComponent, UsuarioPassComponent } from './components/all_components';
 import { LoginNavComponent } from './components/login-nav/login-nav.component';
 import { LoginComponent } from './components/login/login.component';
+import { TercerosEditComponent } from './components/users/terceros-edit/terceros-edit.component';
 
 const routes: Routes = [
   {
@@ -74,7 +75,9 @@ const routes: Routes = [
       { path: "usuario", component: UsuarioComponent, outlet: "contentAdmin" },
       { path: "usuario-pass", component: UsuarioPassComponent, outlet: "contentAdmin" },
       { path: "catalogos", component: CatalogosComponent, outlet: "contentAdmin" },
-      { path: "terceros", component: TercerosalmacenComponent, outlet: "contentAdmin" },
+      { path: "terceros", component: TercerosComponent, outlet: "contentAdmin" },
+      { path: "terceros-create", component: TercerosCreateComponent, outlet: "contentAdmin" },
+      { path: "terceros-edit", component: TercerosEditComponent, outlet: "contentAdmin" },
     ]
   },
   {

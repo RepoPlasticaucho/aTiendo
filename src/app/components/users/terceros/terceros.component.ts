@@ -6,6 +6,7 @@ import { TercerosEntity } from 'src/app/models/terceros';
 import { TercerosService } from 'src/app/services/terceros.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-terceros',
   templateUrl: './terceros.component.html',
@@ -54,6 +55,54 @@ export class TercerosComponent implements OnInit {
       }
     })
 
+  }
+
+  eliminarTercero(tercero: TercerosEntity): void {
+    Swal.fire({
+      icon: 'question',
+      title: `¿Esta seguro de eliminar al usuario: ${tercero.nombre}?`,
+      showDenyButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.httpService.eliminarTerceros(tercero).subscribe(res => {
+          if (res.codigoError == 'OK') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado Exitosamente.',
+              text: `Se ha eliminado la categoria ${tercero.nombre}`,
+              showConfirmButton: true,
+              confirmButtonText: "Ok"
+            }).then(() => {
+              // this.groupForm.reset();
+              window.location.reload();
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
+              showConfirmButton: false,
+            });
+          }
+        })
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  agregarTerceros() {
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros-create'] } }]);
+  }
+
+  editarTerceros(tercero: TercerosEntity) {
+    console.log(tercero);
+    this.httpService.asignarTercero(tercero);
+    this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros-edit'] } }]);
   }
 
 }
