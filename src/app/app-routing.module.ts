@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlmacenesComponent, AlmacenesCreateComponent, AlmacenesEditComponent, AlmacenessociedadComponent, AlmacenessociedadCreateComponent, AlmacenessociedadEditComponent, AtributosComponent, AtributosCreateComponent, AtributosEditComponent, CatalogosComponent, CategoriasComponent, CategoriasCreateComponent, CategoriasEditComponent, ColorsComponent, ColorsCreateComponent, ColorsEditComponent, DashboardAdmComponent, DashboardBoComponent, DashboardClComponent, GenerosComponent, GenerosCreateComponent, GenerosEditComponent, GruposComponent, GruposCreateComponent, GruposEditComponent, InventariosAlmacenComponent, InventariosComponent, InventariosPedidoCategoriaComponent, InventariosPedidoColoresComponent, InventariosPedidoComponent, InventariosPedidoLineasComponent, InventariosPedidoModelosComponent, InventariosProductosComponent, LineasComponent, LineasCreateComponent, LineasEditComponent, MarcasComponent, MarcasCreateComponent, MarcasEditComponent, ModeloproductosComponent, ModeloproductosCreateComponent, ModeloproductosEditComponent, ModelosComponent, ModelosCreateComponent, ModelosEditComponent, NavegationAdmComponent, NavegationBoComponent, NavegationClComponent, PedidoSugeridoComponent, ProductosComponent, ProductosCreateComponent, ProductosEditComponent, SociedadesComponent, SociedadesCreateComponent, SociedadesEditComponent, TercerosalmacenComponent, TercerosComponent, TercerosCreateComponent, TercerosusuariosComponent, TercerosusuariosCreateComponent, TercerosusuariosEditComponent, UsuarioComponent, UsuarioPassComponent } from './components/all_components';
 import { LoginNavComponent } from './components/login-nav/login-nav.component';
 import { LoginComponent } from './components/login/login.component';
+import { AlmacenesegresosComponent } from './components/outcome/almacenesegresos/almacenesegresos.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,9 @@ const routes: Routes = [
       { path: "tercerosalmacen", component: TercerosalmacenComponent, outlet: "contentClient" },
       { path: "tercerosusuarios-create", component: TercerosusuariosCreateComponent, outlet: "contentClient" },
       { path: "tercerosusuarios-edit", component: TercerosusuariosEditComponent, outlet: "contentClient" },
-      { path: "tercerosusuarios", component: TercerosusuariosComponent, outlet: "contentClient" }
+      { path: "tercerosusuarios", component: TercerosusuariosComponent, outlet: "contentClient" },
+      { path: "modeloproductos", component: ModeloproductosComponent, outlet: "contentClient" },
+      { path: "egresos", component: AlmacenesegresosComponent, outlet: "contentClient" }
     ]
   },
   {

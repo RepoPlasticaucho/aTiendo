@@ -18,7 +18,7 @@ export class DashboardClComponent {
       if (matches) {
         return [
           { title: 'Ingresos', cols: 1, rows: 1, name: "las grupos", figure: "book" },
-          { title: 'Egresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
+          { title: 'Egresos', cols: 1, rows: 1, name: "los grupos", figure: "book" ,  dir: "navegation-cl/(contentClient:egresos)"},
           { title: 'Saldos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
           { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment" },
           { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-productos)"},
@@ -27,7 +27,7 @@ export class DashboardClComponent {
           { title: 'Colores', cols: 1, rows: 1, name: "los colores de productos", figure: "shopping_cart" },
           { title: 'Caracteristicas', cols: 1, rows: 1, name: "las caracteristicas ", figure: "pie_chart" },
           { title: 'Géneros', cols: 1, rows: 1, name: "los géneros de productos", figure: "pie_chart" },
-          { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets" },
+          { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets",  dir: "navegation-cl/(contentClient:modeloproductos)" },
           { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-almacen)"},
           // { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "widgets" },
           { title: 'Pedido Sugerido', cols: 1, rows: 1, name: "las productos", figure: "widgets", dir: "navegation-cl/(contentClient:pedido-sugeridos)"},
@@ -42,7 +42,7 @@ export class DashboardClComponent {
 
       return [
         { title: 'Ingresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
-        { title: 'Egresos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
+        { title: 'Egresos', cols: 1, rows: 1, name: "los grupos", figure: "book" ,  dir: "navegation-cl/(contentClient:egresos)"},
         { title: 'Saldos', cols: 1, rows: 1, name: "los grupos", figure: "book" },
         { title: 'Lineas', cols: 1, rows: 1, name: "las lineas de productos", figure: "assignment" },
         { title: 'Productos', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-productos)"},
@@ -51,7 +51,7 @@ export class DashboardClComponent {
         { title: 'Colores', cols: 1, rows: 1, name: "los colores de productos", figure: "shopping_cart" },
         { title: 'Caracteristicas', cols: 1, rows: 1, name: "las caracteristicas ", figure: "pie_chart" },
         { title: 'Géneros', cols: 1, rows: 1, name: "los géneros de productos", figure: "pie_chart" },
-        { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets" },
+        { title: 'Modelo Producto', cols: 1, rows: 1, name: "los modelos productos", figure: "widgets",  dir: "navegation-cl/(contentClient:modeloproductos)" },
         { title: 'Inventarios', cols: 1, rows: 1, name: "los productos", figure: "apps" , dir: "navegation-cl/(contentClient:inventarios-almacen)"},
         { title: 'Pedido Sugerido', cols: 1, rows: 1, name: "las productos", figure: "widgets", dir: "navegation-cl/(contentClient:pedido-sugeridos)"},
         { title: 'Movimientos', cols: 1, rows: 1, name: "los productos", figure: "monitor" },
