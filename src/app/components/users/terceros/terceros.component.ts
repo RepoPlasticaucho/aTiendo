@@ -52,6 +52,7 @@ export class TercerosComponent implements OnInit {
       } else {
         this.lstTerceros = res.lstTerceros;
         this.dtTrigger.next('');
+        console.log(this.lstTerceros);
       }
     })
 

@@ -164,7 +164,7 @@ export class TercerosCreateComponent implements OnInit {
       const tercerodatos: TercerosEntity = {
         id: '',
         almacen_id: this.lstAlmacenes2[0].idAlmacen ?? 0,
-        sociedad_id: this.lstSociedades2[0].idGrupo ?? 0,
+        sociedad_id: this.lstSociedades2[0].idSociedad ?? 0,
         tipotercero_id: this.lstTipoTerceros2[0].idTipo_tercero ?? 0,
         tipousuario_id: this.lstTipoUsuarios2[0].idTipo_Usuario ?? 0,
         nombresociedad: this.TercerosForm.value!.sociedad ?? "",

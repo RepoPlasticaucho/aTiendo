@@ -23,7 +23,6 @@ export class ProductosEditComponent implements OnInit {
     //Creación de la variable para formulario
     modelProductForm = new FormGroup({
       modeloproducto_id: new FormControl('0', Validators.required),
-      modelo_producto: new FormControl('0', Validators.required),
       producto: new FormControl('', [Validators.required]),
       etiqueta: new FormControl('', [Validators.required]),
       tamanio: new FormControl('', [Validators.required]),
@@ -43,6 +42,8 @@ export class ProductosEditComponent implements OnInit {
 
     //Variable contenedor id Modelo Producto
     codigo: string = '';
+    selectedModeloProducto: string | undefined = '' ;
+
     constructor(
       private readonly httpServiceModeloProductos: ModeloproductosService,
       private readonly httpService: ProductosAdminService,
@@ -115,7 +116,7 @@ export class ProductosEditComponent implements OnInit {
         } else {
           const productEntity: ProducAdmEntity = {
             id: this.codigo,
-            modelo_producto_id: this.modelProductForm.value!.modeloproducto_id ?? this.lstModeloProductos.filter(x => x.modelo == this.modelProductForm.value.modelo_producto)[0].id!,
+            modelo_producto_id: this.modelProductForm.value!.modeloproducto_id ?? "",
             nombre: this.modelProductForm.value!.producto ?? '',
             cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
             tamanio : this.modelProductForm.value!.tamanio ?? '',
@@ -132,9 +133,7 @@ export class ProductosEditComponent implements OnInit {
             modelo_nombre: ''
           };
 
-          this.httpService
-            .actualizarProducto(productEntity)
-            .subscribe((res) => {
+          this.httpService.actualizarProducto(productEntity).subscribe((res) => {
               if (res.codigoError == 'OK') {
                 Swal.fire({
                   icon: 'success',
@@ -174,6 +173,7 @@ export class ProductosEditComponent implements OnInit {
     //Modelo
     selectEventModel(item: ModeloProductosEntity) {
       this.selectModeloProductos = false;
+      this.selectedModeloProducto = item.etiquetas;
       this.modelProductForm.controls['modeloproducto_id'].setValue(item.id!);
     }
   

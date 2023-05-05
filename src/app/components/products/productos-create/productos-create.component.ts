@@ -32,9 +32,11 @@ export class ProductosCreateComponent implements OnInit {
   
   //Variables para validar selección
   selectModeloProducto: boolean = false;
+  selectedModeloProducto: string | undefined = '' ;
  
   //Variables para Autocomplete
   keywordModelProduct = 'modelo_producto';
+
  
 
   constructor(
@@ -137,6 +139,7 @@ export class ProductosCreateComponent implements OnInit {
   //Modelo
   selectEventModel(item: ModeloProductosEntity) {
     this.selectModeloProducto = false;
+    this.selectedModeloProducto = item.etiquetas;
     this.modelProductForm.controls['modeloproducto_id'].setValue(item.id!);
   }
   //Evento para cuando se limpia los cuadros de texto
@@ -145,4 +148,6 @@ export class ProductosCreateComponent implements OnInit {
     this.selectModeloProducto=true;
     this.modelProductForm.controls['modeloproducto_id'].setValue('0');
   }
+
+
 }

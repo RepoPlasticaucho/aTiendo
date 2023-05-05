@@ -14,12 +14,15 @@
             <form [formGroup]="modelProductForm" (ngSubmit)="onSubmit()">
                 
                 <div class="form-group">
-                    <label for="modelo_prducto_id">Modelo Producto:</label>
-                    <ng-autocomplete [data]="lstModeloProductos" (selected)='selectEventModel($event)' [searchKeyword]="keywordModelProduct" placeholder="Seleccione el Modelo" [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel" class="form-control" style="width: 100%;padding: 0%;"
-                        (inputChanged)='onChangeSearchModel($event)' [initialValue]="initialModelProduct" (inputCleared)="onInputClearedModel()" formControlName="modelo_prducto" id="modelInput">
+                    <label for="modelo_producto_id">Modelo Producto:</label>
+                    <ng-autocomplete  [data]="lstModeloProductos" (selected)='selectEventModel($event)'
+                        [searchKeyword]="keywordModelProduct" placeholder="Seleccione el Modelo Producto"
+                        [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel"
+                        class="form-control" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchModel($event)' 
+                        (inputCleared)="onInputClearedModel()">
                     </ng-autocomplete>
                     <ng-template #itemTemplateModel let-item>
-                        <a [innerHTML]="item.modelo"></a>
+                        <a [innerHTML]="item.etiquetas"></a>
                     </ng-template>
                     <ng-template #notFoundTemplateModel let-notFound>
                         <p>No se encontro datos</p>

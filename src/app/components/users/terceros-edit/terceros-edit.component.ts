@@ -183,9 +183,7 @@ export class TercerosEditComponent implements OnInit {
         this.TercerosForm.get('ciudad')?.setValue(res.ciudad);
         this.TercerosForm.get('direccion')?.setValue(res.direccion);
         this.fechaSeleccionada = new Date(res.fecha_nac);
-        this.TercerosForm.get('fecha_nac')?.setValue(
-          this.fechaSeleccionada.toISOString()
-        );
+        this.TercerosForm.get('fecha_nac')?.setValue(this.fechaSeleccionada.toISOString());
       }
     });
 
@@ -401,10 +399,7 @@ export class TercerosEditComponent implements OnInit {
   fechaFormateada: any = '';
 
   onSubmit() {
-    this.fechaFormateada = this.datePipe.transform(
-      this.fechaSeleccionada,
-      'yyyy-MM-dd'
-    );
+    this.fechaFormateada = this.datePipe.transform(this.fechaSeleccionada,'yyyy-MM-dd');
 
     if (!this.TercerosForm.valid) {
       this.TercerosForm.markAllAsTouched();
@@ -413,7 +408,7 @@ export class TercerosEditComponent implements OnInit {
       const tercerodatos: TercerosEntity = {
         id: this.codigo,
         almacen_id: this.lstAlmacenes2[0].idAlmacen ?? 0,
-        sociedad_id: this.lstSociedades2[0].idGrupo ?? 0,
+        sociedad_id: this.lstSociedades2[0].idSociedad ?? 0,
         tipotercero_id: this.lstTipoTerceros2[0].idTipo_tercero ?? 0,
         tipousuario_id: this.lstTipoUsuarios2[0].idTipo_Usuario ?? 0,
         nombresociedad: this.TercerosForm.value!.sociedad ?? "",

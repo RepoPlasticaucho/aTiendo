@@ -15,14 +15,14 @@
             <form [formGroup]="modelProductForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="modeloproducto_id">Modelo Producto:</label>
-                    <ng-autocomplete [data]="lstModeloProductos" (selected)='selectEventModel($event)'
+                    <ng-autocomplete  [data]="lstModeloProductos" (selected)='selectEventModel($event)'
                         [searchKeyword]="keywordModelProduct" placeholder="Seleccione el Modelo Producto"
                         [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel"
                         class="form-control" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchModel($event)' 
                         (inputCleared)="onInputClearedModel()">
                     </ng-autocomplete>
                     <ng-template #itemTemplateModel let-item>
-                        <a [innerHTML]="item.modeloproducto"></a>
+                        <a [innerHTML]="item.etiquetas"></a>
                     </ng-template>
                     <ng-template #notFoundTemplateModel let-notFound>
                         <p>No se encontro datos</p>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group ">
                     <label for="producto" style="margin: 0;">Etiquetas</label>
-                    <input type="text " class="form-control " id="etiquetas" placeholder="Ingrese las etiquetas del Producto." formControlName="etiquetas">
+                    <input [(ngModel)]="selectedModeloProducto" type="text " class="form-control " id="etiquetas" placeholder="Ingrese las etiquetas del Producto." formControlName="etiquetas">
                     <small *ngIf="modelProductForm.controls['etiquetas'].invalid && (modelProductForm.controls['etiquetas'].dirty || modelProductForm.controls['etiquetas'].touched)">
                         <small *ngIf="modelProductForm.controls['etiquetas'].errors?.['required']" style="color: red;">
                             Debe ingresar la descripción del Producto
