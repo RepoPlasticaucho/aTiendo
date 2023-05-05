@@ -59,4 +59,7 @@ export class SociedadesService {
   obtenerUser(sociedad: SociedadesEntity): Observable<Sociedades> {
     return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ObtenerUser`, sociedad);
   }
+  obtenerSociedadesN(nombre: SociedadesEntity):Observable<Sociedades>{
+    return this.http.post<Sociedades>(`${environment.apiUrl}sociedades/ObtenerSociedadesN`, nombre);
+  }
 }

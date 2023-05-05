@@ -15,10 +15,10 @@
             <form [formGroup]="TercerosForm" (ngSubmit)="onSubmit()" >
                 <div class="form-group">
                     <label for="grupo">Sociedad</label>
-                    <select class="form-control" (change)="changeGroup4($event)" formControlName="sociedad">
+                    <select class="form-control" (change)="onSelect1($event)" formControlName="sociedad">
                         <option [value]=" 0 " selected>Seleccione una sociedad</option>
-                        <option *ngFor="let sociedad of lstSociedades" [value]="sociedad.nombreGrupo">
-                            {{sociedad.nombreGrupo}}
+                        <option *ngFor="let sociedad of lstSociedades" [value]="sociedad.nombre_comercial">
+                            {{sociedad.nombre_comercial}}
                         </option>
                     </select>
                     <small *ngIf="selectSociedades">
@@ -31,8 +31,8 @@
                     <label for="grupo">Almacén</label>
                     <select class="form-control" (change)="changeGroup5($event)" formControlName="almacen">
                         <option [value]=" 0 " selected>Seleccione un almacén</option>
-                        <option *ngFor="let almacen of lstAlmacenes" [value]="almacen.nombresociedad">
-                            {{almacen.nombresociedad}}
+                        <option *ngFor="let almacen of lstAlmacenes" [value]="almacen.direccion">
+                            {{almacen.direccion}}
                         </option>
                     </select>
                     <small *ngIf="selectAlmacenes">

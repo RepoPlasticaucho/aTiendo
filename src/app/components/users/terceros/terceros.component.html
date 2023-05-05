@@ -46,7 +46,7 @@
                         <td>{{tercero.provincia}}</td>
                         <td>{{tercero.ciudad}}</td>
                         <td>{{tercero.direccion}}</td>
-                        <td>{{tercero.fecha_nac| date: 'MM/dd/yyyy' }}</td>
+                        <td>{{tercero.fecha_nac | date:'dd/MM/yyyy'}}</td>
                         <td style="text-align: center;">
                             <fa-icon [icon]="faEdit" class="btn btn-info" [size]="'lg'" style="margin-right: 5px;" data-placement="bottom" title="Editar Usuario" (click)="editarTerceros(tercero)"></fa-icon>
                             &nbsp; &nbsp;  

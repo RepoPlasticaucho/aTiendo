@@ -16,6 +16,8 @@ import { TipotercerosService } from 'src/app/services/tipotercero.service';
 import { TipousuariosService } from 'src/app/services/tipousuario.service';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { SociedadesService } from 'src/app/services/sociedades.service';
+import { AlmacenesService } from 'src/app/services/almacenes.service';
 
 @Component({
   selector: 'app-terceros-create',
@@ -51,20 +53,12 @@ export class TercerosCreateComponent implements OnInit {
     telefono: new FormControl('', Validators.required),
   });
 
-  
+
 
 
   //Variables para listas desplegables
 
   lstProvincias: ProvinciasEntity[] = [];
-  selectProvincias: ProvinciasEntity = {
-    id: '0',
-    provincia: '',
-    codigo: '',
-    created_at: '',
-    update_at: ''
-  };
-
   selectProvincias2: boolean = false;
   //selectProvicias: boolean = false;
   //Variables para ejecucion del Form
@@ -96,6 +90,8 @@ export class TercerosCreateComponent implements OnInit {
     private readonly httpServiceCiudades: CiudadesService,
     private readonly httpServiceTipoTercero: TipotercerosService,
     private readonly httpServiceTipoUsuario: TipousuariosService,
+    private readonly httpServiceSociedades: SociedadesService,
+    private readonly httpServiceAlmacenes: AlmacenesService,
     private datePipe: DatePipe,
     private router: Router) {
   }
@@ -140,6 +136,20 @@ export class TercerosCreateComponent implements OnInit {
         this.lstTipoUsuarios = res.lstTipo_Usuario;
       }
     })
+
+    this.httpServiceSociedades.obtenerSociedades().subscribe(res => {
+      if (res.codigoError != "OK") {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener la Sociedad.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+      } else {
+        this.lstSociedades = res.lstSociedades;
+      }
+    })
+
   }
 
   fechaFormateada: any = '';
@@ -152,48 +162,48 @@ export class TercerosCreateComponent implements OnInit {
       console.log("Error");
     } else {
       const tercerodatos: TercerosEntity = {
-      id: '',
-      almacen_id: this.lstAlmacenes2[0].idAlmacen ?? 0,
-      sociedad_id: this.lstSociedades2[0].idGrupo ?? 0,
-      tipotercero_id: this.lstTipoTerceros2[0].idTipo_tercero ?? 0,
-      tipousuario_id: this.lstTipoUsuarios2[0].idTipo_Usuario ?? 0,
-      nombresociedad: this.TercerosForm.value!.sociedad ?? "",
-      nombrealmacen: this.TercerosForm.value!.almacen ?? "",
-      nombretercero: this.TercerosForm.value!.tipo_tercero ?? "",
-      tipousuario: this.TercerosForm.value!.tipo_usuario ?? "",
-      nombre: (this.TercerosForm.value!.nombre ?? "").concat(" " + this.TercerosForm.value!.apellido ?? ""),
-      id_fiscal: this.TercerosForm.value!.id_fiscal ?? "",
-      direccion: this.TercerosForm.value!.direccion ?? "",
-      telefono: this.TercerosForm.value!.telefono ?? "",
-      correo: this.TercerosForm.value!.correo ?? "",
-      fecha_nac: this.fechaFormateada ?? "",
-      ciudad: this.TercerosForm.value!.ciudad ?? '',
-      provincia: this.TercerosForm.value!.provincia ?? "",
-      ciudadid: this.lstCiudades2[0].idCiudad ?? 0
-    }
-    console.log(tercerodatos);
-
-    this.httpService.agregarTerceros(tercerodatos).subscribe(res => {
-      if (res.codigoError == "OK") {
-        Swal.fire({
-          icon: 'success',
-          title: 'Guardado Exitosamente.',
-          text: `Se ha creado el usuario ${this.TercerosForm.value.nombre?.concat(" " + this.TercerosForm.value.apellido)}`,
-          showConfirmButton: true,
-          confirmButtonText: "Ok"
-        }).finally(() => {
-          this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['tercerosusuarios'] } }]);
-        });
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Ha ocurrido un error.',
-          text: res.descripcionError,
-          showConfirmButton: false,
-        });
+        id: '',
+        almacen_id: this.lstAlmacenes2[0].idAlmacen ?? 0,
+        sociedad_id: this.lstSociedades2[0].idGrupo ?? 0,
+        tipotercero_id: this.lstTipoTerceros2[0].idTipo_tercero ?? 0,
+        tipousuario_id: this.lstTipoUsuarios2[0].idTipo_Usuario ?? 0,
+        nombresociedad: this.TercerosForm.value!.sociedad ?? "",
+        nombrealmacen: this.TercerosForm.value!.almacen ?? "",
+        nombretercero: this.TercerosForm.value!.tipo_tercero ?? "",
+        tipousuario: this.TercerosForm.value!.tipo_usuario ?? "",
+        nombre: (this.TercerosForm.value!.nombre ?? "").concat(" " + this.TercerosForm.value!.apellido ?? ""),
+        id_fiscal: this.TercerosForm.value!.id_fiscal ?? "",
+        direccion: this.TercerosForm.value!.direccion ?? "",
+        telefono: this.TercerosForm.value!.telefono ?? "",
+        correo: this.TercerosForm.value!.correo ?? "",
+        fecha_nac: this.fechaFormateada ?? "",
+        ciudad: this.TercerosForm.value!.ciudad ?? '',
+        provincia: this.TercerosForm.value!.provincia ?? "",
+        ciudadid: this.lstCiudades2[0].idCiudad ?? 0
       }
-    })
-  }
+      console.log(tercerodatos);
+
+      this.httpService.agregarTerceros(tercerodatos).subscribe(res => {
+        if (res.codigoError == "OK") {
+          Swal.fire({
+            icon: 'success',
+            title: 'Guardado Exitosamente.',
+            text: `Se ha creado el usuario ${this.TercerosForm.value.nombre?.concat(" " + this.TercerosForm.value.apellido)}`,
+            showConfirmButton: true,
+            confirmButtonText: "Ok"
+          }).finally(() => {
+            this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          });
+        }
+      })
+    }
 
   }
 
@@ -232,7 +242,6 @@ export class TercerosCreateComponent implements OnInit {
         }
       })
     }
-
   }
 
   //Validaciones de comboxs 
@@ -345,52 +354,32 @@ export class TercerosCreateComponent implements OnInit {
   }
 
 
-  
-  // CAMBIAR CHANGE GROUP 4 Y 5
 
+  // Combo dependendiente de evento 
+  onSelect1(e: any) {
 
-  changeGroup4(tipousuario: any): void {
-    if (tipousuario.target.value == 0) {
-      this.selectTipoUsuario = true;
+    if (e.target.value == 0) {
+      this.selectSociedades = true;
     } else {
-      this.selectTipoUsuario = false;
-
-      // Obtener ID de tipo_usuario
-
-      const tipo_usuarionew: TipousuariosEntity = {
-        idTipo_Usuario: '',
-        usuario: tipousuario.target.value
-      }
-      this.httpServiceTipoUsuario.obtenerTipoUsuariosN(tipo_usuarionew).subscribe(res => {
-        if (res.codigoError != "OK") {
-          Swal.fire({
-            icon: 'error',
-            title: 'No se pudo obtener la Sociedad.',
-            text: res.descripcionError,
-            showConfirmButton: false,
-          });
-        } else {
-          this.lstTipoUsuarios2 = res.lstTipo_Usuario;
-        }
-      })
-
-      //this.warehousesForm.get("sociedad")?.setValue(sociedad.target.value);
+      this.selectSociedades = false;
     }
-  }
-
-  changeGroup5(tipousuario: any): void {
-    if (tipousuario.target.value == 0) {
-      this.selectTipoUsuario = true;
+    if (e.target.value == null || undefined) {
+      this.lstAlmacenes = [];
     } else {
-      this.selectTipoUsuario = false;
-
-      // Obtener ID de tipo_usuario
-
-      const tipo_usuarionew: TipousuariosEntity = {
-        idTipo_Usuario: '',
-        usuario: tipousuario.target.value
+      const sociedad: SociedadesEntity = {
+        idGrupo: '',
+        nombre_comercial: e.target.value,
+        idSociedad: '',
+        nombreGrupo: '',
+        razon_social: '',
+        id_fiscal: '',
+        email: '',
+        telefono: '',
+        password: '',
+        funcion: ''
       }
-      this.httpServiceTipoUsuario.obtenerTipoUsuariosN(tipo_usuarionew).subscribe(res => {
+
+      this.httpServiceSociedades.obtenerSociedadesN(sociedad).subscribe(res => {
         if (res.codigoError != "OK") {
           Swal.fire({
             icon: 'error',
@@ -399,11 +388,59 @@ export class TercerosCreateComponent implements OnInit {
             showConfirmButton: false,
           });
         } else {
-          this.lstTipoUsuarios2 = res.lstTipo_Usuario;
+          this.lstSociedades2 = res.lstSociedades;
         }
       })
+      
+      this.httpServiceAlmacenes.obtenerAlmacenesS(sociedad).subscribe(res => {
+        if (res.codigoError != "OK") {
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo obtener la Sociedad.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          });
+          this.lstAlmacenes = [];
 
-      //this.warehousesForm.get("sociedad")?.setValue(sociedad.target.value);
+        } else {
+          this.lstAlmacenes = res.lstAlmacenes;
+        }
+      })
+       
+    }
+    
+  }
+ 
+
+  changeGroup5(almacen: any): void {
+    if (almacen.target.value == 0) {
+      this.selectAlmacenes = true;
+    } else {
+      this.selectAlmacenes = false;
+
+      // Obtener ID de almacenes
+
+      const almacenNew: AlmacenesEntity = {
+        idAlmacen: '',
+        sociedad_id: '',
+        nombresociedad: '',
+        direccion: almacen.target.value,
+        telefono: '',
+        codigo: '',
+        pto_emision: ''
+      }
+      this.httpServiceAlmacenes.obtenerAlmacenN(almacenNew).subscribe(res => {
+        if (res.codigoError != "OK") {
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo obtener la Sociedad.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          });
+        } else {
+          this.lstAlmacenes2 = res.lstAlmacenes;
+        }
+      })
     }
   }
 
@@ -433,5 +470,5 @@ export class TercerosCreateComponent implements OnInit {
     this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['terceros'] } }]);
   }
 
-  
+
 }

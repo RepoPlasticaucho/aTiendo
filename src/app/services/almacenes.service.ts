@@ -50,4 +50,11 @@ export class AlmacenesService {
   actualizarAlmacen(almacen: AlmacenesEntity): Observable<Almacenes> {
     return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ModificarAlmacen`, almacen);
   }
+
+  obtenerAlmacenesS(almacen: SociedadesEntity): Observable<Almacenes> {
+    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ObtenerAlmacenesS`, almacen);
+  }
+  obtenerAlmacenN(direccion: AlmacenesEntity):Observable<Almacenes>{
+    return this.http.post<Almacenes>(`${environment.apiUrl}almacenes/ObtenerAlmacenN`, direccion);
+  }
 }
