@@ -14,6 +14,8 @@ import { GenerosService } from 'src/app/services/generos.service';
 import { MarcasService } from 'src/app/services/marcas.service';
 import { ModeloproductosService } from 'src/app/services/modeloproductos.service';
 import { ModelosService } from 'src/app/services/modelos.service';
+import { ImagenesEntity } from 'src/app/models/imagenes';
+import { ImagenesService } from 'src/app/services/imagenes.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -40,6 +42,7 @@ export class ModeloproductosEditComponent implements OnInit {
     genero: new FormControl('0', Validators.required),
     modeloProducto: new FormControl('', [Validators.required]),
     codigoSAP: new FormControl('', [Validators.required]),
+    urlImagen: new FormControl(''),
   });
   //Variables para listas desplegables
   lstMarcas: MarcasEntity[] = [];
@@ -65,6 +68,17 @@ export class ModeloproductosEditComponent implements OnInit {
   initialColor: string = '';
   initialAttribute: string = '';
   initialGenre: string = '';
+  //Variables para imágen
+  fileToUpload: any;
+  imageUrl: any =
+    'https://calidad.atiendo.ec/eojgprlg/ModeloProducto/producto.png';
+  imageUrlAux: any =
+    'https://calidad.atiendo.ec/eojgprlg/ModeloProducto/producto.png';
+  imageBase64: string = '';
+  imageName: string = '';
+  imageNameOriginal: string = '';
+  codigoError: string = '';
+  descripcionError: string = '';
   //Variable contenedor id Modelo Producto
   codigo: string = '';
   constructor(
@@ -74,6 +88,7 @@ export class ModeloproductosEditComponent implements OnInit {
     private readonly httpServiceAtributos: AtributosService,
     private readonly httpServiceGeneros: GenerosService,
     private readonly httpService: ModeloproductosService,
+    private httpServiceImage: ImagenesService,
     private router: Router
   ) { }
 
@@ -174,6 +189,8 @@ export class ModeloproductosEditComponent implements OnInit {
         this.initialColor = res.color!;
         this.initialAttribute = res.atributo!;
         this.initialGenre = res.genero!;
+        this.imageUrl = res.url_image;        
+        this.imageNameOriginal = res.url_image!.split('/')[5];
       }
     });
   }
@@ -210,15 +227,71 @@ export class ModeloproductosEditComponent implements OnInit {
       } else if (this.modelProductForm.get('genero_id')?.value == '0') {
         this.selectGeneros = true;
       } else {
+        if (this.imageName != '') {
+          const imageEntity: ImagenesEntity = {
+            imageBase64: this.imageBase64,
+            nombreArchivo: this.imageName,
+            codigoError: '',
+            descripcionError: '',
+            nombreArchivoEliminar: this.imageNameOriginal,
+          };
+          this.httpServiceImage.agregarImagen(imageEntity).subscribe((res) => {
+            if (res.codigoError == 'OK') {
+              const modelProductEntity: ModeloProductosEntity = {
+                id: this.codigo,
+                marca_id: this.modelProductForm.value!.marca_id ?? this.lstMarcas.filter((x) => x.marca == this.modelProductForm.value.marca)[0].id,
+                modelo_id: this.modelProductForm.value!.modelo_id ?? this.lstModelos.filter((x) => x.modelo == this.modelProductForm.value.modelo)[0].id!,
+                color_id: this.modelProductForm.value!.color_id ?? this.lstColores.filter((x) => x.color == this.modelProductForm.value.color)[0].id,
+                atributo_id: this.modelProductForm.value!.atributo_id ?? this.lstAtributos.filter((x) => x.atributo == this.modelProductForm.value.atributo)[0].id,
+                genero_id: this.modelProductForm.value!.genero_id ?? this.lstGeneros.filter((x) => x.genero == this.modelProductForm.value.genero)[0].id,
+                modelo_producto: this.modelProductForm.value!.modeloProducto ?? '',
+                cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
+                url_image: this.imageName == '' ? this.imageUrl : this.imageName
+              };
+              this.httpService.actualizarModeloProducto(modelProductEntity).subscribe((res) => {
+                if (res.codigoError == 'OK') {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Actualizado Exitosamente.',
+                    text: `Se ha modificado el modelo ${this.modelProductForm.value.modeloProducto}`,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Ok',
+                  }).finally(() => {
+                    this.router.navigate([
+                      '/navegation-adm',
+                      { outlets: { contentAdmin: ['modeloProductos'] } },
+                    ]);
+                  });
+                } else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Ha ocurrido un error.',
+                    text: res.descripcionError,
+                    showConfirmButton: false,
+                  });
+                }
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Ha ocurrido un error.',
+                text: res.descripcionError,
+                showConfirmButton: false,
+              });
+            }
+          });
+        } else {
+        }
         const modelProductEntity: ModeloProductosEntity = {
           id: this.codigo,
-          marca_id: this.modelProductForm.value!.marca_id ?? this.lstMarcas.filter(x => x.marca == this.modelProductForm.value.marca)[0].id,
-          modelo_id: this.modelProductForm.value!.modelo_id ?? this.lstModelos.filter(x => x.modelo == this.modelProductForm.value.modelo)[0].id!,
-          color_id: this.modelProductForm.value!.color_id ?? this.lstColores.filter(x => x.color == this.modelProductForm.value.color)[0].id,
-          atributo_id: this.modelProductForm.value!.atributo_id ?? this.lstAtributos.filter(x => x.atributo == this.modelProductForm.value.atributo)[0].id,
-          genero_id: this.modelProductForm.value!.genero_id ?? this.lstGeneros.filter(x => x.genero == this.modelProductForm.value.genero)[0].id,
-          modelo_producto: this.modelProductForm.value!.modeloProducto ?? '',
-          cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
+                marca_id: this.modelProductForm.value!.marca_id ?? this.lstMarcas.filter((x) => x.marca == this.modelProductForm.value.marca)[0].id,
+                modelo_id: this.modelProductForm.value!.modelo_id ?? this.lstModelos.filter((x) => x.modelo == this.modelProductForm.value.modelo)[0].id!,
+                color_id: this.modelProductForm.value!.color_id ?? this.lstColores.filter((x) => x.color == this.modelProductForm.value.color)[0].id,
+                atributo_id: this.modelProductForm.value!.atributo_id ?? this.lstAtributos.filter((x) => x.atributo == this.modelProductForm.value.atributo)[0].id,
+                genero_id: this.modelProductForm.value!.genero_id ?? this.lstGeneros.filter((x) => x.genero == this.modelProductForm.value.genero)[0].id,
+                modelo_producto: this.modelProductForm.value!.modeloProducto ?? '',
+                cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
+                url_image: this.imageName == '' ? this.imageUrl : this.imageName
         };
         this.httpService
           .actualizarModeloProducto(modelProductEntity)
@@ -314,7 +387,6 @@ export class ModeloproductosEditComponent implements OnInit {
       this.selectColores = true;
       this.modelProductForm.controls['color_id'].setValue('0');
       this.modelProductForm.controls['color'].setValue('');
-
     }
   }
 
@@ -323,7 +395,6 @@ export class ModeloproductosEditComponent implements OnInit {
       this.selectAtributos = true;
       this.modelProductForm.controls['atributo_id'].setValue('0');
       this.modelProductForm.controls['atributo'].setValue('');
-
     }
   }
 
@@ -365,4 +436,21 @@ export class ModeloproductosEditComponent implements OnInit {
     this.modelProductForm.controls['genero'].setValue('');
   }
 
+  onChangeFile(target: any): void {
+    if (target.value != "") {
+      this.fileToUpload = target.files[0];
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imageUrl = event.target.result;
+        this.imageBase64 = this.imageUrl.split(',')[1];
+        this.imageName = this.fileToUpload.name;
+      }
+      reader.readAsDataURL(this.fileToUpload);
+    }
+  }
+
+  eliminarImagen() {
+    this.imageUrl = this.imageUrlAux;
+    this.imageName = this.imageUrl;
+  }
 }

@@ -33,6 +33,7 @@ export class ProductosEditComponent implements OnInit {
 
     //Variables para validar selección
     selectModeloProductos: boolean = false;
+    
 
     //Variables para Autocomplete
     keywordModelProduct = 'modelo_producto';
@@ -42,7 +43,6 @@ export class ProductosEditComponent implements OnInit {
 
     //Variable contenedor id Modelo Producto
     codigo: string = '';
-    selectedModeloProducto: string | undefined = '' ;
 
     constructor(
       private readonly httpServiceModeloProductos: ModeloproductosService,
@@ -56,6 +56,7 @@ export class ProductosEditComponent implements OnInit {
         $('#modelInput :input').val(this.initialModelProduct);
       
       });
+      
       
       //Obtenemos Modelos
       this.httpServiceModeloProductos.obtenerModelosProductos().subscribe((res) => {
@@ -106,12 +107,12 @@ export class ProductosEditComponent implements OnInit {
       if (!this.modelProductForm.valid) {
         this.modelProductForm.markAllAsTouched();
         
-        if (this.modelProductForm.get('modelo_producto_id')?.value == '0') {
+        if (this.modelProductForm.get('modeloproducto_id')?.value == '0') {
           this.selectModeloProductos = true;
         }
         
       } else {
-        if (this.modelProductForm.get('modelo_producto_id')?.value == '0') {
+        if (this.modelProductForm.get('modeloproducto_id')?.value == '0') {
           this.selectModeloProductos = true;
         } else {
           const productEntity: ProducAdmEntity = {
@@ -132,6 +133,8 @@ export class ProductosEditComponent implements OnInit {
             genero_nombre: '',
             modelo_nombre: ''
           };
+
+          console.log(productEntity);
 
           this.httpService.actualizarProducto(productEntity).subscribe((res) => {
               if (res.codigoError == 'OK') {
@@ -168,12 +171,10 @@ export class ProductosEditComponent implements OnInit {
     }
   
     //Disparador cuando selecciona algún item de los combos
-    
-  
     //Modelo
     selectEventModel(item: ModeloProductosEntity) {
       this.selectModeloProductos = false;
-      this.selectedModeloProducto = item.etiquetas;
+      //this.selectedModeloProducto = item.etiquetas;
       this.modelProductForm.controls['modeloproducto_id'].setValue(item.id!);
     }
   

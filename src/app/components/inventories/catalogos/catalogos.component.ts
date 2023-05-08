@@ -420,7 +420,8 @@ export class CatalogosComponent implements OnInit {
               genero: value.genero,
               modelo_producto: value.moelo_producto,
               cod_sap: value.subfamilia,
-              cod_familia: value.familia
+              cod_familia: value.familia,
+              url_image: ''
             }
 
             //console.log(modelo_producto);
@@ -495,7 +496,8 @@ export class CatalogosComponent implements OnInit {
                             modelo_producto: value.moelo_producto,
                             cod_sap: value.subfamilia,
                             cod_familia: value.familia,
-                            etiquetas : value.moelo_producto
+                            etiquetas : value.moelo_producto,
+                            url_image : ''
                           }
                           this.httpService.agregarModeloProducto(modelo_productonew).subscribe(res=>{
                             if (res.codigoError == "OK") {
@@ -569,7 +571,8 @@ export class CatalogosComponent implements OnInit {
                 atributo_id: '',
                 genero_id: '',
                 modelo_producto: value.moelo_producto,
-                cod_sap: ''
+                cod_sap: '',
+                url_image: ''
               } 
               this.httpService.obtenerModeloProductosNombre(modelo_producto).subscribe(res =>{
                 res.lstModelo_Productos.forEach((valor) => {

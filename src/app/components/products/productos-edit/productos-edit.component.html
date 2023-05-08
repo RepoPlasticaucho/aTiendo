@@ -14,11 +14,11 @@
             <form [formGroup]="modelProductForm" (ngSubmit)="onSubmit()">
                 
                 <div class="form-group">
-                    <label for="modelo_producto_id">Modelo Producto:</label>
+                    <label for="modeloproducto_id">Modelo Producto:</label>
                     <ng-autocomplete  [data]="lstModeloProductos" (selected)='selectEventModel($event)'
-                        [searchKeyword]="keywordModelProduct" placeholder="Seleccione el Modelo Producto"
+                        [searchKeyword]="keywordModelProduct" placeholder="Seleccione el Modelo Producto" [initialValue]="initialModelProduct"
                         [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel"
-                        class="form-control" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchModel($event)' 
+                        class="form-control" id="modeloproducto_id" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchModel($event)' 
                         (inputCleared)="onInputClearedModel()">
                     </ng-autocomplete>
                     <ng-template #itemTemplateModel let-item>
@@ -37,18 +37,33 @@
                 <div class="form-group ">
                     <label for="producto " style="margin: 0;">Descripción</label>
                     <input type="text " class="form-control " id="producto" placeholder="Ingrese la descripción del Modelo Producto." formControlName="producto">
+                    <small *ngIf="modelProductForm.controls['producto'].invalid && (modelProductForm.controls['producto'].dirty || modelProductForm.controls['producto'].touched)">
+                        <small *ngIf="modelProductForm.controls['producto'].errors?.['required']" style="color: red;">
+                            Debe ingresar la descripción del Producto
+                        </small>
+                    </small>
                 </div>
                 <div class="form-group">
-                    <label for="codigoSAP">Código SAP</label>
-                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el código SAP" formControlName="codigoSAP">
+                    <label for="etiqueta">Etiqueta</label>
+                    <input type="text" class="form-control" id="etiqueta" placeholder="Ingrese las etiquetas" formControlName="etiqueta">
+                    <small *ngIf="modelProductForm.controls['etiqueta'].invalid && (modelProductForm.controls['etiqueta'].dirty || modelProductForm.controls['etiqueta'].touched)">
+                        <small *ngIf="modelProductForm.controls['etiqueta'].errors?.['required']" style="color: red;">
+                            Debe ingresar la descripción del Producto
+                        </small>
+                    </small>
                 </div>
                 <div class="form-group">
                     <label for="tamanio">Talla</label>
                     <input type="text" class="form-control" id="tamanio" placeholder="Ingrese el código SAP" formControlName="tamanio">
+                    <small *ngIf="modelProductForm.controls['tamanio'].invalid && (modelProductForm.controls['tamanio'].dirty || modelProductForm.controls['tamanio'].touched)">
+                        <small *ngIf="modelProductForm.controls['tamanio'].errors?.['required']" style="color: red;">
+                            Debe ingresar la descripción del Producto
+                        </small>
+                    </small>
                 </div>
                 <div class="form-group">
-                    <label for="etiqueta">Etiqueta</label>
-                    <input type="text" class="form-control" id="etiqueta" placeholder="Ingrese el código SAP" formControlName="etiqueta">
+                    <label for="codigoSAP">Código SAP</label>
+                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el código SAP" formControlName="codigoSAP">
                 </div>
                 <button type="submit" class="btn btn-primary">
                     <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>

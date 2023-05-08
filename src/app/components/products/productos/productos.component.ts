@@ -74,7 +74,7 @@ export class ProductosComponent implements OnInit {
              Swal.fire({
                icon: 'success',
                title: 'Eliminado Exitosamente.',
-               text: `Se ha eliminado el Modelo-Producto ${producto.nombre}`,
+               text: `Se ha eliminado el Producto ${producto.nombre}`,
                showConfirmButton: true,
                confirmButtonText: "Ok"
              }).then(() => {

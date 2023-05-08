@@ -11,6 +11,9 @@
             </div>
         </div>
         <div class="card-body ">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 60%;">
             <form [formGroup]="modelProductForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="marca">Marca:</label>
@@ -110,11 +113,32 @@
                     <label for="codigoSAP">Código SAP</label>
                     <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el código SAP" formControlName="codigoSAP">
                 </div>
+                <div class="form-group">
+                    <label for="etiquetas">Imagen Marca</label>
+                    <br>
+                    <!-- <input type="text" class="form-control" id="etiquetas" placeholder="Ingrese las etiquetas" formControlName="etiquetas"> -->
+                    <input type="file"  accept="image/*" (change)="onChangeFile($event.target)" class="form-control" style="padding: 0px;"  formControlName="urlImagen" id="imageUpload" name="imageUpload"> 
+                    <small *ngIf="modelProductForm.controls['urlImagen'].invalid && (modelProductForm.controls['urlImagen'].dirty || modelProductForm.controls['urlImagen'].touched)">
+                        <small  *ngIf="modelProductForm.controls['urlImagen'].errors" style="color: red;">
+                            Debe seleccionar imágen
+                        </small >
+                    </small >
+                </div>
                 <button type="submit" class="btn btn-primary">
                     <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>
                     Guardar
                 </button>
             </form>
+        </td>
+        <td style="width: 5%;"></td>
+        <td style="width: 30%;text-align: center;">
+            <img src={{imageUrl}} alt="Imágen Marca" class="img-thumbnail"/>
+            <br>
+            <button class="btn btn-danger" style="margin-top: 5px;" (click)="eliminarImagen()">Eliminar Imagen</button>
+        </td>
+        <td style="width: 5%;"></td>
+    </tr>
+</table>
         </div>
     </div>
 </div>

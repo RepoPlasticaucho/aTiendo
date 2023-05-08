@@ -15,4 +15,8 @@ export class ImagenesService {
         return this.http.post<ImagenesEntity>(`${environment.apiUrl}adicionales/ProcesarImagenMarca`, image);
     }
 
+    agregarImagenMP(image: ImagenesEntity): Observable<ImagenesEntity> {
+        return this.http.post<ImagenesEntity>(`${environment.apiUrl}adicionales/ProcesarImagenModeloProducto`, image);
+    }
+
 }

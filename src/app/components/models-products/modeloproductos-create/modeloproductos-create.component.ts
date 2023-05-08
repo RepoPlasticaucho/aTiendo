@@ -14,6 +14,8 @@ import { GenerosService } from 'src/app/services/generos.service';
 import { MarcasService } from 'src/app/services/marcas.service';
 import { ModeloproductosService } from 'src/app/services/modeloproductos.service';
 import { ModelosService } from 'src/app/services/modelos.service';
+import { ImagenesEntity } from 'src/app/models/imagenes';
+import { ImagenesService } from 'src/app/services/imagenes.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -34,7 +36,8 @@ export class ModeloproductosCreateComponent implements OnInit {
     atributo_id: new FormControl('0', Validators.required),
     genero_id: new FormControl('0', Validators.required),
     modeloProducto: new FormControl('', [Validators.required]),
-    codigoSAP: new FormControl('', [Validators.required])
+    codigoSAP: new FormControl('', [Validators.required]),
+    urlImagen: new FormControl(''),
   });
   //Variables para listas desplegables
   lstMarcas: MarcasEntity[] = [];
@@ -55,6 +58,15 @@ export class ModeloproductosCreateComponent implements OnInit {
   keywordAttribute = 'atributo';
   keywordGenre = 'genero';
 
+  //Variables para imágen
+  fileToUpload: any;
+  imageUrl: any =
+    'https://calidad.atiendo.ec/eojgprlg/ModeloProducto/producto.png';
+  imageBase64: string = '';
+  imageName: string = '';
+  codigoError: string = '';
+  descripcionError: string = '';
+
   constructor(
     private readonly httpServiceMarcas: MarcasService,
     private readonly httpServiceModelos: ModelosService,
@@ -62,6 +74,7 @@ export class ModeloproductosCreateComponent implements OnInit {
     private readonly httpServiceAtributos: AtributosService,
     private readonly httpServiceGeneros: GenerosService,
     private readonly httpService: ModeloproductosService,
+    private httpServiceImage: ImagenesService,
     private router: Router
   ) {}
 
@@ -164,36 +177,96 @@ export class ModeloproductosCreateComponent implements OnInit {
       } else if (this.modelProductForm.get('genero_id')?.value == '0') {
         this.selectGeneros = true;
       } else {
-        const modelProductEntity: ModeloProductosEntity = {
-          marca_id: this.modelProductForm.value!.marca_id ?? "",
-          modelo_id: this.modelProductForm.value!.modelo_id ?? "",
-          color_id: this.modelProductForm.value!.color_id ?? "",
-          atributo_id: this.modelProductForm.value!.atributo_id ?? "",
-          genero_id: this.modelProductForm.value!.genero_id ?? "",
-          modelo_producto: this.modelProductForm.value!.modeloProducto ?? "",
-          cod_sap: this.modelProductForm.value!.codigoSAP ?? ""
-        };
-        console.log(modelProductEntity);
-        this.httpService.agregarModeloProducto(modelProductEntity).subscribe(res => {
-          if (res.codigoError == "OK") {
-            Swal.fire({
-              icon: 'success',
-              title: 'Guardado Exitosamente.',
-              text: `Se ha creado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
-              showConfirmButton: true,
-              confirmButtonText: "Ok"
-            }).finally(() => {
-              this.router.navigate(['/navegation-adm', { outlets: { 'contentAdmin': ['modeloProductos'] } }]);
+        if (this.imageName != '') {
+          const imageEntity: ImagenesEntity = {
+            imageBase64: this.imageBase64,
+            nombreArchivo: this.imageName,
+            codigoError: '',
+            descripcionError: '',
+            nombreArchivoEliminar: '',
+          };
+          this.httpServiceImage.agregarImagenMP(imageEntity).subscribe((res) => {
+              if (res.codigoError == 'OK') {
+                const modelProductEntity: ModeloProductosEntity = {
+                  marca_id: this.modelProductForm.value!.marca_id ?? '',
+                  modelo_id: this.modelProductForm.value!.modelo_id ?? '',
+                  color_id: this.modelProductForm.value!.color_id ?? '',
+                  atributo_id: this.modelProductForm.value!.atributo_id ?? '',
+                  genero_id: this.modelProductForm.value!.genero_id ?? '',
+                  modelo_producto:this.modelProductForm.value!.modeloProducto ?? '',
+                  cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
+                  url_image:this.imageName == '' ? this.imageUrl : this.imageName,
+                };
+                this.httpService.agregarModeloProducto(modelProductEntity).subscribe((res) => {
+                  if (res.codigoError == 'OK') {
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Guardado Exitosamente.',
+                      text: `Se ha creado el modelo ${this.modelProductForm.value.modeloProducto}`,
+                      showConfirmButton: true,
+                      confirmButtonText: 'Ok',
+                    }).finally(() => {
+                      this.router.navigate([
+                        '/navegation-adm',
+                        { outlets: { contentAdmin: ['modeloProductos'] } },
+                      ]);
+                    });
+                  } else {
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Ha ocurrido un error.',
+                      text: res.descripcionError,
+                      showConfirmButton: false,
+                    });
+                  }
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Ha ocurrido un error.',
+                  text: res.descripcionError,
+                  showConfirmButton: false,
+                });
+              }
             });
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Ha ocurrido un error.',
-              text: res.descripcionError,
-              showConfirmButton: false,
+        } else {
+          const modelProductEntity: ModeloProductosEntity = {
+            marca_id: this.modelProductForm.value!.marca_id ?? '',
+            modelo_id: this.modelProductForm.value!.modelo_id ?? '',
+            color_id: this.modelProductForm.value!.color_id ?? '',
+            atributo_id: this.modelProductForm.value!.atributo_id ?? '',
+            genero_id: this.modelProductForm.value!.genero_id ?? '',
+            modelo_producto: this.modelProductForm.value!.modeloProducto ?? '',
+            cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
+            url_image: this.imageName == '' ? this.imageUrl : this.imageName
+          };
+          console.log(modelProductEntity);
+          this.httpService
+            .agregarModeloProducto(modelProductEntity)
+            .subscribe((res) => {
+              if (res.codigoError == 'OK') {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Guardado Exitosamente.',
+                  text: `Se ha creado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
+                  showConfirmButton: true,
+                  confirmButtonText: 'Ok',
+                }).finally(() => {
+                  this.router.navigate([
+                    '/navegation-adm',
+                    { outlets: { contentAdmin: ['modeloProductos'] } },
+                  ]);
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Ha ocurrido un error.',
+                  text: res.descripcionError,
+                  showConfirmButton: false,
+                });
+              }
             });
-          }
-        })
+        }
       }
     }
   }
@@ -272,28 +345,41 @@ export class ModeloproductosCreateComponent implements OnInit {
     }
   }
   //Evento para cuando se limpia los cuadros de texto
-  onInputClearedMark(){
-    this.selectMarcas=true;
+  onInputClearedMark() {
+    this.selectMarcas = true;
     this.modelProductForm.controls['marca_id'].setValue('0');
   }
 
   onInputClearedModel() {
-    this.selectModelos=true;
+    this.selectModelos = true;
     this.modelProductForm.controls['modelo_id'].setValue('0');
   }
 
   onInputClearedColor() {
-    this.selectColores=true;
+    this.selectColores = true;
     this.modelProductForm.controls['color_id'].setValue('0');
   }
 
   onInputClearedAttribute() {
-    this.selectAtributos=true;
+    this.selectAtributos = true;
     this.modelProductForm.controls['atributo_id'].setValue('0');
   }
 
   onInputClearedGenre() {
-    this.selectGeneros=true;
+    this.selectGeneros = true;
     this.modelProductForm.controls['genero_id'].setValue('0');
+  }
+
+  onChangeFile(target: any): void {
+    if (target.value != "") {
+      this.fileToUpload = target.files[0];
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imageUrl = event.target.result;
+        this.imageBase64 = this.imageUrl.split(',')[1];
+        this.imageName = this.fileToUpload.name;
+      }
+      reader.readAsDataURL(this.fileToUpload);
+    }
   }
 }

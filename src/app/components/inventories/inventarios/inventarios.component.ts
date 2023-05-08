@@ -102,12 +102,14 @@ export class InventariosComponent implements OnInit {
     })
   }
 
+  */
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
 
-  agregarAlmacenes() {
-    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['crearAlmacenes'] } }]);
+  agregarProductos() {
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-create'] } }]);
   }
 
   /*editarAlmacenes(almacen: AlmacenesEntity) {

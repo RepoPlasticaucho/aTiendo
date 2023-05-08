@@ -47,7 +47,7 @@ export class ProductosAdminService {
     return this.http.post<ProductAdm>(`${environment.apiUrl}productos/InsertarProductos`, producto);
   }
   eliminarProducto(producto: ProducAdmEntity): Observable<ProductAdm> {
-    return this.http.post<ProductAdm>(`${environment.apiUrl}modeloProducto/EliminarModeloProductos`, producto);
+    return this.http.post<ProductAdm>(`${environment.apiUrl}productos/EliminarProductos`, producto);
   }
   actualizarProducto(producto: ProducAdmEntity): Observable<ProductAdm> {
     return this.http.post<ProductAdm>(`${environment.apiUrl}productos/ModificarProductos`, producto);

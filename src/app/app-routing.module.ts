@@ -7,6 +7,8 @@ import { LoginComponent } from './components/login/login.component';
 
 import { TercerosEditComponent } from './components/users/terceros-edit/terceros-edit.component';
 import { AlmacenesegresosComponent } from './components/outcome/almacenesegresos/almacenesegresos.component';
+import { InventariosCreateComponent } from './components/inventories/inventarios-create/inventarios-create.component';
+import { InventariosEditComponent } from './components/inventories/inventarios-edit/inventarios-edit.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,8 @@ const routes: Routes = [
       { path: "inventarios-pedido-modelos", component: InventariosPedidoModelosComponent, outlet: "contentClient" },
       { path: "inventarios-almacen", component: InventariosAlmacenComponent, outlet: "contentClient" },
       { path: "inventarios-productos", component: InventariosProductosComponent, outlet: "contentClient" },
+      { path: "inventarios-create", component: InventariosCreateComponent, outlet: "contentClient" },
+      { path: "inventarios-edit", component: InventariosEditComponent, outlet: "contentClient" },
       { path: "pedido-sugeridos", component: PedidoSugeridoComponent, outlet: "contentClient" },
       { path: "usuario", component: UsuarioComponent, outlet: "contentClient" },
       { path: "usuario-pass", component: UsuarioPassComponent, outlet: "contentClient" },

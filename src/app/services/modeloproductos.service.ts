@@ -18,7 +18,8 @@ const initModelProduct: ModeloProductosEntity = {
   marca_id: "",
   modelo: "",
   modelo_id: "",
-  modelo_producto: ""
+  modelo_producto: "",
+  url_image: "",
 }
 
 @Injectable({
