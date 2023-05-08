@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Modelos, ModelosEntity } from '../models/modelos';
+import { LineasEntity } from '../models/lineas';
 
 const initModel: ModelosEntity = {
   id: "",
@@ -31,6 +32,12 @@ export class ModelosService {
   }
   obtenerModelos(): Observable<Modelos> {
     return this.http.get<Modelos>(`${environment.apiUrl}modelos/ObtenerModelos`);
+  }
+  obtenerModelosLineasAdm(linea: LineasEntity): Observable<Modelos> {
+    return this.http.post<Modelos>(`${environment.apiUrl}modelos/ObtenerModelosLineasAdm`, linea);
+  }
+  obtenerModelosNombre(modelo: ModelosEntity): Observable<Modelos> {
+    return this.http.post<Modelos>(`${environment.apiUrl}modelos/ObtenerModelosNombre`, modelo);
   }
   agregarModelo(modelo: ModelosEntity): Observable<Modelos> {
     return this.http.post<Modelos>(`${environment.apiUrl}modelos/InsertarModelos`, modelo);

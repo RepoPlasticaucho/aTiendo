@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Lineas, LineasEntity } from '../models/lineas';
+import { CategoriasEntity } from '../models/categorias';
 
 const initLine: LineasEntity = {
   id: "",
@@ -31,6 +32,9 @@ export class LineasService {
   }
   obtenerLineas(): Observable<Lineas> {
     return this.http.get<Lineas>(`${environment.apiUrl}lineas/ObtenerLineas`);
+  }
+  obtenerLineasCategoriaAdm(categoria: CategoriasEntity): Observable<Lineas> {
+    return this.http.post<Lineas>(`${environment.apiUrl}lineas/ObtenerLineasCategoriaAdm`, categoria);
   }
   agregarLinea(linea: LineasEntity): Observable<Lineas> {
     return this.http.post<Lineas>(`${environment.apiUrl}lineas/InsertarLineas`, linea);

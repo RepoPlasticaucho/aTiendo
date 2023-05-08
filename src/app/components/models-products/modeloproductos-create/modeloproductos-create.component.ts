@@ -17,6 +17,10 @@ import { ModelosService } from 'src/app/services/modelos.service';
 import { ImagenesEntity } from 'src/app/models/imagenes';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 import Swal from 'sweetalert2';
+import { CategoriasEntity } from 'src/app/models/categorias';
+import { CategoriasService } from 'src/app/services/categorias.service';
+import { LineasEntity } from 'src/app/models/lineas';
+import { LineasService } from 'src/app/services/lineas.service';
 
 @Component({
   selector: 'app-modeloproductos-create',
@@ -30,8 +34,10 @@ export class ModeloproductosCreateComponent implements OnInit {
   faSave = faSave;
   //Creación de la variable para formulario
   modelProductForm = new FormGroup({
+    categoria: new FormControl('0', Validators.required),
+    linea: new FormControl('0', Validators.required),
     marca_id: new FormControl('0', Validators.required),
-    modelo_id: new FormControl('0', Validators.required),
+    modelo: new FormControl('0', Validators.required),
     color_id: new FormControl('0', Validators.required),
     atributo_id: new FormControl('0', Validators.required),
     genero_id: new FormControl('0', Validators.required),
@@ -39,15 +45,23 @@ export class ModeloproductosCreateComponent implements OnInit {
     codigoSAP: new FormControl('', [Validators.required]),
     urlImagen: new FormControl(''),
   });
+  
+  lstCategorias: CategoriasEntity[] = [];
+  selectCategoria: boolean = false;
+
+  lstLineas: LineasEntity[] = [];
+  selectLinea: boolean = false;
+
+  lstModelos: ModelosEntity[] = [];
+  lstModelos2: ModelosEntity[] = [];
+  selectModelo: boolean = false;
   //Variables para listas desplegables
   lstMarcas: MarcasEntity[] = [];
-  lstModelos: ModelosEntity[] = [];
   lstColores: ColorsEntity[] = [];
   lstAtributos: AtributosEntity[] = [];
   lstGeneros: GenerosEntity[] = [];
   //Variables para validar selección
   selectMarcas: boolean = false;
-  selectModelos: boolean = false;
   selectColores: boolean = false;
   selectAtributos: boolean = false;
   selectGeneros: boolean = false;
@@ -74,11 +88,27 @@ export class ModeloproductosCreateComponent implements OnInit {
     private readonly httpServiceAtributos: AtributosService,
     private readonly httpServiceGeneros: GenerosService,
     private readonly httpService: ModeloproductosService,
+    private readonly httpServiceCategorias: CategoriasService,
+    private readonly httpServiceLineas: LineasService,
     private httpServiceImage: ImagenesService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    // Obtener Categorías
+    this.httpServiceCategorias.obtenerCategorias().subscribe(res => {
+      if (res.codigoError != "OK") {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener la Sociedad.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+      } else {
+        this.lstCategorias = res.lstCategorias;
+      }
+    });
+
     //Obtenemos Marcas
     this.httpServiceMarcas.obtenerMarcas().subscribe((res) => {
       if (res.codigoError != 'OK') {
@@ -92,19 +122,7 @@ export class ModeloproductosCreateComponent implements OnInit {
         this.lstMarcas = res.lstMarcas;
       }
     });
-    //Obtenemos Modelos
-    this.httpServiceModelos.obtenerModelos().subscribe((res) => {
-      if (res.codigoError != 'OK') {
-        Swal.fire({
-          icon: 'error',
-          title: 'No se pudo obtener Modelos.',
-          text: res.descripcionError,
-          showConfirmButton: false,
-        });
-      } else {
-        this.lstModelos = res.lstModelos;
-      }
-    });
+    
     //Obtenemos Colores
     this.httpServiceColores.obtenerColores().subscribe((res) => {
       if (res.codigoError != 'OK') {
@@ -153,9 +171,6 @@ export class ModeloproductosCreateComponent implements OnInit {
       if (this.modelProductForm.get('marca_id')?.value == '0') {
         this.selectMarcas = true;
       }
-      if (this.modelProductForm.get('modelo_id')?.value == '0') {
-        this.selectModelos = true;
-      }
       if (this.modelProductForm.get('color_id')?.value == '0') {
         this.selectColores = true;
       }
@@ -168,8 +183,6 @@ export class ModeloproductosCreateComponent implements OnInit {
     } else {
       if (this.modelProductForm.get('marca_id')?.value == '0') {
         this.selectMarcas = true;
-      } else if (this.modelProductForm.get('modelo_id')?.value == '0') {
-        this.selectModelos = true;
       } else if (this.modelProductForm.get('color_id')?.value == '0') {
         this.selectColores = true;
       } else if (this.modelProductForm.get('atributo_id')?.value == '0') {
@@ -187,9 +200,11 @@ export class ModeloproductosCreateComponent implements OnInit {
           };
           this.httpServiceImage.agregarImagenMP(imageEntity).subscribe((res) => {
               if (res.codigoError == 'OK') {
+                console.log(res);
                 const modelProductEntity: ModeloProductosEntity = {
                   marca_id: this.modelProductForm.value!.marca_id ?? '',
-                  modelo_id: this.modelProductForm.value!.modelo_id ?? '',
+                  modelo: this.modelProductForm.value!.modelo ?? '',
+                  modelo_id: '',
                   color_id: this.modelProductForm.value!.color_id ?? '',
                   atributo_id: this.modelProductForm.value!.atributo_id ?? '',
                   genero_id: this.modelProductForm.value!.genero_id ?? '',
@@ -197,6 +212,7 @@ export class ModeloproductosCreateComponent implements OnInit {
                   cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
                   url_image:this.imageName == '' ? this.imageUrl : this.imageName,
                 };
+                console.log(modelProductEntity);
                 this.httpService.agregarModeloProducto(modelProductEntity).subscribe((res) => {
                   if (res.codigoError == 'OK') {
                     Swal.fire({
@@ -232,7 +248,8 @@ export class ModeloproductosCreateComponent implements OnInit {
         } else {
           const modelProductEntity: ModeloProductosEntity = {
             marca_id: this.modelProductForm.value!.marca_id ?? '',
-            modelo_id: this.modelProductForm.value!.modelo_id ?? '',
+            modelo: this.modelProductForm.value!.modelo ?? '',
+            modelo_id: this.lstModelos2[0].id ?? '',
             color_id: this.modelProductForm.value!.color_id ?? '',
             atributo_id: this.modelProductForm.value!.atributo_id ?? '',
             genero_id: this.modelProductForm.value!.genero_id ?? '',
@@ -285,11 +302,6 @@ export class ModeloproductosCreateComponent implements OnInit {
     this.modelProductForm.controls['marca_id'].setValue(item.id);
   }
 
-  //Modelo
-  selectEventModel(item: ModelosEntity) {
-    this.selectModelos = false;
-    this.modelProductForm.controls['modelo_id'].setValue(item.id!);
-  }
 
   //Color
   selectEventColor(item: ColorsEntity) {
@@ -317,12 +329,6 @@ export class ModeloproductosCreateComponent implements OnInit {
     }
   }
 
-  onChangeSearchModel(val: string) {
-    if (val == '') {
-      this.selectModelos = true;
-      this.modelProductForm.controls['modelo_id'].setValue('0');
-    }
-  }
 
   onChangeSearchColor(val: string) {
     if (val == '') {
@@ -350,10 +356,6 @@ export class ModeloproductosCreateComponent implements OnInit {
     this.modelProductForm.controls['marca_id'].setValue('0');
   }
 
-  onInputClearedModel() {
-    this.selectModelos = true;
-    this.modelProductForm.controls['modelo_id'].setValue('0');
-  }
 
   onInputClearedColor() {
     this.selectColores = true;
@@ -380,6 +382,115 @@ export class ModeloproductosCreateComponent implements OnInit {
         this.imageName = this.fileToUpload.name;
       }
       reader.readAsDataURL(this.fileToUpload);
+    }
+  }
+
+  changeGroup1(e: any) {
+
+    if (e.target.value == 0) {
+      this.selectCategoria = true;
+      this.lstLineas = [];
+      this.lstModelos = [];
+    } else {
+      this.selectCategoria = false;
+    }
+    if (e.target.value == null || undefined) {
+      this.lstLineas = [];
+      this.lstModelos = [];
+    } else {
+      const categoria: CategoriasEntity = {
+        id: '',
+        categoria: e.target.value,
+        cod_sap: '',
+        etiquetas: '',
+        almacen_id : '',
+      }
+      this.httpServiceLineas.obtenerLineasCategoriaAdm(categoria).subscribe(res => {
+        console.log(res);
+        if (res.codigoError != "OK") {
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo obtener las líneas.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          });
+          this.lstLineas = [];
+          this.lstModelos = [];
+        } else {
+          this.lstLineas = res.lstLineas;
+        }
+      })
+    }   
+  }
+  changeGroup2(e: any) {
+
+    if (e.target.value == 0) {
+      this.selectLinea = true;
+      this.lstModelos = [];
+    } else {
+      this.selectLinea = false;
+    }
+    if (e.target.value == null || undefined) {
+      this.lstModelos = [];
+    } else {
+      const linea: LineasEntity = {
+        id: '',
+        categoria_id: '',
+        categoria_nombre: '',
+        linea: e.target.value,
+        etiquetas: '',
+        cod_sap: '',
+        almacen_id: ''
+      }
+      this.httpServiceModelos.obtenerModelosLineasAdm(linea).subscribe(res => {
+        console.log(res);
+        if (res.codigoError != "OK") {
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo obtener las líneas.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          });
+          this.lstModelos = [];
+        } else {
+          this.lstModelos = res.lstModelos;
+        }
+      })
+    }
+  }
+
+  changeGroup3(modelo: any): void {
+    if (modelo.target.value == 0) {
+      this.selectModelo = true;
+    } else {
+      this.selectModelo = false;
+
+      // Obtener ID del modelo
+
+      const modelonew: ModelosEntity = {
+        id: '',
+        linea_id: '',
+        almacen_id: '',
+        linea_nombre: '',      
+        modelo: modelo.target.value,
+        etiquetas: '',
+        cod_sap: ''
+      }
+      console.log(modelonew);
+      this.httpServiceModelos.obtenerModelosNombre(modelonew).subscribe(res => {
+        if (res.codigoError != "OK") {
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo obtener la Sociedad.',
+            text: res.descripcionError,
+            showConfirmButton: false,
+          });
+        } else {
+          this.lstModelos2 = res.lstModelos;
+        }
+      })
+
+      //this.warehousesForm.get("sociedad")?.setValue(sociedad.target.value);
     }
   }
 }

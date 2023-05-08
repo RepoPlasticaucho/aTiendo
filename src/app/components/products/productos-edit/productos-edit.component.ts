@@ -96,9 +96,7 @@ export class ProductosEditComponent implements OnInit {
           this.modelProductForm.get('tamanio')?.setValue(res.tamanio);
           this.modelProductForm.get('etiqueta')?.setValue(res.etiquetas);
           this.modelProductForm.get('modeloproducto_id')?.setValue(res.modelo_producto_id);
-          console.log(this.modelProductForm.value);
           this.initialModelProduct = res.modelo_producto!;
-          console.log(this.modelProductForm.value.modeloproducto_id);
         }
       });
     }
@@ -113,7 +111,12 @@ export class ProductosEditComponent implements OnInit {
         if (this.modelProductForm.get('modeloproducto_id')?.value == '0' || undefined) {
           this.selectModeloProductos = true;
         }
-        
+        Swal.fire({
+          icon: 'error',
+          title: 'Ha ocurrido un error.',
+          text: "Debe seleccionar el modelo producto",
+          showConfirmButton: false,
+        });
       } else {
         if (this.modelProductForm.get('modeloproducto_id')?.value == '0' || undefined) {
           this.selectModeloProductos = true;

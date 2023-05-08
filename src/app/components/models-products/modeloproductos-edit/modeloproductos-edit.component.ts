@@ -282,44 +282,44 @@ export class ModeloproductosEditComponent implements OnInit {
             }
           });
         } else {
-        }
-        const modelProductEntity: ModeloProductosEntity = {
-          id: this.codigo,
-                marca_id: this.modelProductForm.value!.marca_id ?? this.lstMarcas.filter((x) => x.marca == this.modelProductForm.value.marca)[0].id,
-                modelo_id: this.modelProductForm.value!.modelo_id ?? this.lstModelos.filter((x) => x.modelo == this.modelProductForm.value.modelo)[0].id!,
-                color_id: this.modelProductForm.value!.color_id ?? this.lstColores.filter((x) => x.color == this.modelProductForm.value.color)[0].id,
-                atributo_id: this.modelProductForm.value!.atributo_id ?? this.lstAtributos.filter((x) => x.atributo == this.modelProductForm.value.atributo)[0].id,
-                genero_id: this.modelProductForm.value!.genero_id ?? this.lstGeneros.filter((x) => x.genero == this.modelProductForm.value.genero)[0].id,
-                modelo_producto: this.modelProductForm.value!.modeloProducto ?? '',
-                cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
-                url_image: this.imageName == '' ? this.imageUrl : this.imageName
-        };
-        console.log(modelProductEntity);
-        this.httpService
-          .actualizarModeloProducto(modelProductEntity)
-          .subscribe((res) => {
-            if (res.codigoError == 'OK') {
-              Swal.fire({
-                icon: 'success',
-                title: 'Modificado Exitosamente.',
-                text: `Se ha modificado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
-                showConfirmButton: true,
-                confirmButtonText: 'Ok',
-              }).finally(() => {
-                this.router.navigate([
-                  '/navegation-adm',
-                  { outlets: { contentAdmin: ['modeloProductos'] } },
-                ]);
-              });
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Ha ocurrido un error.',
-                text: res.descripcionError,
-                showConfirmButton: false,
-              });
-            }
-          });
+          const modelProductEntity: ModeloProductosEntity = {
+            id: this.codigo,
+                  marca_id: this.modelProductForm.value!.marca_id ?? this.lstMarcas.filter((x) => x.marca == this.modelProductForm.value.marca)[0].id,
+                  modelo_id: this.modelProductForm.value!.modelo_id ?? this.lstModelos.filter((x) => x.modelo == this.modelProductForm.value.modelo)[0].id!,
+                  color_id: this.modelProductForm.value!.color_id ?? this.lstColores.filter((x) => x.color == this.modelProductForm.value.color)[0].id,
+                  atributo_id: this.modelProductForm.value!.atributo_id ?? this.lstAtributos.filter((x) => x.atributo == this.modelProductForm.value.atributo)[0].id,
+                  genero_id: this.modelProductForm.value!.genero_id ?? this.lstGeneros.filter((x) => x.genero == this.modelProductForm.value.genero)[0].id,
+                  modelo_producto: this.modelProductForm.value!.modeloProducto ?? '',
+                  cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
+                  url_image: this.imageName == '' ? this.imageUrl : this.imageName
+          };
+          console.log(modelProductEntity);
+          this.httpService
+            .actualizarModeloProducto(modelProductEntity)
+            .subscribe((res) => {
+              if (res.codigoError == 'OK') {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Modificado Exitosamente.',
+                  text: `Se ha modificado el Modelo Producto ${this.modelProductForm.value.modeloProducto}`,
+                  showConfirmButton: true,
+                  confirmButtonText: 'Ok',
+                }).finally(() => {
+                  this.router.navigate([
+                    '/navegation-adm',
+                    { outlets: { contentAdmin: ['modeloProductos'] } },
+                  ]);
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Ha ocurrido un error.',
+                  text: res.descripcionError,
+                  showConfirmButton: false,
+                });
+              }
+            });
+        }    
       }
     }
   }
