@@ -94,30 +94,33 @@ export class ProductosEditComponent implements OnInit {
           this.modelProductForm.get('producto')?.setValue(res.nombre);
           this.modelProductForm.get('codigoSAP')?.setValue(res.cod_sap);
           this.modelProductForm.get('tamanio')?.setValue(res.tamanio);
-          this.modelProductForm.get('etiqueta')?.setValue(res.etiquetas)
+          this.modelProductForm.get('etiqueta')?.setValue(res.etiquetas);
+          this.modelProductForm.get('modeloproducto_id')?.setValue(res.modelo_producto_id);
+          console.log(this.modelProductForm.value);
           this.initialModelProduct = res.modelo_producto!;
-         
+          console.log(this.modelProductForm.value.modeloproducto_id);
         }
       });
     }
   
     onSubmit(): void {
       console.log(this.modelProductForm.valid);
-      console.log(this.modelProductForm.value);
+      //console.log(this.modelProductForm.value);
+      //console.log(this.modelProductForm.value.modeloproducto_id);
       if (!this.modelProductForm.valid) {
         this.modelProductForm.markAllAsTouched();
         
-        if (this.modelProductForm.get('modeloproducto_id')?.value == '0') {
+        if (this.modelProductForm.get('modeloproducto_id')?.value == '0' || undefined) {
           this.selectModeloProductos = true;
         }
         
       } else {
-        if (this.modelProductForm.get('modeloproducto_id')?.value == '0') {
+        if (this.modelProductForm.get('modeloproducto_id')?.value == '0' || undefined) {
           this.selectModeloProductos = true;
         } else {
           const productEntity: ProducAdmEntity = {
             id: this.codigo,
-            modelo_producto_id: this.modelProductForm.value!.modeloproducto_id ?? "",
+            modelo_producto_id: this.modelProductForm.value!.modeloproducto_id ?? '',
             nombre: this.modelProductForm.value!.producto ?? '',
             cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
             tamanio : this.modelProductForm.value!.tamanio ?? '',
@@ -133,7 +136,7 @@ export class ProductosEditComponent implements OnInit {
             genero_nombre: '',
             modelo_nombre: ''
           };
-
+          console.log(productEntity.modelo_producto_id);
           console.log(productEntity);
 
           this.httpService.actualizarProducto(productEntity).subscribe((res) => {
@@ -147,7 +150,7 @@ export class ProductosEditComponent implements OnInit {
                 }).finally(() => {
                   this.router.navigate([
                     '/navegation-adm',
-                    { outlets: { contentAdmin: ['modeloProductos'] } },
+                    { outlets: { contentAdmin: ['productos'] } },
                   ]);
                 });
               } else {

@@ -235,7 +235,7 @@ export class ModeloproductosEditComponent implements OnInit {
             descripcionError: '',
             nombreArchivoEliminar: this.imageNameOriginal,
           };
-          this.httpServiceImage.agregarImagen(imageEntity).subscribe((res) => {
+          this.httpServiceImage.agregarImagenMP(imageEntity).subscribe((res) => {
             if (res.codigoError == 'OK') {
               const modelProductEntity: ModeloProductosEntity = {
                 id: this.codigo,
@@ -248,6 +248,7 @@ export class ModeloproductosEditComponent implements OnInit {
                 cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
                 url_image: this.imageName == '' ? this.imageUrl : this.imageName
               };
+              console.log(modelProductEntity);
               this.httpService.actualizarModeloProducto(modelProductEntity).subscribe((res) => {
                 if (res.codigoError == 'OK') {
                   Swal.fire({
@@ -293,6 +294,7 @@ export class ModeloproductosEditComponent implements OnInit {
                 cod_sap: this.modelProductForm.value!.codigoSAP ?? '',
                 url_image: this.imageName == '' ? this.imageUrl : this.imageName
         };
+        console.log(modelProductEntity);
         this.httpService
           .actualizarModeloProducto(modelProductEntity)
           .subscribe((res) => {

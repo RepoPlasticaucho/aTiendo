@@ -13,6 +13,7 @@
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                 <thead style="color: #636363;">
                     <tr>
+                        <th style="width: 10%; "></th>
                         <th style="width: 10%; ">Marca</th>
                         <th style="width: 10%; ">Color</th>
                         <th style="width: 10%; ">Atributo</th>
@@ -25,6 +26,9 @@
                 </thead>
                 <tbody style="color: #767695;">
                     <tr *ngFor="let modeloProducto of lstModelosProductos">
+                        <td style="text-align: center;">
+                            <img src={{modeloProducto.url_image}} alt={{modeloProducto.marca}} class="img-thumbnail" height="100px" width="100px" data-toggle="modal" data-target="#exampleModal">
+                        </td>
                         <td>{{modeloProducto.marca}}</td>
                         <td>{{modeloProducto.color}}</td>
                         <td>{{modeloProducto.atributo}}</td>
