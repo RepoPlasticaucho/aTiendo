@@ -11,18 +11,85 @@
                 </div>
             </div>
         </div>
+
         <div class="card-body ">
             <form [formGroup]="modelProductForm" (ngSubmit)="onSubmit()">
+                <!--
+            <table style="width: 90%">
+                <tr>
+                    <td style="width: 30%; text-align: center">
+                        <label for="producto">Categoría</label>
+                    <input [ngModel]="categoria" type="text " style="text-align: center" class="form-control " id="categoria" readonly placeholder="Categoría" formControlName="categoria">
+                    </td>
+                    <td style="width: 5%"></td>
+                    <td style="width: 30%; text-align: center">
+                        <label for="producto">Línea</label>
+                    <input [ngModel]="linea" type="text " style="text-align: center" class="form-control " id="linea" readonly placeholder="Línea" formControlName="linea">
+                    </td>
+                    <td style="width: 5%"></td>
+                    <td style="width: 30%; text-align: center">
+                        <label for="producto">Modelo</label>
+                    <input [ngModel]="modelo" type="text " style="text-align: center" class="form-control " id="modelo" readonly placeholder="Modelo" formControlName="modelo">
+                    </td>
+                    <td style="width: 5%"></td>
+                </tr>
+            </table>
+            <br>
+            -->
+                <div class="form-group">
+                    <label for="grupo">Categoria</label>
+                    <select class="form-control" (change)="changeGroup1($event)" formControlName="categoria">
+                        <option [value]="0" selected>Seleccione una categoría</option>
+                        <option *ngFor="let categoria of lstCategorias" [value]="categoria.categoria">
+                            {{categoria.categoria}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectCategoria">
+                        <small *ngIf="selectCategoria" style="color: red; ">
+                            Debe seleccionar una categoría.
+                        </small>
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="grupo">Líneas</label>
+                    <select class="form-control" (change)="changeGroup2($event)" formControlName="linea">
+                        <option [value]=" 0 " selected>Seleccione una línea</option>
+                        <option *ngFor="let linea of lstLineas" [value]="linea.linea">
+                            {{linea.linea}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectLinea">
+                        <small *ngIf="selectLinea" style="color: red; ">
+                            Debe seleccionar una línea.
+                        </small>
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="grupo">Modelos</label>
+                    <select class="form-control" (change)="changeGroup3($event)" formControlName="modelo">
+                        <option [value]=" 0 " selected>Seleccione un modelo</option>
+                        <option *ngFor="let modelo of lstModelos" [value]="modelo.modelo">
+                            {{modelo.modelo}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectModelo">
+                        <small *ngIf="selectModelo" style="color: red; ">
+                            Debe seleccionar un modelo.
+                        </small>
+                    </small>
+                </div>
                 <div class="form-group">
                     <label for="modeloproducto_id">Modelo Producto:</label>
-                    <ng-autocomplete  [data]="lstModeloProductos" (selected)='selectEventModel($event)'
+                    <ng-autocomplete [data]="lstModeloProductos" (selected)='selectEventModel($event)'
                         [searchKeyword]="keywordModelProduct" placeholder="Seleccione el Modelo Producto"
                         [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel"
-                        class="form-control" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchModel($event)' 
-                        (inputCleared)="onInputClearedModel()">
+                        class="form-control" style="width: 100%;padding: 0%;"
+                        (inputChanged)='onChangeSearchModel($event)' (inputCleared)="onInputClearedModel()">
                     </ng-autocomplete>
                     <ng-template #itemTemplateModel let-item>
-                        <a [innerHTML]="item.etiquetas"></a>
+                        <a [innerHTML]="item.modelo_producto"></a>
                     </ng-template>
                     <ng-template #notFoundTemplateModel let-notFound>
                         <p>No se encontro datos</p>
@@ -33,11 +100,13 @@
                         </small>
                     </small>
                 </div>
-                
+
                 <div class="form-group ">
                     <label for="producto" style="margin: 0;">Nombre del Producto</label>
-                    <input type="text " class="form-control " id="producto" placeholder="Ingrese la descripción del Producto." formControlName="producto">
-                    <small *ngIf="modelProductForm.controls['producto'].invalid && (modelProductForm.controls['producto'].dirty || modelProductForm.controls['producto'].touched)">
+                    <input [(ngModel)]="selectedModeloProducto" type="text " class="form-control " id="producto"
+                        placeholder="Ingrese la descripción del Producto." formControlName="producto">
+                    <small
+                        *ngIf="modelProductForm.controls['producto'].invalid && (modelProductForm.controls['producto'].dirty || modelProductForm.controls['producto'].touched)">
                         <small *ngIf="modelProductForm.controls['producto'].errors?.['required']" style="color: red;">
                             Debe ingresar la descripción del Producto
                         </small>
@@ -45,8 +114,10 @@
                 </div>
                 <div class="form-group ">
                     <label for="producto" style="margin: 0;">Etiquetas</label>
-                    <input [(ngModel)]="selectedModeloProducto" type="text " class="form-control " id="etiquetas" placeholder="Ingrese las etiquetas del Producto." formControlName="etiquetas">
-                    <small *ngIf="modelProductForm.controls['etiquetas'].invalid && (modelProductForm.controls['etiquetas'].dirty || modelProductForm.controls['etiquetas'].touched)">
+                    <input type="text " class="form-control " id="etiquetas"
+                        placeholder="Ingrese las etiquetas del Producto." formControlName="etiquetas">
+                    <small
+                        *ngIf="modelProductForm.controls['etiquetas'].invalid && (modelProductForm.controls['etiquetas'].dirty || modelProductForm.controls['etiquetas'].touched)">
                         <small *ngIf="modelProductForm.controls['etiquetas'].errors?.['required']" style="color: red;">
                             Debe ingresar la descripción del Producto
                         </small>
@@ -54,8 +125,10 @@
                 </div>
                 <div class="form-group ">
                     <label for="tamanio" style="margin: 0;">Talla</label>
-                    <input type="text " class="form-control " id="tamanio" placeholder="Ingrese la talla del Producto." formControlName="tamanio">
-                    <small *ngIf="modelProductForm.controls['tamanio'].invalid && (modelProductForm.controls['tamanio'].dirty || modelProductForm.controls['tamanio'].touched)">
+                    <input type="text " class="form-control " id="tamanio" placeholder="Ingrese la talla del Producto."
+                        formControlName="tamanio">
+                    <small
+                        *ngIf="modelProductForm.controls['tamanio'].invalid && (modelProductForm.controls['tamanio'].dirty || modelProductForm.controls['tamanio'].touched)">
                         <small *ngIf="modelProductForm.controls['tamanio'].errors?.['required']" style="color: red;">
                             Debe ingresar la descripción del Producto
                         </small>
@@ -63,7 +136,8 @@
                 </div>
                 <div class="form-group">
                     <label for="codigoSAP">Código SAP</label>
-                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el código SAP" formControlName="codigoSAP">
+                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el código SAP"
+                        formControlName="codigoSAP">
                 </div>
                 <button type="submit" class="btn btn-primary">
                     <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>

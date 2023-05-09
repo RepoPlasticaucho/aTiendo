@@ -39,6 +39,9 @@ export class ModelosService {
   obtenerModelosNombre(modelo: ModelosEntity): Observable<Modelos> {
     return this.http.post<Modelos>(`${environment.apiUrl}modelos/ObtenerModelosNombre`, modelo);
   }
+  obtenerLineaModelo(modelo: ModelosEntity): Observable<Modelos> {
+    return this.http.post<Modelos>(`${environment.apiUrl}modelos/ObtenerLineaModelo`, modelo);
+  }
   agregarModelo(modelo: ModelosEntity): Observable<Modelos> {
     return this.http.post<Modelos>(`${environment.apiUrl}modelos/InsertarModelos`, modelo);
   }

@@ -21,4 +21,6 @@ export interface ProducAdmEntity {
     atributo_nombre: string;
     genero_nombre: string;
     modelo_nombre: string;
+    categoria?: string;
+    linea?: string;
 }

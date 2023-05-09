@@ -44,6 +44,9 @@ export class ModeloproductosService {
   obtenerModelosProductos(): Observable<ModeloProductos> {
     return this.http.get<ModeloProductos>(`${environment.apiUrl}modeloProducto/ObtenerModeloProductos`);
   }
+  obtenerModeloProductosModelosAdm(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
+    return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/ObtenerModeloProductosModelosAdm`, modeloProducto);
+  }
   agregarModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
     return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/InsertarModeloProductos`, modeloProducto);
   }

@@ -18,7 +18,8 @@
                         <form [formGroup]="modelProductForm" (ngSubmit)="onSubmit()">
                             <div class="form-group">
                                 <label for="grupo">Categoria</label>
-                                <select class="form-control" (change)="changeGroup1($event)" formControlName="categoria">
+                                <select class="form-control" (change)="changeGroup1($event)"
+                                    formControlName="categoria">
                                     <option [value]="0" selected>Seleccione una categoría</option>
                                     <option *ngFor="let categoria of lstCategorias" [value]="categoria.categoria">
                                         {{categoria.categoria}}
@@ -81,7 +82,7 @@
                                     </small>
                                 </small>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="color_id">Color/Diseño/Sabor:</label>
                                 <ng-autocomplete [data]="lstColores" (selected)="selectEventColor($event)"
@@ -145,14 +146,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="modeloProducto " style="margin: 0">Descripción</label>
-                                <input type="text " class="form-control" id="modelo "
+                                <input type="text " [(ngModel)]="selectedModeloProducto" class="form-control" id="modelo "
                                     placeholder="Ingrese la descripción del Modelo Producto."
                                     formControlName="modeloProducto" />
-                                <small *ngIf="
-                    modelProductForm.controls['modeloProducto'].invalid &&
-                    (modelProductForm.controls['modeloProducto'].dirty ||
-                      modelProductForm.controls['modeloProducto'].touched)
-                  ">
+                                <small *ngIf="modelProductForm.controls['modeloProducto'].invalid && (modelProductForm.controls['modeloProducto'].dirty || modelProductForm.controls['modeloProducto'].touched)">
                                     <small *ngIf="modelProductForm.controls['modeloProducto'].errors?.['required']"
                                         style="color: red">
                                         Debe ingresar la descripción del Modelo Producto

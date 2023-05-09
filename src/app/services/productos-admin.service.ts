@@ -21,7 +21,9 @@ const initProduct : ProducAdmEntity ={
   color_nombre: "",
   atributo_nombre: "",
   genero_nombre: "",
-  modelo_nombre: ""
+  modelo_nombre: "",
+  categoria: "",
+  linea: ""
 }
 
 @Injectable({

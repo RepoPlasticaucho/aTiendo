@@ -81,6 +81,8 @@ export class ModeloproductosCreateComponent implements OnInit {
   codigoError: string = '';
   descripcionError: string = '';
 
+  selectedModeloProducto: string | undefined = '' ;
+
   constructor(
     private readonly httpServiceMarcas: MarcasService,
     private readonly httpServiceModelos: ModelosService,
@@ -305,18 +307,21 @@ export class ModeloproductosCreateComponent implements OnInit {
   //Color
   selectEventColor(item: ColorsEntity) {
     this.selectColores = false;
+    this.selectedModeloProducto = this.selectedModeloProducto?.concat(' ' + item.color);
     this.modelProductForm.controls['color_id'].setValue(item.id);
   }
 
   //Atributo
   selectEventAttribute(item: AtributosEntity) {
     this.selectAtributos = false;
+    this.selectedModeloProducto = this.selectedModeloProducto?.concat(' ' + item.atributo);
     this.modelProductForm.controls['atributo_id'].setValue(item.id);
   }
 
   //Genero
   selectEventGenre(item: any) {
     this.selectGeneros = false;
+    this.selectedModeloProducto = this.selectedModeloProducto?.concat(' ' + item.genero);
     this.modelProductForm.controls['genero_id'].setValue(item.id);
   }
 
@@ -442,7 +447,6 @@ export class ModeloproductosCreateComponent implements OnInit {
         almacen_id: ''
       }
       this.httpServiceModelos.obtenerModelosLineasAdm(linea).subscribe(res => {
-        console.log(res);
         if (res.codigoError != "OK") {
           Swal.fire({
             icon: 'error',
@@ -465,7 +469,7 @@ export class ModeloproductosCreateComponent implements OnInit {
       this.selectModelo = false;
 
       // Obtener ID del modelo
-
+      this.selectedModeloProducto = modelo.target.value;
       const modelonew: ModelosEntity = {
         id: '',
         linea_id: '',
