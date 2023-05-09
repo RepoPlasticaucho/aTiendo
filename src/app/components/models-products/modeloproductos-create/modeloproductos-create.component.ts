@@ -165,7 +165,6 @@ export class ModeloproductosCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(!this.modelProductForm.valid);
     if (!this.modelProductForm.valid) {
       this.modelProductForm.markAllAsTouched();
       if (this.modelProductForm.get('marca_id')?.value == '0') {
@@ -204,7 +203,7 @@ export class ModeloproductosCreateComponent implements OnInit {
                 const modelProductEntity: ModeloProductosEntity = {
                   marca_id: this.modelProductForm.value!.marca_id ?? '',
                   modelo: this.modelProductForm.value!.modelo ?? '',
-                  modelo_id: '',
+                  modelo_id: this.lstModelos2[0].id ?? '',
                   color_id: this.modelProductForm.value!.color_id ?? '',
                   atributo_id: this.modelProductForm.value!.atributo_id ?? '',
                   genero_id: this.modelProductForm.value!.genero_id ?? '',
@@ -476,7 +475,6 @@ export class ModeloproductosCreateComponent implements OnInit {
         etiquetas: '',
         cod_sap: ''
       }
-      console.log(modelonew);
       this.httpServiceModelos.obtenerModelosNombre(modelonew).subscribe(res => {
         if (res.codigoError != "OK") {
           Swal.fire({

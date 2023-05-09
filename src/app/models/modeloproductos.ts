@@ -10,6 +10,8 @@ export interface ModeloProductosEntity {
     marca?: string;
     modelo_id: string;
     modelo?: string;
+    categoria?: string;
+    linea?: string;
     color_id: string;
     color?: string;
     atributo_id: string;

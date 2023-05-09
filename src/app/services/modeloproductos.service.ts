@@ -9,6 +9,8 @@ const initModelProduct: ModeloProductosEntity = {
   atributo: "",
   atributo_id: "",
   cod_familia: "",
+  categoria: "",
+  linea: "",
   cod_sap: "",
   color: "",
   color_id: "",
