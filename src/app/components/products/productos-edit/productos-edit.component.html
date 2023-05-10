@@ -15,7 +15,7 @@
 
                 <div class="form-group">
                     <label for="grupo">Categoria</label>
-                    <select class="form-control" (change)="changeGroup1($event)" formControlName="categoria">
+                    <select class="form-control" (change)="changeGroup1($event)" id="categoria" formControlName="categoria">
                         <option [value]="0" selected>Seleccione una categoría</option>
                         <option *ngFor="let categoria of lstCategorias" [value]="categoria.categoria">
                             {{categoria.categoria}}
@@ -30,7 +30,7 @@
 
                 <div class="form-group">
                     <label for="grupo">Líneas</label>
-                    <select class="form-control" (change)="changeGroup2($event)" formControlName="linea">
+                    <select class="form-control" (change)="changeGroup2($event)" id="linea" formControlName="linea">
                         <option [value]=" 0 " selected>Seleccione una línea</option>
                         <option *ngFor="let linea of lstLineas" [value]="linea.linea">
                             {{linea.linea}}
@@ -45,7 +45,7 @@
 
                 <div class="form-group">
                     <label for="grupo">Modelos</label>
-                    <select class="form-control" (change)="changeGroup3($event)" formControlName="modelo">
+                    <select class="form-control" (change)="changeGroup3($event)" id="modelo" formControlName="modelo">
                         <option [value]=" 0 " selected>Seleccione un modelo</option>
                         <option *ngFor="let modelo of lstModelos" [value]="modelo.modelo">
                             {{modelo.modelo}}

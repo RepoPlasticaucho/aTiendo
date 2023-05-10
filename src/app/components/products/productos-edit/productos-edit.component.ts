@@ -28,10 +28,10 @@ export class ProductosEditComponent implements OnInit {
   //Creación de la variable para formulario
   modelProductForm = new FormGroup({
     modeloproducto_id: new FormControl('0', Validators.required),
-    categoria: new FormControl('0',),
-    linea: new FormControl('0',),
+    categoria: new FormControl('',Validators.required),
+    linea: new FormControl('',Validators.required),
     marca_id: new FormControl('0', Validators.required),
-    modelo: new FormControl('0',),
+    modelo: new FormControl('0',Validators.required),
     producto: new FormControl('', [Validators.required]),
     etiqueta: new FormControl('', [Validators.required]),
     tamanio: new FormControl('', [Validators.required]),
@@ -72,27 +72,20 @@ export class ProductosEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    $(document).ready(() => {
 
-      $('#modelInput :input').val(this.initialModelProduct);
-
-    });
-
-
-    //Obtenemos Modelos
-    this.httpServiceModeloProductos.obtenerModelosProductos().subscribe((res) => {
-      if (res.codigoError != 'OK') {
+    this.httpServiceCategorias.obtenerCategorias().subscribe(res => {
+      if (res.codigoError != "OK") {
         Swal.fire({
           icon: 'error',
-          title: 'No se pudo obtener Modelos.',
+          title: 'No se pudo obtener la Sociedad.',
           text: res.descripcionError,
           showConfirmButton: false,
         });
       } else {
-        this.lstModeloProductos = res.lstModelo_Productos;
-        // console.log(this.lstModeloProductos);
+        this.lstCategorias = res.lstCategorias;
       }
     });
+
 
     //Cargar los datos Lineas Modificar
     this.httpService.obtenerproducto$.subscribe((res) => {
@@ -118,8 +111,93 @@ export class ProductosEditComponent implements OnInit {
         this.modelProductForm.get('categoria')?.setValue(res.categoria!);
         this.modelProductForm.get('linea')?.setValue(res.linea!);
         this.modelProductForm.get('etiqueta')?.setValue(res.etiquetas);
+        this.modelProductForm.get('modelo')?.setValue(res.modelo_nombre);
         this.modelProductForm.get('modeloproducto_id')?.setValue(res.modelo_producto_id);
         this.initialModelProduct = res.modelo_producto!;
+      }
+    });
+
+    
+    // Extracción de la linea
+    const categoria: CategoriasEntity = {
+      id: '',
+      categoria: this.modelProductForm.value!.categoria ?? "",
+      cod_sap: '',
+      etiquetas: '',
+      almacen_id: '',
+    }
+    this.httpServiceLineas.obtenerLineasCategoriaAdm(categoria).subscribe(res => {
+      if (res.codigoError != "OK") {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener las líneas.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+        this.lstLineas = [];
+        this.lstModelos = [];
+      } else {
+        this.lstLineas = res.lstLineas;
+      }
+    })
+
+    // Extracción del modelo
+    const linea: LineasEntity = {
+      id: '',
+      categoria_id: '',
+      categoria_nombre: '',
+      linea: this.modelProductForm.value!.linea ?? "",
+      etiquetas: '',
+      cod_sap: '',
+      almacen_id: ''
+    }
+    this.httpServiceModelos.obtenerModelosLineasAdm(linea).subscribe(res => {
+      if (res.codigoError != "OK") {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener las líneas.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+        this.lstModelos = [];
+      } else {
+        this.lstModelos = res.lstModelos;
+      }
+    })
+
+    //Obtenemos Modelos
+    const modelonew: ModeloProductosEntity = {
+      id: '',
+      marca_id: '',
+      marca: '',
+      modelo_id: '',
+      modelo: this.modelProductForm.value!.modelo ?? "",
+      categoria: '',
+      linea: '',
+      color_id: '',
+      color: '',
+      atributo_id: '',
+      atributo: '',
+      genero_id: '',
+      genero: '',
+      modelo_producto: '',
+      cod_sap: '',
+      cod_familia: '',
+      etiquetas: '',
+      url_image: ''
+    }
+    console.log(modelonew);
+    this.httpServiceModeloProductos.obtenerModeloProductosModelosAdm(modelonew).subscribe((res) => {
+      console.log(res);
+      if (res.codigoError != 'OK') {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo obtener Modelos.',
+          text: res.descripcionError,
+          showConfirmButton: false,
+        });
+      } else {
+        this.lstModeloProductos = res.lstModelo_Productos;
       }
     });
   }
