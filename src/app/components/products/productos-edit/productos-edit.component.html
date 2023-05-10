@@ -62,7 +62,7 @@
                     <label for="modeloproducto_id">Modelo Producto:</label>
                     <ng-autocomplete  [data]="lstModeloProductos" (selected)='selectEventModel($event)'
                         [searchKeyword]="keywordModelProduct" placeholder="Seleccione el Modelo Producto" [initialValue]="initialModelProduct"
-                        [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel"
+                        [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel" formControlName="modelo_producto"
                         class="form-control" id="modeloproducto_id" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchModel($event)' 
                         (inputCleared)="onInputClearedModel()">
                     </ng-autocomplete>
@@ -80,8 +80,8 @@
                 </div>
                 
                 <div class="form-group ">
-                    <label for="producto " style="margin: 0;">Descripción</label>
-                    <input type="text " class="form-control " id="producto" placeholder="Ingrese la descripción del Modelo Producto." formControlName="producto">
+                    <label for="producto " style="margin: 0;">Nombre</label>
+                    <input type="text " [(ngModel)]="selectedModeloProducto" class="form-control " id="producto" placeholder="Ingrese la descripción del Modelo Producto." formControlName="producto">
                     <small *ngIf="modelProductForm.controls['producto'].invalid && (modelProductForm.controls['producto'].dirty || modelProductForm.controls['producto'].touched)">
                         <small *ngIf="modelProductForm.controls['producto'].errors?.['required']" style="color: red;">
                             Debe ingresar la descripción del Producto

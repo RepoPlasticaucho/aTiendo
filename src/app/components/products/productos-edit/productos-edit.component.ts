@@ -28,6 +28,7 @@ export class ProductosEditComponent implements OnInit {
   //Creación de la variable para formulario
   modelProductForm = new FormGroup({
     modeloproducto_id: new FormControl('0', Validators.required),
+    modeloproducto: new FormControl('0', Validators.required),
     categoria: new FormControl('',Validators.required),
     linea: new FormControl('',Validators.required),
     marca_id: new FormControl('0', Validators.required),
@@ -41,6 +42,7 @@ export class ProductosEditComponent implements OnInit {
   lstModeloProductos: ModeloProductosEntity[] = [];
   lstCategorias: CategoriasEntity[] = [];
   selectCategoria: boolean = false;
+  selectedModeloProducto: string | undefined = '' ;
 
   lstLineas: LineasEntity[] = [];
   selectLinea: boolean = false;
@@ -105,7 +107,8 @@ export class ProductosEditComponent implements OnInit {
         //Asignamos los valores a los campos
         console.log(res);
         this.codigo = res.id!;
-        this.modelProductForm.get('producto')?.setValue(res.nombre);
+        this.selectedModeloProducto = res.nombre;
+        this.modelProductForm.get('producto')?.setValue(this.selectedModeloProducto);
         this.modelProductForm.get('codigoSAP')?.setValue(res.cod_sap);
         this.modelProductForm.get('tamanio')?.setValue(res.tamanio);
         this.modelProductForm.get('categoria')?.setValue(res.categoria!);
@@ -284,6 +287,8 @@ export class ProductosEditComponent implements OnInit {
   selectEventModel(item: ModeloProductosEntity) {
     this.selectModeloProductos = false;
     //this.selectedModeloProducto = item.etiquetas;
+    this.selectedModeloProducto = item.modelo_producto;
+    this.modelProductForm.controls['modeloproducto'].setValue(item.modelo_producto);
     this.modelProductForm.controls['modeloproducto_id'].setValue(item.id!);
   }
 
@@ -415,6 +420,7 @@ export class ProductosEditComponent implements OnInit {
           });
         } else {
           this.lstModeloProductos = res.lstModelo_Productos;
+          this.initialModelProduct = '';
         }
       });
 

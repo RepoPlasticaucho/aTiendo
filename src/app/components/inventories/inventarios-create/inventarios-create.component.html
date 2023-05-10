@@ -1,1 +1,101 @@
-<p>inventarios-create works!</p>
+<!--
+<div style="width: 90%; margin: auto">
+    <div class="card">
+        <div class="card-header">
+            <div class="row mx-3">
+                <fa-icon [icon]="faList" [size]="'3x'" style="color: #636363"></fa-icon>
+                <h1 class="mx-5" style="color: #636363">Agregar Producto</h1>
+                <div style="position: absolute; right: 0" class="mx-3">
+                    <fa-icon [icon]="faTimes" class="btn btn-danger" [size]="'lg'" data-toggle="tooltip"
+                        data-placement="bottom" title="Regresar a modelos" (click)="visualizarProductos()">
+                    </fa-icon>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="inventarioForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="grupo">Categoria</label>
+                    <select class="form-control" (change)="changeGroup1($event)" formControlName="categoria">
+                        <option [value]="0" selected>Seleccione una categoría</option>
+                        <option *ngFor="let categoria of lstCategorias" [value]="categoria.categoria">
+                            {{categoria.categoria}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectCategoria">
+                        <small *ngIf="selectCategoria" style="color: red; ">
+                            Debe seleccionar una categoría.
+                        </small>
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="grupo">Tipo</label>
+                    <select class="form-control" (change)="changeGroup2($event)" formControlName="linea">
+                        <option [value]=" 0 " selected>Seleccione una línea</option>
+                        <option *ngFor="let linea of lstLineas" [value]="linea.linea">
+                            {{linea.linea}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectLinea">
+                        <small *ngIf="selectLinea" style="color: red; ">
+                            Debe seleccionar un tipo.
+                        </small>
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="grupo">Marca</label>
+                    <select class="form-control" (change)="changeGroup3($event)" formControlName="marca">
+                        <option [value]=" 0 " selected>Seleccione una marca</option>
+                        <option *ngFor="let marca of lstMarcas" [value]="marca.marca">
+                            {{marca.marca}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectMarca">
+                        <small *ngIf="selectMarca" style="color: red; ">
+                            Debe seleccionar un modelo.
+                        </small>
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="grupo">Modelo</label>
+                    <select class="form-control" (change)="changeGroup4($event)" formControlName="modelo">
+                        <option [value]=" 0 " selected>Seleccione una marca</option>
+                        <option *ngFor="let modelo of lstModelo" [value]="modelo.modelo">
+                            {{modelo.modelo}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectModelo">
+                        <small *ngIf="selectModelo" style="color: red; ">
+                            Debe seleccionar un modelo.
+                        </small>
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="modeloProducto " style="margin: 0">Producto</label>
+                    <input type="text " [(ngModel)]="selectedModeloProducto" class="form-control" id="modelo "
+                        placeholder="Ingrese la descripción del Modelo Producto." formControlName="modeloProducto" />
+                    <small
+                        *ngIf="inventarioForm.controls['modeloProducto'].invalid && (inventarioForm.controls['modeloProducto'].dirty || inventarioForm.controls['modeloProducto'].touched)">
+                        <small *ngIf="inventarioForm.controls['modeloProducto'].errors?.['required']"
+                            style="color: red">
+                            Debe ingresar la descripción del Modelo Producto
+                        </small>
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="codigoSAP">Stock</label>
+                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el código SAP"
+                        formControlName="codigoSAP" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>
+                    Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+-->
