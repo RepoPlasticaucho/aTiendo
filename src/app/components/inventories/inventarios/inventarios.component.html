@@ -35,6 +35,7 @@
                         <th style="width: 10%; ">TIPO</th>
                         <th style="width: 10%; ">MARCA</th>
                         <th style="width: 35%; ">PRODUCTO</th>
+                        <th style="width: 10%; ">ETIQUETAS</th>
                         <th style="width: 5%; ">FAV</th>
                         <th style="width: 8%; ">OPTIMO</th>
                         <th style="width: 8%; ">STOCK</th>
@@ -47,12 +48,13 @@
                         <td>{{inventario.linea}}</td>
                         <td>{{inventario.marca}}</td>
                         <td>{{inventario.Producto}}</td>
+                        <td>{{inventario.etiquetas}}</td>
                         <td></td>
                         <td>{{inventario.stock_optimo}}</td>
                         <td>{{inventario.stock}}</td>
 
                         <td>
-                            <fa-icon [icon]="faEdit" class="btn btn-info" [size]="'sm'" style="margin-right: 5px;" data-placement="bottom" title="Editar Almacen"></fa-icon>
+                            <fa-icon [icon]="faEdit" class="btn btn-info" [size]="'sm'"  style="margin-right: 5px;" data-placement="bottom" title="Editar Almacen" (click)="editarInventarios(inventario)"></fa-icon>
                             <fa-icon [icon]="faTrashAlt" class="btn btn-danger" [size]="'lg'" data-placement="bottom" title="Eliminar Almacen"></fa-icon>
                         </td>
                     </tr>

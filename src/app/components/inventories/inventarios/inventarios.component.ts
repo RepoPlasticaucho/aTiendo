@@ -112,9 +112,9 @@ export class InventariosComponent implements OnInit {
     this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-create'] } }]);
   }
 
-  /*editarAlmacenes(almacen: AlmacenesEntity) {
-    console.log(almacen);
-    this.httpService.asignarAlmacen(almacen);
-    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['editarAlmacenes'] } }]);
-  }*/
+  editarInventarios(inventario: InventariosEntity) {
+    console.log(inventario);
+    this.httpService.asignarInventario(inventario);
+    this.router.navigate(['/navegation-cl', { outlets: { 'contentClient': ['inventarios-edit'] } }]);
+  }
 }

@@ -17,15 +17,18 @@ const initGruop: InventariosEntity = {
   marca_id: "",
   marca: "",
   modelo_producto_id: "",
+  modelo_producto: "",
   idProducto: "",
   Producto: "",
   id: "",
   dInventario: "",
   producto_id: "",
   almacen_id: "",
+  producto_nombre : "",
   almacen: "",
   stock: "",
   stock_optimo: "",
+  etiquetas: "",
   fav: "",
   color: '',
   modelo: ''
@@ -108,6 +111,13 @@ export class InventariosService {
   }
   obtenerPortafoliosColores(inventario: InventariosEntity): Observable<Inventarios> {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ObtenerPortafoliosModelosColores`,inventario );
+  }
+  agregarInventario(inventario: InventariosEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/InsertarInventarios`, inventario);
+  }
+
+  actualizarInventario(inventario: InventariosEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/ModificarInventarios`, inventario);
   }
   
 }

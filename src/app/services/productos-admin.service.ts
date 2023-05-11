@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { ProductosEditComponent } from '../components/all_components';
 import { ProducAdmEntity, ProductAdm } from '../models/productadm';
+import { ModeloProductosEntity } from '../models/modeloproductos';
 
 const initProduct : ProducAdmEntity ={
   id: "",
@@ -44,6 +45,12 @@ export class ProductosAdminService {
   }
   obtenerProductos(): Observable<ProductAdm> {
     return this.http.get<ProductAdm>(`${environment.apiUrl}productos/ObtenerProductos`);
+  }
+  obtenerProductosModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ProductAdm> {
+    return this.http.post<ProductAdm>(`${environment.apiUrl}productos/ObtenerProductosModeloProducto`, modeloProducto);
+  }
+  obtenerProductosN(producto: ProducAdmEntity): Observable<ProductAdm> {
+    return this.http.post<ProductAdm>(`${environment.apiUrl}productos/ObtenerProductosN`, producto);
   }
   agregarProducto(producto: ProducAdmEntity): Observable<ProductAdm> {
     return this.http.post<ProductAdm>(`${environment.apiUrl}productos/InsertarProductos`, producto);

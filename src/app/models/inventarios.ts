@@ -19,14 +19,17 @@ export interface InventariosEntity {
         marca_id : string;
         marca : string;
         modelo_producto_id : string;
+        modelo_producto? : string;
         idProducto : string;
         Producto : string;
         id : string;
         dInventario : string;
         producto_id : string;
         almacen_id : string;
+        producto_nombre? : string;
         almacen : string;
         stock : string;
+        etiquetas?: string;
         stock_optimo : string;
         fav : string;
         color :string;

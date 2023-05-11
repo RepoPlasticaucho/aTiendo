@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form [formGroup]="inventarioForm" >
+            <form [formGroup]="inventarioForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="grupo">Categoria</label>
                     <select class="form-control" (change)="changeGroup1($event)" formControlName="categoria">
@@ -73,22 +73,36 @@
                         </small>
                     </small>
                 </div>
-                <!--
+
                     <div class="form-group">
                     <label for="grupo">Modelo Producto</label>
                     <select class="form-control" (change)="changeGroup4($event)" formControlName="modelo_producto">
-                        <option [value]=" 0 " selected>Seleccione una marca</option>
+                        <option [value]=" 0 " selected>Seleccione un modelo producto</option>
                         <option *ngFor="let modelo_producto of lstModeloProductos" [value]="modelo_producto.modelo_producto">
                             {{modelo_producto.modelo_producto}}
                         </option>
                     </select>
                     <small *ngIf="selectModeloProducto">
                         <small *ngIf="selectModeloProducto" style="color: red; ">
-                            Debe seleccionar un modelo.
+                            Debe seleccionar un modelo producto.
                         </small>
                     </small>
-                </div>
-                -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="grupo">Producto</label>
+                        <select [(ngModel)]="selectedModeloProducto" class="form-control" (change)="changeGroup5($event)" formControlName="producto">
+                            <option [value]=" 0 " selected>Seleccione un producto</option>
+                            <option *ngFor="let producto of lstProductos" [value]="producto.nombre">
+                                {{producto.nombre}}
+                            </option>
+                        </select>
+                        <small *ngIf="selectProductos">
+                            <small *ngIf="selectProductos" style="color: red; ">
+                                Debe seleccionar un producto.
+                            </small>
+                        </small>
+                        </div>
                 
                 <div class="form-group">
                     <label for="etiquetas">Etiquetas</label>
@@ -97,7 +111,7 @@
                 </div>
                 <div class="form-group">
                     <label for="stock">Stock</label>
-                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el stock"
+                    <input type="text" (keypress)="keyPressNumbers($event)" class="form-control" id="codigoSAP" placeholder="Ingrese el stock"
                         formControlName="stock" />
                 </div>
                 <button type="submit" class="btn btn-primary">
