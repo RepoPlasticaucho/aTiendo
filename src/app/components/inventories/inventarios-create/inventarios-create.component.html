@@ -1,4 +1,3 @@
-<!--
 <div style="width: 90%; margin: auto">
     <div class="card">
         <div class="card-header">
@@ -13,7 +12,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form [formGroup]="inventarioForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="inventarioForm" >
                 <div class="form-group">
                     <label for="grupo">Categoria</label>
                     <select class="form-control" (change)="changeGroup1($event)" formControlName="categoria">
@@ -44,6 +43,7 @@
                     </small>
                 </div>
 
+                <!--
                 <div class="form-group">
                     <label for="grupo">Marca</label>
                     <select class="form-control" (change)="changeGroup3($event)" formControlName="marca">
@@ -58,11 +58,12 @@
                         </small>
                     </small>
                 </div>
+                -->
                 <div class="form-group">
                     <label for="grupo">Modelo</label>
-                    <select class="form-control" (change)="changeGroup4($event)" formControlName="modelo">
-                        <option [value]=" 0 " selected>Seleccione una marca</option>
-                        <option *ngFor="let modelo of lstModelo" [value]="modelo.modelo">
+                    <select class="form-control" (change)="changeGroup3($event)" formControlName="modelo">
+                        <option [value]=" 0 " selected>Seleccione un modelo</option>
+                        <option *ngFor="let modelo of lstModelos" [value]="modelo.modelo">
                             {{modelo.modelo}}
                         </option>
                     </select>
@@ -72,22 +73,32 @@
                         </small>
                     </small>
                 </div>
-                <div class="form-group">
-                    <label for="modeloProducto " style="margin: 0">Producto</label>
-                    <input type="text " [(ngModel)]="selectedModeloProducto" class="form-control" id="modelo "
-                        placeholder="Ingrese la descripción del Modelo Producto." formControlName="modeloProducto" />
-                    <small
-                        *ngIf="inventarioForm.controls['modeloProducto'].invalid && (inventarioForm.controls['modeloProducto'].dirty || inventarioForm.controls['modeloProducto'].touched)">
-                        <small *ngIf="inventarioForm.controls['modeloProducto'].errors?.['required']"
-                            style="color: red">
-                            Debe ingresar la descripción del Modelo Producto
+                <!--
+                    <div class="form-group">
+                    <label for="grupo">Modelo Producto</label>
+                    <select class="form-control" (change)="changeGroup4($event)" formControlName="modelo_producto">
+                        <option [value]=" 0 " selected>Seleccione una marca</option>
+                        <option *ngFor="let modelo_producto of lstModeloProductos" [value]="modelo_producto.modelo_producto">
+                            {{modelo_producto.modelo_producto}}
+                        </option>
+                    </select>
+                    <small *ngIf="selectModeloProducto">
+                        <small *ngIf="selectModeloProducto" style="color: red; ">
+                            Debe seleccionar un modelo.
                         </small>
                     </small>
                 </div>
+                -->
+                
                 <div class="form-group">
-                    <label for="codigoSAP">Stock</label>
-                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el código SAP"
-                        formControlName="codigoSAP" />
+                    <label for="etiquetas">Etiquetas</label>
+                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese las etiquetas"
+                        formControlName="etiquetas" />
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="text" class="form-control" id="codigoSAP" placeholder="Ingrese el stock"
+                        formControlName="stock" />
                 </div>
                 <button type="submit" class="btn btn-primary">
                     <fa-icon [icon]="faSave" [size]="'sm'"></fa-icon>
@@ -97,5 +108,3 @@
         </div>
     </div>
 </div>
-
--->
