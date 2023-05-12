@@ -68,21 +68,21 @@ export class InventariosComponent implements OnInit {
 
   }
 
-  /*eliminarAlmacenes(almacen: AlmacenesEntity): void {
+  eliminarInventarios(inventario: InventariosEntity): void {
     Swal.fire({
       icon: 'question',
-      title: `¿Esta seguro de eliminar ${almacen.direccion}?`,
+      title: `¿Esta seguro de eliminar ${inventario.Producto}?`,
       showDenyButton: true,
       confirmButtonText: 'Si',
       denyButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.httpService.eliminarAlmacen(almacen).subscribe(res => {
+        this.httpService.eliminarInventarios(inventario).subscribe(res => {
           if (res.codigoError == 'OK') {
             Swal.fire({
               icon: 'success',
               title: 'Eliminado Exitosamente.',
-              text: `Se ha eliminado el grupo ${almacen.direccion}`,
+              text: `Se ha eliminado el grupo ${inventario.Producto}`,
               showConfirmButton: true,
               confirmButtonText: "Ok"
             }).then(() => {
@@ -102,7 +102,6 @@ export class InventariosComponent implements OnInit {
     })
   }
 
-  */
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
