@@ -122,5 +122,8 @@ export class InventariosService {
   eliminarInventarios(inventario: InventariosEntity): Observable<Inventarios> {
     return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/EliminarInventarios`, inventario);
   }
+  deshabilitarInventarios(inventario: InventariosEntity): Observable<Inventarios> {
+    return this.http.post<Inventarios>(`${environment.apiUrl}inventarios/DeshabilitarInventarios`, inventario);
+  }
   
 }

@@ -62,7 +62,7 @@
                     <label for="modeloproducto_id">Modelo Producto:</label>
                     <ng-autocomplete  [data]="lstModeloProductos" (selected)='selectEventModel($event)'
                         [searchKeyword]="keywordModelProduct" placeholder="Seleccione el Modelo Producto" [initialValue]="initialModelProduct"
-                        [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel" formControlName="modelo_producto"
+                        [itemTemplate]="itemTemplateModel" [notFoundTemplate]="notFoundTemplateModel"
                         class="form-control" id="modeloproducto_id" style="width: 100%;padding: 0%;"  (inputChanged)='onChangeSearchModel($event)' 
                         (inputCleared)="onInputClearedModel()">
                     </ng-autocomplete>

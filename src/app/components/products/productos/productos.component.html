@@ -40,7 +40,7 @@
                         <td>{{producto.impuesto_nombre}}</td>
                         <td style="text-align: center;">
                             <fa-icon [icon]="faEdit" class="btn btn-info" [size]="'lg'" style="margin-right: 5px;" data-placement="bottom" title="Editar Modelo Producto" (click)=" editarProducto(producto) "></fa-icon>
-                            <fa-icon [icon]="faTrashAlt " class="btn btn-danger " [size]=" 'lg' " data-placement="bottom " title="Eliminar Modelo Producto" (click)="eliminarProducto(producto)"></fa-icon>
+                            <fa-icon [icon]="faTrashAlt " class="btn btn-danger " [size]=" 'lg' " data-placement="bottom " title="Eliminar Modelo Producto" (click)="deshabilitarProducto(producto)"></fa-icon>
                         </td>
                     </tr>
                 </tbody>

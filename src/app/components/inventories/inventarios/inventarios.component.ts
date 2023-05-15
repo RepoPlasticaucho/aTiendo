@@ -102,6 +102,40 @@ export class InventariosComponent implements OnInit {
     })
   }
 
+  deshabilitarInventarios(inventario: InventariosEntity): void {
+    Swal.fire({
+      icon: 'question',
+      title: `¿Esta seguro de eliminar ${inventario.Producto}?`,
+      showDenyButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.httpService.deshabilitarInventarios(inventario).subscribe(res => {
+          if (res.codigoError == 'OK') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado Exitosamente.',
+              text: `Se ha eliminado el grupo ${inventario.Producto}`,
+              showConfirmButton: true,
+              confirmButtonText: "Ok"
+            }).then(() => {
+              // this.groupForm.reset();
+              window.location.reload();
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
+              showConfirmButton: false,
+            });
+          }
+        })
+      }
+    })
+  }
+
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();

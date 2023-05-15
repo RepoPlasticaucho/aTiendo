@@ -22,6 +22,7 @@ export class SociedadesCreateComponent implements OnInit {
   //Creación de la variable para formulario
   corporationForm = new FormGroup({
     grupo: new FormControl('0', Validators.required),
+    rol: new FormControl('0', Validators.required),
     idFiscal: new FormControl('', [Validators.required, Validators.minLength(10)]),
     nombreComercial: new FormControl('', Validators.required),
     correoElectronico: new FormControl('', [Validators.required, Validators.email]),
@@ -30,6 +31,12 @@ export class SociedadesCreateComponent implements OnInit {
   //Variables para listas desplegables
   lstGrupos: GruposEntity[] = [];
   selectGrupo: boolean = false;
+  selectRol: boolean = false;
+
+  admin: string = 'admin';
+  client: string = 'client';
+  bo: string = 'bo';
+
 
   constructor(private readonly httpService: SociedadesService,
     private readonly httpServiceGrupos: GruposService,
@@ -70,7 +77,7 @@ export class SociedadesCreateComponent implements OnInit {
           email: this.corporationForm.value!.correoElectronico ?? "",
           telefono: this.corporationForm.value!.telefono ?? "",
           password: '',
-          funcion: '',
+          funcion: this.corporationForm.value!.rol ?? "",
           idSociedad: '',
           razon_social: ''
         };
@@ -115,6 +122,15 @@ export class SociedadesCreateComponent implements OnInit {
     } else {
       this.selectGrupo = false;
       this.corporationForm.get("grupo")?.setValue(grupo.target.value);
+    }
+  }
+
+  changeGroup2(rol: any): void {
+    if (rol.target.value == 0) {
+      this.selectRol = true;
+    } else {
+      this.selectRol = false;
+      this.corporationForm.get("rol")?.setValue(rol.target.value);
     }
   }
 

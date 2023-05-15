@@ -56,5 +56,8 @@ export class ModeloproductosService {
   eliminarModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
     return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/EliminarModeloProductos`, modeloProducto);
   }
+  deshabilitarModeloProducto(modeloProducto: ModeloProductosEntity): Observable<ModeloProductos> {
+    return this.http.post<ModeloProductos>(`${environment.apiUrl}modeloProducto/DeshabilitarModeloProductos`, modeloProducto);
+  }
 
 }

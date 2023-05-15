@@ -118,8 +118,8 @@ export class ProductosCreateComponent implements OnInit {
           tamanio: this.modelProductForm.value!.tamanio ?? "",
           nombre: this.modelProductForm.value!.producto ?? "",
           etiquetas: this.modelProductForm.value!.etiquetas ?? "",
-          es_plasticaucho: '',
-          es_sincronizado: '',
+          es_plasticaucho: '1',
+          es_sincronizado: '1',
           modelo_producto_id: this.modelProductForm.value!.modeloproducto_id ?? "",
           cod_sap: this.modelProductForm.value!.codigoSAP ?? "",
           impuesto_id: '',
@@ -338,6 +338,7 @@ export class ProductosCreateComponent implements OnInit {
           });
         } else {
           this.lstModeloProductos = res.lstModelo_Productos;
+          console.log(this.lstModeloProductos)
         }
       });
 

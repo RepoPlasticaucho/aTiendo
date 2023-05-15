@@ -94,6 +94,40 @@ export class ProductosComponent implements OnInit {
      })
   }
 
+  deshabilitarProducto(producto: ProducAdmEntity): void {
+    Swal.fire({
+      icon: 'question',
+      title: `¿Esta seguro de eliminar ${producto.nombre}?`,
+      showDenyButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.httpService.deshabilitarProducto(producto).subscribe(res => {
+          if (res.codigoError == 'OK') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado Exitosamente.',
+              text: `Se ha eliminado el Producto ${producto.nombre}`,
+              showConfirmButton: true,
+              confirmButtonText: "Ok"
+            }).then(() => {
+              // this.groupForm.reset();
+              window.location.reload();
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ha ocurrido un error.',
+              text: res.descripcionError,
+              showConfirmButton: false,
+            });
+          }
+         })
+      }
+    })
+ }
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
