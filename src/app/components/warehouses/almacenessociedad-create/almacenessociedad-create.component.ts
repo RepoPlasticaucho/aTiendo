@@ -50,7 +50,7 @@ export class AlmacenessociedadCreateComponent implements OnInit {
        this.warehousesForm.markAllAsTouched();
      } else {
       const almacenEntity: AlmacenesEntity = {
-        sociedad_id: '8',
+        sociedad_id: JSON.parse(localStorage.getItem('sociedadid') || "[]"),
         direccion: this.warehousesForm.value!.Direccion ?? "",
         codigo: this.warehousesForm.value!.codigo ?? "",
         pto_emision: this.warehousesForm.value!.pto_emision ?? "",

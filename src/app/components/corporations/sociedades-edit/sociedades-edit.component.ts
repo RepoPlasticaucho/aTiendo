@@ -69,7 +69,7 @@ export class SociedadesEditComponent implements OnInit {
         this.codigo = res.idSociedad ?? "";
         this.corporationForm.get("grupo")?.setValue(res.idGrupo);
         if(res.funcion == ""){
-          this.corporationForm.get("rol")?.setValue("Seleccione un rol");
+          this.corporationForm.get("rol")?.setValue("0");
         } else {
           this.corporationForm.get("rol")?.setValue(res.funcion);
         }

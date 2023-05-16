@@ -79,7 +79,7 @@ export class AlmacenessociedadEditComponent implements OnInit {
       
     } else {
         const almacenEntity: AlmacenesEntity = {
-          sociedad_id: '8',
+          sociedad_id: JSON.parse(localStorage.getItem('sociedadid') || "[]"),
           direccion: this.warehousesForm.value!.Direccion ?? "",
           codigo: this.warehousesForm.value!.codigo ?? "",
           pto_emision: this.warehousesForm.value!.pto_emision ?? "",
@@ -107,8 +107,8 @@ export class AlmacenessociedadEditComponent implements OnInit {
             });
           }
         })
-      }
     }
+  }
 
     keyPressNumbers(event: any) {
       var charCode = (event.which) ? event.which : event.keyCode;
