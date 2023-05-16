@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { AuthenticationService } from "src/app/services/authentication.service";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navegation-adm',
@@ -16,6 +18,14 @@ export class NavegationAdmComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+    private authService: AuthenticationService,
+    private location: Location) {}
+
+  logout() {
+    this.authService.logout();
+    this.location.replaceState('/');
+    window.location.reload();
+  }
 
 }
